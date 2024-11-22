@@ -13,6 +13,7 @@ abstract public class Person {
         this.email=scanner.next();
         System.out.println("Please enter your password : ");
         this.password=scanner.next();
+
     }
     public void signup(){
         System.out.println("Welcome in sign up page");
