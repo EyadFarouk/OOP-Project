@@ -1,7 +1,7 @@
-package person;
+package ASU.CIS.Project.Person;
 
-import resturants.Menu;
-import resturants.Restaurant;
+import ASU.CIS.Project.Resturants.Menu;
+import ASU.CIS.Project.Resturants.Restaurant;
 
 import java.util.List;
 

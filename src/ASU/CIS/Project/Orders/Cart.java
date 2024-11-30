@@ -1,12 +1,11 @@
-package orders;
+package ASU.CIS.Project.Orders;
 
-import resturants.Menu;
+import ASU.CIS.Project.Resturants.Menu;
 
-import java.lang.reflect.Array;
 import java.util.List;
 
 public class Cart {
-    public static List<resturants.Menu> menus;
+    public static List<Menu> menus;
     public   static List<Integer> quantities;
     public static List<String> adds;
     public static void displayCart(){

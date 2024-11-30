@@ -1,4 +1,4 @@
-package resturants;
+package ASU.CIS.Project.Resturants;
 
 public class Menu {
    public String name;

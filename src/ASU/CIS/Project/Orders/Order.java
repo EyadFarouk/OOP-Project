@@ -1,6 +1,6 @@
-package orders;
+package ASU.CIS.Project.Orders;
 
-import payment.Payment;
+import ASU.CIS.Project.Payment.Payment;
 
 public class Order {
     String deliveryAddress;
