@@ -1,4 +1,4 @@
-package payment;
+package ASU.CIS.Project.Payment;
 
 public class Payment {
     public boolean cart;

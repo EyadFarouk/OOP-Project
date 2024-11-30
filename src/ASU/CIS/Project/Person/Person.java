@@ -1,4 +1,4 @@
-package person;
+package ASU.CIS.Project.Person;
 
 import java.util.Scanner;
 

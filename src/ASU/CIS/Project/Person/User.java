@@ -1,4 +1,4 @@
-package person;
+package ASU.CIS.Project.Person;
 
 public class User extends Person {
     String deliveryAddress;
