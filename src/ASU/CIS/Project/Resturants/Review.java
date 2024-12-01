@@ -31,7 +31,7 @@ public class Review {
      * @param rate the rate the user returns
      * @param name nameof the dish
      */
-   /* public void setReviewForDish(int rate, String name) {
+   /* public void serReviewForDish(int rate, String name) {
         if (name.equals(dish name))
         {
             this.scoreRating = rate;

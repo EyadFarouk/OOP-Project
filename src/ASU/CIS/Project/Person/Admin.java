@@ -5,7 +5,7 @@ import ASU.CIS.Project.Resturants.Restaurant;
 
 import java.util.List;
 
-public class Admin extends User {
+public class Admin extends Person{
    public static List<Restaurant>restaurants;
 
    public static Restaurant getRestaurant(String name){
