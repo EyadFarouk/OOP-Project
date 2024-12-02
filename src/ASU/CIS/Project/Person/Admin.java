@@ -106,8 +106,8 @@ public class Admin extends User {
         this.address=scanner.next();
         System.out.println("Please enter your password : ");
         this.password=scanner.next();
-        for (int i=0;i<adminList.size();i++){
-            if (this.email.equals(adminList.get(i).email)){
+        for (Admin admin : adminList) {
+            if (this.email.equals(admin.email)) {
                 System.out.println("im sorry email must be unique");
                 signup();
             }

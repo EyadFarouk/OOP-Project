@@ -83,8 +83,8 @@ public class Customer extends User {
         this.address=scanner.next();
         System.out.println("Please enter your password : ");
         this.password=scanner.next();
-        for (int i=0;i<userList.size();i++){
-            if (this.email.equals(userList.get(i).email)){
+        for (Customer customer : userList) {
+            if (this.email.equals(customer.email)) {
                 System.out.println("im sorry email must be unique");
                 signup();
             }
