@@ -3,14 +3,37 @@ package ASU.CIS.Project.Person;
 import ASU.CIS.Project.Resturants.Menu;
 import ASU.CIS.Project.Resturants.Restaurant;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Admin extends User {
    public static List<Restaurant>restaurants;
+   static List<Admin> adminList=new ArrayList<>();
 
-   public static Restaurant getRestaurant(String name){
+   static public void instance(){
+        Admin Eyad=new Admin();
+        Eyad.email="Eyad";
+        Eyad.password="Eyad";
+        adminList.add(Eyad);
+        for (int i = 0; i < 10; i++) {
+            Admin admin=new Admin();
+            admin.Fname="Fname"+i;
+            admin.Lname="Lname"+i;
+            admin.email="email"+i+"@email.com";
+            admin.phone="phone"+i;
+            admin.age=1;
+            admin.gender="male";
+            admin.address="address"+i;
+            admin.password="password"+i;
+            adminList.add(admin);
+            admin.displayUserInfo();
+        }
+   }
+
+    public static Restaurant getRestaurant(String name){
       try {
           for (Restaurant restaurant:restaurants){
               if (name.equals(restaurant.name)){
@@ -21,8 +44,8 @@ public class Admin extends User {
           System.out.println("Restaurant not found");
       }
        return null;
-   }
-   public static int getMenu(String name,Restaurant restaurant){
+    }
+    public static int getMenu(String name,Restaurant restaurant){
        int i;
      try {
          for (i=0;i<restaurant.menu.size();i++){
@@ -34,18 +57,18 @@ public class Admin extends User {
          System.out.println("Dish not found");
      }
        return 10000;
-   }
-   public static void addRestaurant(Restaurant restaurant){
+    }
+    public static void addRestaurant(Restaurant restaurant){
 
        restaurants.set(restaurants.size(), restaurant);
 
     }
-   public static void deleteRestaurant(String name){
+    public static void deleteRestaurant(String name){
 
        restaurants.remove(getRestaurant(name));
 
     }
-   public static void addMenu(Menu menu){
+    public static void addMenu(Menu menu){
 
     }
     public static void deleteMenu(String name){
@@ -77,35 +100,7 @@ public class Admin extends User {
 
     @Override
     public void signup() {
-        // hard code to test
-        List<Admin> adminList=new ArrayList<>();
-        Admin admin1=new Admin();
-        admin1.email="mohamedtalat";
-        admin1.password="1234567";
-        Admin admin2=new Admin();
-        admin2.email="talat saber";
-        admin2.password="1234578";
-        adminList.add(admin1);
-        adminList.add(admin2);
-        // end hard code
-        System.out.println("Welcome in sign up page");
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("Please enter your first name : ");
-        this.Fname=scanner.next();
-        System.out.println("Please enter your last name : ");
-        this.Lname=scanner.next();
-        System.out.println("Please enter your email : ");
-        this.email=scanner.next();
-        System.out.println("Please enter your phone number : ");
-        this.phone=scanner.next();
-        System.out.println("Please enter your age : ");
-        this.age=scanner.nextInt();
-        System.out.println("Please enter your gender : ");
-        this.gender=scanner.next();
-        System.out.println("Please enter your address : ");
-        this.address=scanner.next();
-        System.out.println("Please enter your password : ");
-        this.password=scanner.next();
+       super.signup();
         for (Admin admin : adminList) {
             if (this.email.equals(admin.email)) {
                 System.out.println("im sorry email must be unique");
@@ -113,42 +108,47 @@ public class Admin extends User {
             }
         }
         System.out.println("sign up succeful");
+        adminList.add(this);
     }
 
     @Override
     public Admin login() {
-        // hard code to test
-        List<Admin> adminList=new ArrayList<>();
-        Admin admin1=new Admin();
-        admin1.email="mohamedtalat";
-        admin1.password="1234567";
-        Admin admin2=new Admin();
-        admin2.email="talat saber";
-        admin2.password="1234578";
-        adminList.add(admin1);
-        adminList.add(admin2);
-        // end hard code
-        System.out.println("Welcome in Log in page");
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("Please enter your email : ");
-        this.email=scanner.next();
-        System.out.println("Please enter your password : ");
-        this.password=scanner.next();
-        for (int i=0;i<adminList.size();i++){
-            if (this.email.equals(adminList.get(i).email)){
-                if (this.password.equals(adminList.get(i).password)){
-                    System.out.println("log in success");
-                }
-                else if (i==adminList.size()-1){
-                    System.out.println("the email or password is not correct");
-                    login();
-                }
-            }
-            else if (i==adminList.size()-1){
-                System.out.println("the email or password is not correct");
-                login();
-            }
+       do {
+           System.out.println("Welcome in Log in page");
+           Scanner scanner = new Scanner(System.in);
+           System.out.println("Please enter your email : ");
+           this.email = scanner.next();
+           System.out.println("Please enter your password : ");
+           this.password = scanner.next();
+           for (int i = 0; i < adminList.size(); i++) {
+               if (this.email.equals(adminList.get(i).email)) {
+                   if (this.password.equals(adminList.get(i).password)) {
+                       System.out.println("log in success");
+                       return adminList.get(i);
+                   } else if (i == adminList.size() - 1) {
+                       System.out.println("the email or password is not correct");
+                   }
+               } else if (i == adminList.size() - 1) {
+                   System.out.println("the email or password is not correct");
+               }
+           }
+       }while (true);
+    }
+
+    @Override
+    public void saveData() {
+        FileWriter fw;
+        try {
+            fw = new FileWriter("Data/AdminData.csv");
+            fw.write("FName,LName,Email,Phone,Age,Gender,Address,Password\n");
+            for (Admin admin:adminList) {
+                fw.append(admin.toString());}
+            fw.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        return admin2;
+    }
+    public String toString() {
+        return this.Fname + ',' + this.Lname + ',' + this.email + ',' + this.phone + ',' + this.age + ',' + this.gender + ',' + this.address + ',' + this.password + ','+'\n';
     }
 }
