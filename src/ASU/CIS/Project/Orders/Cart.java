@@ -1,11 +1,11 @@
 package ASU.CIS.Project.Orders;
 
-import ASU.CIS.Project.Resturants.Menu;
+import ASU.CIS.Project.Resturants.Dish;
 
 import java.util.List;
 
 public class Cart {
-    public static List<Menu> menus;
+    public static List<Dish> menus;
     public   static List<Integer> quantities;
     public static List<String> adds;
     public static void displayCart(){
@@ -19,7 +19,7 @@ public class Cart {
         quantities.remove(numberOfItem-1);
         adds.remove(numberOfItem-1);
     }
-    public static void addItem(Menu menu,int quantities,String add){
+    public static void addItem(Dish menu, int quantities, String add){
         menus.set(menus.size(),menu);
         Cart.quantities.set(Cart.quantities.size(),quantities);
         adds.set(adds.size(),add);

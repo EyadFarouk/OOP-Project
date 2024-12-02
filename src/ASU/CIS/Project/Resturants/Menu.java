@@ -1,9 +1,8 @@
 package ASU.CIS.Project.Resturants;
 
-public class Menu {
-   public String name;
-   public String description;
-   public double price;
-   public String categories;
-   public double rating;
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class   Menu {
+    public List<Dish> menu=new ArrayList<>();
 }

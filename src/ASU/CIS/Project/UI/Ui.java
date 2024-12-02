@@ -4,7 +4,7 @@ import ASU.CIS.Project.Orders.Cart;
 import ASU.CIS.Project.Orders.Order;
 import ASU.CIS.Project.Person.Admin;
 import ASU.CIS.Project.Person.Customer;
-import ASU.CIS.Project.Resturants.Menu;
+import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Restaurant;
 import ASU.CIS.Project.Resturants.Review;
 
@@ -37,7 +37,6 @@ Scanner scanner=new Scanner(System.in);
         System.out.println("2- if you want to log out : ");
         return scanner.nextInt();
     }
-
     public  Restaurant displayRestaurants(){
         Restaurant []restaurants=new Restaurant[10];
         System.out.println("Welcome in home page please enter the number of restaurant you need");
@@ -92,7 +91,6 @@ Scanner scanner=new Scanner(System.in);
         }
         doYouWantAnotherAction();
     }
-
     public  int homePageAfterSelectRestaurant(){
 
         System.out.println("Hello in home page please enter the number of action you need");
@@ -141,8 +139,8 @@ Scanner scanner=new Scanner(System.in);
         System.out.println("Please enter rating of restaurant : ");
         restaurant1.rating=scanner.nextDouble();
         System.out.println("next we want to add Menu items");
-        Menu menu=new Menu();
-        List<Menu>menus = null;
+        Dish menu=new Dish();
+        List<Dish>menus = null;
         System.out.println("Please enter number of items in menu : ");
         int numberOfItems=scanner.nextInt();
         for (int i=0;i<numberOfItems;i++){

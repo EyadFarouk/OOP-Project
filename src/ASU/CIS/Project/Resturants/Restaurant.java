@@ -1,9 +1,9 @@
 package ASU.CIS.Project.Resturants;
 
-import java.util.List;
 
-public class Restaurant {
-    public List<Menu>menu;
+
+public class Restaurant extends Menu {
+
     public String name;
     public String address;
     public String contactInformation;
