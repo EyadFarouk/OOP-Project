@@ -97,7 +97,7 @@ public class Admin extends User {
         System.out.println("Please enter your email : ");
         this.email=scanner.next();
         System.out.println("Please enter your phone number : ");
-        this.Phone=scanner.nextInt();
+        this.phone=scanner.next();
         System.out.println("Please enter your age : ");
         this.age=scanner.nextInt();
         System.out.println("Please enter your gender : ");
@@ -116,7 +116,7 @@ public class Admin extends User {
     }
 
     @Override
-    public void login() {
+    public Admin login() {
         // hard code to test
         List<Admin> adminList=new ArrayList<>();
         Admin admin1=new Admin();
@@ -149,5 +149,6 @@ public class Admin extends User {
                 login();
             }
         }
+        return admin2;
     }
 }
