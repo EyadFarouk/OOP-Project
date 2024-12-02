@@ -3,7 +3,9 @@ package ASU.CIS.Project.Person;
 import ASU.CIS.Project.Resturants.Menu;
 import ASU.CIS.Project.Resturants.Restaurant;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Admin extends User {
    public static List<Restaurant>restaurants;
@@ -71,5 +73,81 @@ public class Admin extends User {
 
         }
 
+    }
+
+    @Override
+    public void signup() {
+        // hard code to test
+        List<Admin> adminList=new ArrayList<>();
+        Admin admin1=new Admin();
+        admin1.email="mohamedtalat";
+        admin1.password="1234567";
+        Admin admin2=new Admin();
+        admin2.email="talat saber";
+        admin2.password="1234578";
+        adminList.add(admin1);
+        adminList.add(admin2);
+        // end hard code
+        System.out.println("Welcome in sign up page");
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Please enter your first name : ");
+        this.Fname=scanner.next();
+        System.out.println("Please enter your last name : ");
+        this.Lname=scanner.next();
+        System.out.println("Please enter your email : ");
+        this.email=scanner.next();
+        System.out.println("Please enter your phone number : ");
+        this.Phone=scanner.nextInt();
+        System.out.println("Please enter your age : ");
+        this.age=scanner.nextInt();
+        System.out.println("Please enter your gender : ");
+        this.gender=scanner.next();
+        System.out.println("Please enter your address : ");
+        this.address=scanner.next();
+        System.out.println("Please enter your password : ");
+        this.password=scanner.next();
+        for (int i=0;i<adminList.size();i++){
+            if (this.email.equals(adminList.get(i).email)){
+                System.out.println("im sorry email must be unique");
+                signup();
+            }
+        }
+        System.out.println("sign up succeful");
+    }
+
+    @Override
+    public void login() {
+        // hard code to test
+        List<Admin> adminList=new ArrayList<>();
+        Admin admin1=new Admin();
+        admin1.email="mohamedtalat";
+        admin1.password="1234567";
+        Admin admin2=new Admin();
+        admin2.email="talat saber";
+        admin2.password="1234578";
+        adminList.add(admin1);
+        adminList.add(admin2);
+        // end hard code
+        System.out.println("Welcome in Log in page");
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Please enter your email : ");
+        this.email=scanner.next();
+        System.out.println("Please enter your password : ");
+        this.password=scanner.next();
+        for (int i=0;i<adminList.size();i++){
+            if (this.email.equals(adminList.get(i).email)){
+                if (this.password.equals(adminList.get(i).password)){
+                    System.out.println("log in success");
+                }
+                else if (i==adminList.size()-1){
+                    System.out.println("the email or password is not correct");
+                    login();
+                }
+            }
+            else if (i==adminList.size()-1){
+                System.out.println("the email or password is not correct");
+                login();
+            }
+        }
     }
 }
