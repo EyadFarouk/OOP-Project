@@ -6,61 +6,65 @@ import java.util.Scanner;
 
 public class Customer extends User {
     String deliveryAddress;
+    static List<Customer> userList=new ArrayList<>();
     public void displayUserInfo(){
-        System.out.println("Name of user is : "+Fname+" "+Lname);
-        System.out.println("Email of user is : "+email);
-        System.out.println("Password of user is : "+password);
+        System.out.println("Name of user is : "+this.Fname+" "+this.Lname);
+        System.out.println("Email of user is : "+this.email);
+        System.out.println("phone of user is : "+this.phone);
+        System.out.println("age of user is : "+this.age);
+        System.out.println("gender of user is : "+this.gender);
+        System.out.println("address of user is : "+this.address);
+        System.out.println("Password of user is : "+this.password);
+        System.out.println("delivery address of user is : "+this.deliveryAddress);
     }
 
-    @Override
-    public void login() {
-        // hard code to test
-        List<Customer>userList=new ArrayList<>();
-        Customer customer1=new Customer();
-        customer1.email="mohamedtalat";
-        customer1.password="1234567";
-        Customer customer=new Customer();
-        customer.email="talat saber";
-        customer.password="1234578";
-        userList.add(customer);
-        userList.add(customer1);
-        // end hard code
-        System.out.println("Welcome in Log in page");
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("Please enter your email : ");
-        this.email=scanner.next();
-        System.out.println("Please enter your password : ");
-        this.password=scanner.next();
-        for (int i=0;i<userList.size();i++){
-            if (this.email.equals(userList.get(i).email)){
-                if (this.password.equals(userList.get(i).password)){
-                    System.out.println("log in success");
-                }
-                else if (i==userList.size()-1){
-                    System.out.println("the email or password is not correct");
-                    login();
-                }
-            }
-            else if (i==userList.size()-1){
-                System.out.println("the email or password is not correct");
-                login();
-            }
+    public void instance(){
+        Customer Eyad=new Customer();
+        Eyad.email="Eyad";
+        Eyad.password="Eyad";
+        userList.add(Eyad);
+        for (int i = 0; i < 10; i++) {
+            Customer customer=new Customer();
+            customer.Fname="Fname"+i;
+            customer.Lname="Lname"+i;
+            customer.email="email"+i+"@email.com";
+            customer.phone="phone"+i;
+            customer.age=1;
+            customer.gender="male";
+            customer.address="address"+i;
+            customer.password="password"+i;
+            customer.deliveryAddress="address"+i;
+            userList.add(customer);
+            customer.displayUserInfo();
         }
     }
 
     @Override
+    public Customer login() {
+        do {
+            System.out.println("Welcome in Log in page");
+            Scanner scanner=new Scanner(System.in);
+            System.out.println("Please enter your email : ");
+            this.email=scanner.next();
+            System.out.println("Please enter your password : ");
+            this.password=scanner.next();
+            for (int i = 0; i < userList.size(); i++) {
+                if (this.email.equals(userList.get(i).email)) {
+                    if (this.password.equals(userList.get(i).password)) {
+                        System.out.println("log in success");
+                        return userList.get(i);
+                    } else if (i == userList.size() - 1) {
+                        System.out.println("the email or password is not correct");
+                    }
+                } else if (i == userList.size() - 1) {
+                    System.out.println("The email could not be found");
+                }
+            }
+        }while (true);
+    }
+
+    @Override
     public void signup() {
-        // hard code to test
-        List<Customer>userList=new ArrayList<>();
-        Customer customer1=new Customer();
-        customer1.email="mohamedtalat";
-        customer1.password="1234567";
-        Customer customer=new Customer();
-        customer.email="talat saber";
-        customer.password="1234578";
-        userList.add(customer);
-        userList.add(customer1);
-        // end hard code
         System.out.println("Welcome in sign up page");
         Scanner scanner=new Scanner(System.in);
         System.out.println("Please enter your first name : ");
@@ -70,7 +74,7 @@ public class Customer extends User {
         System.out.println("Please enter your email : ");
         this.email=scanner.next();
         System.out.println("Please enter your phone number : ");
-        this.Phone=scanner.nextInt();
+        this.phone=scanner.next();
         System.out.println("Please enter your age : ");
         this.age=scanner.nextInt();
         System.out.println("Please enter your gender : ");
@@ -85,6 +89,9 @@ public class Customer extends User {
                 signup();
             }
         }
+        System.out.println("Please enter your Delivery Address : ");
+        this.deliveryAddress=scanner.next();
         System.out.println("sign up succeful");
+        userList.add(this);
     }
 }
