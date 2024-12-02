@@ -3,7 +3,7 @@ package ASU.CIS.Project.UI;
 import ASU.CIS.Project.Orders.Cart;
 import ASU.CIS.Project.Orders.Order;
 import ASU.CIS.Project.Person.Admin;
-import ASU.CIS.Project.Person.User;
+import ASU.CIS.Project.Person.Customer;
 import ASU.CIS.Project.Resturants.Menu;
 import ASU.CIS.Project.Resturants.Restaurant;
 import ASU.CIS.Project.Resturants.Review;
@@ -200,9 +200,9 @@ Scanner scanner=new Scanner(System.in);
         Admin.deleteDish(nameOfRestaurant,nameOfDish);
         doYouWantAnotherAction();
     }
-    public void displayUserInfo(User user){
+    public void displayUserInfo(Customer customer){
 
-        user.displayUserInfo();
+        customer.displayUserInfo();
 
     }
     public void makeOrder(){

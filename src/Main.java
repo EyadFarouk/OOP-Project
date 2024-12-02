@@ -1,10 +1,5 @@
 import ASU.CIS.Project.UI.*;
 import ASU.CIS.Project.Person.*;
-import ASU.CIS.Project.Orders.*;
-import ASU.CIS.Project.Payment.*;
-import ASU.CIS.Project.Resturants.*;
-import ASU.CIS.Project.Data.*;
-
 
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -19,16 +14,16 @@ public class Main {
 
         if (choose==1){
 
-            User user=new User();
+            Customer customer =new Customer();
 
             choose=ui.loginOrSignup();
 
             if(choose==1){
-                user.login();
+                customer.login();
             }
 
             else if (choose==2){
-                user.signup();
+                customer.signup();
             }
 
             ui.homePage();
