@@ -17,29 +17,29 @@ Scanner scanner=new Scanner(System.in);
     static Restaurant restaurant=new Restaurant();
 
     public  int firstPage(){
-        System.out.println("Hello in management restaurant system");
-        System.out.println("Please enter number of action you need");
-        System.out.println("1- if you want to continue as user : ");
-        System.out.println("2- if you want to continue as Admin : ");
+        System.out.println("welcome to the restaurant ");
+        System.out.println("please enter the number of the action you want to operate");
+        System.out.println("1- if you want to continue as a customer : ");
+        System.out.println("2- if you want to continue as an Admin : ");
 
         return scanner.nextInt();
     }
     public  int loginOrSignup(){
-        System.out.println("Hello in management restaurant system");
-        System.out.println("Please enter number of action you need");
+        System.out.println("welcome to the restaurant ");
+        System.out.println("Please enter the number of the action you want to operate");
         System.out.println("1- if you want to log in : ");
         System.out.println("2- if you want to sign up : ");
         return scanner.nextInt();
     }
     public  int homePage(){
-        System.out.println("Hello in home page please enter the number of action you need");
+        System.out.println("Hello in home page please enter the number of the action you want to operate");
         System.out.println("1- if you want to display restaurant : ");
         System.out.println("2- if you want to log out : ");
         return scanner.nextInt();
     }
     public  Restaurant displayRestaurants(){
         Restaurant []restaurants=new Restaurant[10];
-        System.out.println("Welcome in home page please enter the number of restaurant you need");
+        System.out.println("Welcome to the home page please enter the number of the action you want to operate");
         for (int i=0;i<10;i++){
             System.out.println("Name of restaurant "+(i+1)+ " : "+restaurants[i].name);
             System.out.println("Rating of restaurant "+(i+1)+ " : "+restaurants[i].rating);
@@ -50,18 +50,18 @@ Scanner scanner=new Scanner(System.in);
         return restaurants[choose-1];
     }
     public  void selectDish(){
-        System.out.println("Welcome in home page please enter the number of dish you need");
+        System.out.println("Welcome to the home page please enter the number of the dish you want to order");
         restaurant.displayMenu();
         int choose=scanner.nextInt();
         System.out.println("Do you want to add this to your cart enter 1 if you agree");
         int cart=scanner.nextInt();
         if (cart==1){
-            System.out.println("Please enter quantities you need : ");
+            System.out.println("Please enter quantity you desire : ");
             int quantity =scanner.nextInt();
-            System.out.println("Do you want any addition if you want please enter 1 : ");
+            System.out.println("Do you want any addition if yes then please enter 1 : ");
             int x=scanner.nextInt();
             if (x==1){
-                System.out.println("Enter addition you need");
+                System.out.println("Enter the addition you want");
                 String add =scanner.next();
                 Cart.addItem(restaurant.menu.get(choose-1), quantity,add );
             }else {
@@ -85,7 +85,7 @@ Scanner scanner=new Scanner(System.in);
         else if (choose==2){
             System.out.println("Please enter the name of dish : ");
             String name=scanner.next();
-            System.out.println("How would you rate your Dish out of 5:: ");
+            System.out.println("How would you rate your Dish out of 5 : ");
             rate=scanner.nextInt();
             review.setReviewForDish(rate,name);
         }
@@ -93,7 +93,7 @@ Scanner scanner=new Scanner(System.in);
     }
     public  int homePageAfterSelectRestaurant(){
 
-        System.out.println("Hello in home page please enter the number of action you need");
+        System.out.println("Hello in home page please enter the number of the action you want to operate");
         System.out.println("1- if you want to select dish : ");
         System.out.println("2- if you want to set review : ");
         System.out.println("3- if you want to Cart information : ");
@@ -119,24 +119,24 @@ Scanner scanner=new Scanner(System.in);
     }
     public  int homePageAdmin(){
 
-        System.out.println("Hello in home page please enter the number of action you need");
-        System.out.println("1- if you want to add restaurant : ");
-        System.out.println("2- if you want to delete restaurant : ");
-        System.out.println("3- if you want to add menu : ");
-        System.out.println("4- if you want to delete menu : ");
+        System.out.println("Hello in home page please enter the number of the action you want to operate");
+        System.out.println("1- if you want to add a restaurant : ");
+        System.out.println("2- if you want to delete a restaurant : ");
+        System.out.println("3- if you want to add a menu : ");
+        System.out.println("4- if you want to delete a menu : ");
 
         return scanner.nextInt();
     }
     public  void addRestaurantAdmin(){
         Restaurant restaurant1=new Restaurant();
 
-        System.out.println("Please enter name of restaurant : ");
+        System.out.println("Please enter name of the restaurant : ");
         restaurant1.name=scanner.next();
-        System.out.println("Please enter address of restaurant : ");
+        System.out.println("Please enter address of the restaurant : ");
         restaurant1.address=scanner.next();
-        System.out.println("Please enter contact information of restaurant : ");
+        System.out.println("Please enter contact information of the restaurant : ");
         restaurant1.contactInformation=scanner.next();
-        System.out.println("Please enter rating of restaurant : ");
+        System.out.println("Please enter rating of the restaurant : ");
         restaurant1.rating=scanner.nextDouble();
         System.out.println("next we want to add Menu items");
         Dish menu=new Dish();
@@ -144,15 +144,15 @@ Scanner scanner=new Scanner(System.in);
         System.out.println("Please enter number of items in menu : ");
         int numberOfItems=scanner.nextInt();
         for (int i=0;i<numberOfItems;i++){
-            System.out.println("Please enter name of dish : ");
+            System.out.println("Please enter name of the dish : ");
             menu.name=scanner.next();
-            System.out.println("Please enter description : ");
+            System.out.println("Please enter the description : ");
             menu.description=scanner.next();
-            System.out.println("Please enter price : ");
+            System.out.println("Please enter the price : ");
             menu.price=scanner.nextDouble();
-            System.out.println("Please enter categories : ");
+            System.out.println("Please enter the categories : ");
             menu.categories=scanner.next();
-            System.out.println("Please enter rating : ");
+            System.out.println("Please enter the rating : ");
             menu.rating=scanner.nextDouble();
             menus.set(menus.size(),menu);
         }
@@ -162,38 +162,38 @@ Scanner scanner=new Scanner(System.in);
     }
     public  void deleteRestaurantAdmin(){
 
-        System.out.println("Please enter name of restaurant you need to delete : ");
+        System.out.println("Please enter the name of the restaurant you want to delete : ");
         String name =scanner.next();
         Admin.deleteRestaurant(name);
     }
     public  void deleteMenu(){
-        System.out.println("Enter name of restaurant you need to delete menu from");
+        System.out.println("Enter the name of the restaurant you want to delete menu from");
         String name=scanner.next();
         Admin.deleteMenu(name);
     }
     public  void modifyQuantity(){
         Cart.displayCart();
 
-        System.out.println("Enter number of item you want to update quantities : ");
+        System.out.println("Enter the number of items you want to update the quantities of : ");
         int number=scanner.nextInt();
-        System.out.println("Enter number of new quantities : ");
+        System.out.println("Enter the number of new quantities : ");
         int numberNew=scanner.nextInt();
         Cart.modifyQuantitie(number,numberNew);
         doYouWantAnotherAction();
     }
     public  void deleteItemFromCart(){
         Cart.displayCart();
-        System.out.println("Please enter number of item you want to delete : ");
+        System.out.println("Please enter the number of items you want to delete : ");
         int number=scanner.nextInt();
         Cart.deleteItem(number);
         doYouWantAnotherAction();
     }
     public void deleteDish(){
         displayRestaurants();
-        System.out.println("Enter name of Restaurant you need");
+        System.out.println("Enter the name of the Restaurant you want");
         String nameOfRestaurant=scanner.next();
         restaurant.displayMenu();
-        System.out.println("Enter name of Dish");
+        System.out.println("Enter the name of the Dish");
         String nameOfDish=scanner.next();
         Admin.deleteDish(nameOfRestaurant,nameOfDish);
         doYouWantAnotherAction();
@@ -204,9 +204,9 @@ Scanner scanner=new Scanner(System.in);
 
     }
     public void makeOrder(){
-        System.out.println("Please enter delivery address : ");
+        System.out.println("Please enter the delivery address : ");
         String deliveryAddress=scanner.next();
-        System.out.println("Please enter time of delivery : ");
+        System.out.println("Please enter the time of delivery : ");
         String timeOfDelivery=scanner.next();
         System.out.println("Do you want to pay with card if yes please enter 1 if cash please enter 0 : ");
         boolean cart=scanner.nextBoolean();
