@@ -1,5 +1,7 @@
 package ASU.CIS.Project.Resturants;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -66,10 +68,10 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
         FileWriter fileWriter;
         try {
             fileWriter = new FileWriter("Data/restaurantdata.csv");
-            fileWriter.write("name,address,contact info,rating,name dish1,descripiton1,price1,categories1,rating1,name dish2,descripiton2,price2,categries2,rating2\n");
+            fileWriter.write("name\n address\n contact info\n rating\n name dish1\n descripiton1\n price1\n categories1\n rating1\n name dish2\n descripiton2\n price2\n categries2\n rating2\n\n");
 
                for (Restaurant restaurant :restaurantList) {
-                   fileWriter.append(restaurant.toString());
+                   fileWriter.write(restaurant.toString());
                }
 
             fileWriter.close();
@@ -79,7 +81,43 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
         }
 
     }
+    public List<Restaurant> loadData(List<Restaurant>restaurantList){
+
+        try {
+            BufferedReader reader=new BufferedReader(new FileReader("Data/restaurantdata.csv"));
+            String line;
+            int i=0;
+            this.name=reader.readLine();
+            this.address=reader.readLine();
+            this.contactInformation=reader.readLine();
+            this.rating=Double.parseDouble(reader.readLine());
+            int j=0;
+            Dish dish=new Dish();
+            while((line=reader.readLine())!=null){
+                dish.name=line;
+                dish.description=reader.readLine();
+                dish.price=Double.parseDouble(reader.readLine());
+                dish.categories=reader.readLine();
+                dish.rating=Double.parseDouble(reader.readLine());
+                this.menu.add(j,dish);
+                if (line.isEmpty()){
+                    restaurantList.add(i,this);
+                    j=0;
+                    i++;
+                    this.name=reader.readLine();
+                    this.address=reader.readLine();
+                    this.contactInformation=reader.readLine();
+                    this.rating=Double.parseDouble(reader.readLine());
+                }
+                j++;
+            }
+        }
+        catch (IOException e){
+            throw new RuntimeException(e);
+        }
+        return restaurantList;
+    }
     public String toString() {
-        return this.name + ',' + this.address + ',' + this.contactInformation + ',' + this.rating + ',' + this.menu +'\n';
+        return this.name + '\n' + this.address + '\n' + this.contactInformation + '\n' + this.rating + '\n' + this.menu +"\n\n";
     }
 }
