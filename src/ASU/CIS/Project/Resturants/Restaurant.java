@@ -1,9 +1,6 @@
 package ASU.CIS.Project.Resturants;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 public class Restaurant extends Menu implements Comparable<Restaurant> {
@@ -65,13 +62,14 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
         return 0;
     }
     public void saveData(List<Restaurant> restaurantList) {
-        FileWriter fileWriter;
         try {
-            fileWriter = new FileWriter("Data/restaurantdata.csv");
-            fileWriter.write("name\n address\n contact info\n rating\n name dish1\n descripiton1\n price1\n categories1\n rating1\n name dish2\n descripiton2\n price2\n categries2\n rating2\n\n");
-
+            BufferedWriter fileWriter=new BufferedWriter(new FileWriter("Data/restaurantdata.csv"));
                for (Restaurant restaurant :restaurantList) {
-                   fileWriter.write(restaurant.toString());
+                   fileWriter.write(restaurant.name+'\n'+restaurant.address+'\n'+restaurant.contactInformation+'\n'+restaurant.rating+'\n');
+                   for ( int i=0;i<restaurant.menu.size();i++){
+                       fileWriter.write(restaurant.menu.get(i).name+'\n'+restaurant.menu.get(i).description+'\n'+restaurant.menu.get(i).price+'\n'+restaurant.menu.get(i).categories+'\n'+restaurant.menu.get(i).rating+'\n');
+                   }
+                   fileWriter.write('\n');
                }
 
             fileWriter.close();
@@ -85,31 +83,26 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
 
         try {
             BufferedReader reader=new BufferedReader(new FileReader("Data/restaurantdata.csv"));
-            String line;
             int i=0;
-            this.name=reader.readLine();
-            this.address=reader.readLine();
-            this.contactInformation=reader.readLine();
-            this.rating=Double.parseDouble(reader.readLine());
             int j=0;
             Dish dish=new Dish();
-            while((line=reader.readLine())!=null){
-                dish.name=line;
-                dish.description=reader.readLine();
-                dish.price=Double.parseDouble(reader.readLine());
-                dish.categories=reader.readLine();
-                dish.rating=Double.parseDouble(reader.readLine());
-                this.menu.add(j,dish);
-                if (line.isEmpty()){
-                    restaurantList.add(i,this);
-                    j=0;
-                    i++;
-                    this.name=reader.readLine();
-                    this.address=reader.readLine();
-                    this.contactInformation=reader.readLine();
-                    this.rating=Double.parseDouble(reader.readLine());
+            while (reader.readLine()!=null){
+                this.name=reader.readLine();
+                this.address=reader.readLine();
+                this.contactInformation=reader.readLine();
+                this.rating=Double.parseDouble(reader.readLine());
+                while (reader.readLine().isEmpty()){
+                    dish.name=reader.readLine();
+                    dish.description=reader.readLine();
+                    dish.price=Double.parseDouble(reader.readLine());
+                    dish.categories=reader.readLine();
+                    dish.rating=Double.parseDouble(reader.readLine());
+                    this.menu.add(j,dish);
+                    j++;
                 }
-                j++;
+                restaurantList.add(i,this);
+                j=0;
+                i++;
             }
         }
         catch (IOException e){
