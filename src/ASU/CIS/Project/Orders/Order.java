@@ -1,7 +1,5 @@
 package ASU.CIS.Project.Orders;
 
-import resturants.Menu;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,16 +12,14 @@ public class Order {
     private double totalPrice;
     private String orderLocation;
     private String orderState; // state of the order (Pending, Completed, Canceled)
-    private Menu menu;
 
-    public Order(String orderLocation, String orderState, Menu menu) {
+    public Order(String orderLocation, String orderState) {
         this.orderId = generateRandomOrderId();
         this.orderDate = new Date();
         this.foodItems = new ArrayList<>();
         this.totalPrice = 0.0;
         this.orderLocation = orderLocation;
         this.orderState = orderState;
-        this.menu = menu;
     }
 
     // Generate a random order ID using UUID
@@ -67,8 +63,7 @@ public class Order {
         // The rest of the properties
         sb.append("\nTotal Order Price: ").append(totalPrice)
                 .append("\nOrder Location: ").append(orderLocation)
-                .append("\nOrder State: ").append(orderState)
-                .append("\nResturant Name: ").append(menu.name);
+                .append("\nOrder State: ").append(orderState);
         return sb.toString();
     }
 }
