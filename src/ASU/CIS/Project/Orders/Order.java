@@ -46,7 +46,7 @@ public class Order {
     public String getOrderLocation() { return orderLocation; }
     public String getOrderState() { return orderState; }
 
-    /* === Setters === */
+    /* === Setters ===*/
     public void setOrderState(String orderState) { this.orderState = orderState; }
 
     // override the toString() method
