@@ -1,8 +1,5 @@
 package ASU.CIS.Project.Resturants;
 
-import ASU.CIS.Project.Person.Customer;
-
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +11,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
     public String contactInformation;
     public double rating;
     public void displayMenu(){
-        for (int i=0;i<10;i++){
+        for (int i=0;i< menu.size();i++){
             System.out.println("name of item "+(i+1) +" : "+menu.get(i).name);
             System.out.println("description of item "+(i+1) +" : "+menu.get(i).description);
             System.out.println("price of item "+(i+1) +" : "+menu.get(i).price);
@@ -22,35 +19,38 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
             System.out.println("rating of item "+(i+1) +" : "+menu.get(i).rating);
         }
     }
-    public void searchAboutDishWithName(String name){
-        for (int i=0;i<menu.size();i++){
-            if (name.equals(menu.get(i).name)){
+    public Dish searchAboutDishWithName(String name){
+        for (Dish dish : menu) {
+            if (name.equals(dish.name)) {
                 System.out.println("dish is available");
-            }
-            else{
-                System.out.println("dish is not available");
+                return dish;
             }
         }
+        System.out.println("dish is not available");
+        return null;
+
     }
-    public void searchAboutDishWithDescription(String description){
-        for (int i=0;i<menu.size();i++){
-            if (description.equals(menu.get(i).description)){
+    public Dish searchAboutDishWithDescription(String description){
+        for (Dish dish : menu) {
+            if (description.equals(dish.description)) {
                 System.out.println("dish is available");
+                return dish;
             }
-            else{
-                System.out.println("dish is not available");
-            }
+
         }
+        System.out.println("dish is not available ");
+        return null;
     }
-    public void searchAboutDishWithCategories(String categories){
-        for (int i=0;i<menu.size();i++){
-            if (categories.equals(menu.get(i).categories)){
+    public Dish searchAboutDishWithCategories(String categories){
+        for (Dish dish : menu) {
+            if (categories.equals(dish.categories)) {
                 System.out.println("dish is available");
+                return dish;
             }
-            else{
-                System.out.println("dish is not available");
-            }
+
         }
+        System.out.println("dish is not available");
+        return null;
     }
 
     @Override
