@@ -87,7 +87,7 @@ Scanner scanner=new Scanner(System.in);
             String name=scanner.next();
             System.out.println("How would you rate your Dish out of 5:: ");
             rate=scanner.nextInt();
-          /*  review.serReviewForDish(rate,name);*/
+            review.setReviewForDish(rate,name);
         }
         doYouWantAnotherAction();
     }
