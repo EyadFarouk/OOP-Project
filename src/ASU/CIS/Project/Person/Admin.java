@@ -60,7 +60,7 @@ public class Admin extends User {
     }
     public static void addRestaurant(Restaurant restaurant){
 
-       restaurants.set(restaurants.size(), restaurant);
+       restaurants.add(restaurants.size(), restaurant);
 
     }
     public static void deleteRestaurant(String name){

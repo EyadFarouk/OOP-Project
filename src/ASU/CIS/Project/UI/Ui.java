@@ -154,7 +154,7 @@ Scanner scanner=new Scanner(System.in);
             menu.categories=scanner.next();
             System.out.println("Please enter rating : ");
             menu.rating=scanner.nextDouble();
-            menus.set(menus.size(),menu);
+            menus.add(menus.size(),menu);
         }
         restaurant1.menu=menus;
         Admin.addRestaurant(restaurant1);
