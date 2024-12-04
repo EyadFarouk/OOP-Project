@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
-Scanner scanner=new Scanner(System.in);
+    Scanner scanner=new Scanner(System.in);
 
     static Restaurant restaurant=new Restaurant();
 
@@ -37,17 +37,19 @@ Scanner scanner=new Scanner(System.in);
         System.out.println("2- if you want to log out : ");
         return scanner.nextInt();
     }
-    public  Restaurant displayRestaurants(){
-        Restaurant []restaurants=new Restaurant[10];
+    public  Restaurant displayRestaurants(List<Restaurant>restaurants){
+
         System.out.println("Welcome to the home page please enter the number of the action you want to operate");
-        for (int i=0;i<10;i++){
-            System.out.println("Name of restaurant "+(i+1)+ " : "+restaurants[i].name);
-            System.out.println("Rating of restaurant "+(i+1)+ " : "+restaurants[i].rating);
+        for (int i=0;i<restaurants.size();i++){
+            System.out.println("Name of restaurant "+(i+1)+ " : "+restaurants.get(i).name);
+            System.out.println("Rating of restaurant "+(i+1)+ " : "+restaurants.get(i).rating);
+            System.out.println("Contact information of restaurant "+(i+1)+ " : "+restaurants.get(i).contactInformation);
+            System.out.println("Adress of restaurant "+(i+1)+ " : "+restaurants.get(i).address);
         }
 
         int choose=scanner.nextInt();
-        restaurant=restaurants[choose-1];
-        return restaurants[choose-1];
+        restaurant=restaurants.get(choose-1);
+        return restaurants.get(choose-1);
     }
     public  void selectDish(){
         System.out.println("Welcome to the home page please enter the number of the dish you want to order");
@@ -189,7 +191,7 @@ Scanner scanner=new Scanner(System.in);
         doYouWantAnotherAction();
     }
     public void deleteDish(){
-        displayRestaurants();
+       // displayRestaurants();
         System.out.println("Enter the name of the Restaurant you want");
         String nameOfRestaurant=scanner.next();
         restaurant.displayMenu();
