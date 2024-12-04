@@ -10,10 +10,12 @@ public class Main {
         Customer customer = new Customer();
         Admin admin = new Admin();
         // A function to give fake data to test on
-            Customer.instance();
-            Admin.instance();
-            customer.saveData();
-            admin.saveData();
+//            Customer.instance();
+//            Admin.instance();
+//            customer.saveData();
+//            admin.saveData();
+            customer.loadData();
+            admin.loadData();
         //------------------------------
         Ui ui=new Ui();
 
@@ -57,6 +59,8 @@ public class Main {
             choose= ui.homePageAdmin();
 
         }
+        customer.saveData();
+        admin.saveData();
     }
 
 }
