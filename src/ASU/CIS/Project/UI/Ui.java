@@ -218,7 +218,6 @@ Scanner scanner=new Scanner(System.in);
             System.out.println("Please enter transaction status");
             transaction =scanner.next();
         }
-        Order order=new Order();
-        order.setOrder(deliveryAddress,timeOfDelivery, transaction,cart);
+
     }
 }

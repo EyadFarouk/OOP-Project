@@ -80,19 +80,19 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
 
     }
     public List<Restaurant> loadData(List<Restaurant>restaurantList){
-
         try {
             BufferedReader reader=new BufferedReader(new FileReader("Data/restaurantdata.csv"));
             int i=0;
             int j=0;
+            String line;
             Dish dish=new Dish();
-            while (reader.readLine()!=null){
-                this.name=reader.readLine();
+            while ((line =reader.readLine())!=null){
+                this.name=line;
                 this.address=reader.readLine();
                 this.contactInformation=reader.readLine();
                 this.rating=Double.parseDouble(reader.readLine());
-                while (reader.readLine().isEmpty()){
-                    dish.name=reader.readLine();
+                while ((line =reader.readLine()).isEmpty()){
+                    dish.name=line;
                     dish.description=reader.readLine();
                     dish.price=Double.parseDouble(reader.readLine());
                     dish.categories=reader.readLine();
