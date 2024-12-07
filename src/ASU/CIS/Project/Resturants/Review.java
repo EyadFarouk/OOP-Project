@@ -54,20 +54,4 @@ public class Review {
             restaurant.menu.get(i).rating = (restaurant.menu.get(i).rating + rate)/number_of_reviewsD;
         }
     }
-
-   /* public void setReview(int dishOrRestaurant,String name,double scoreRating){
-        if(dishOrRestaurant==1){
-            this.scoreRating=scoreRating;
-        }else if (dishOrRestaurant==2){
-            Restaurant restaurant=new Restaurant();
-            Menu menu=new Menu();
-            for (int i=0;i<restaurant.menu.size();i++){
-                if (name.equals(restaurant.menu.get(i).name)){
-                    menu=restaurant.menu.get(i);
-                }
-            }
-            this.scoreRating=scoreRating;
-        }
-    }*/
-
 }
