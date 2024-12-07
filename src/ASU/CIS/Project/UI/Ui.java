@@ -1,13 +1,11 @@
 package ASU.CIS.Project.UI;
 
-import ASU.CIS.Project.Orders.Cart;
-import ASU.CIS.Project.Orders.Order;
-import ASU.CIS.Project.Person.Admin;
-import ASU.CIS.Project.Person.Customer;
-import ASU.CIS.Project.Resturants.Dish;
-import ASU.CIS.Project.Resturants.Restaurant;
-import ASU.CIS.Project.Resturants.Review;
+import ASU.CIS.Project.Orders.*;
+import ASU.CIS.Project.Person.*;
+import ASU.CIS.Project.Resturants.*;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,6 +13,8 @@ public class Ui {
     Scanner scanner=new Scanner(System.in);
 
     static Restaurant restaurant=new Restaurant();
+
+    List<Restaurant>restaurants= new ArrayList<>();
 
     public  int firstPage(){
         System.out.println("welcome to the restaurant ");
@@ -37,14 +37,14 @@ public class Ui {
         System.out.println("2- if you want to log out : ");
         return scanner.nextInt();
     }
-    public  Restaurant displayRestaurants(List<Restaurant>restaurants){
+    public  Restaurant displayRestaurants(){
 
-        System.out.println("Welcome to the home page please enter the number of the action you want to operate");
+        System.out.println("Welcome please enter the number of the restaurant you want to order from");
         for (int i=0;i<restaurants.size();i++){
             System.out.println("Name of restaurant "+(i+1)+ " : "+restaurants.get(i).name);
             System.out.println("Rating of restaurant "+(i+1)+ " : "+restaurants.get(i).rating);
             System.out.println("Contact information of restaurant "+(i+1)+ " : "+restaurants.get(i).contactInformation);
-            System.out.println("Adress of restaurant "+(i+1)+ " : "+restaurants.get(i).address);
+            System.out.println("Address of restaurant "+(i+1)+ " : "+restaurants.get(i).address);
         }
 
         int choose=scanner.nextInt();
@@ -52,7 +52,7 @@ public class Ui {
         return restaurants.get(choose-1);
     }
     public  void selectDish(){
-        System.out.println("Welcome to the home page please enter the number of the dish you want to order");
+        System.out.println("please choose the dish you want to order");
         restaurant.displayMenu();
         int choose=scanner.nextInt();
         System.out.println("Do you want to add this to your cart enter 1 if you agree");
@@ -71,7 +71,6 @@ public class Ui {
             }
 
         }
-        doYouWantAnotherAction();
 
     }
     public  void setReview(){
@@ -91,7 +90,6 @@ public class Ui {
             rate=scanner.nextInt();
             review.setReviewForDish(rate,name);
         }
-        doYouWantAnotherAction();
     }
     public  int homePageAfterSelectRestaurant(){
 
@@ -99,7 +97,7 @@ public class Ui {
         System.out.println("1- if you want to select dish : ");
         System.out.println("2- if you want to set review : ");
         System.out.println("3- if you want to Cart information : ");
-        System.out.println("4- if you want to order information : ");
+        System.out.println("4- if you want the order information : ");
         System.out.println("5- if you want to log out : ");
         return scanner.nextInt();
     }
@@ -126,19 +124,20 @@ public class Ui {
         System.out.println("2- if you want to delete a restaurant : ");
         System.out.println("3- if you want to add a menu : ");
         System.out.println("4- if you want to delete a menu : ");
+        System.out.println("5- if you want to log out");
 
         return scanner.nextInt();
     }
     public  void addRestaurantAdmin(){
         Restaurant restaurant1=new Restaurant();
 
-        System.out.println("Please enter name of the restaurant : ");
+        System.out.println("Please enter the name of the restaurant : ");
         restaurant1.name=scanner.next();
-        System.out.println("Please enter address of the restaurant : ");
+        System.out.println("Please enter the address : ");
         restaurant1.address=scanner.next();
-        System.out.println("Please enter contact information of the restaurant : ");
+        System.out.println("Please enter the contact information : ");
         restaurant1.contactInformation=scanner.next();
-        System.out.println("Please enter rating of the restaurant : ");
+        System.out.println("Please enter the rating of the restaurant : ");
         restaurant1.rating=scanner.nextDouble();
         System.out.println("next we want to add Menu items");
         Dish menu=new Dish();
@@ -160,15 +159,38 @@ public class Ui {
         }
         restaurant1.menu=menus;
         Admin.addRestaurant(restaurant1);
-        doYouWantAnotherAction();
     }
     public  void deleteRestaurantAdmin(){
-
+        displayRestaurants();
         System.out.println("Please enter the name of the restaurant you want to delete : ");
         String name =scanner.next();
         Admin.deleteRestaurant(name);
     }
+    public void addMenu(){
+        displayRestaurants();
+        System.out.println("Please enter the name of the restaurant you want to add the menu of ");
+        String name = scanner.nextLine();
+        Dish menu=new Dish();
+        List<Dish>menus = null;
+        System.out.println("Please enter number of items in menu : ");
+        int numberOfItems=scanner.nextInt();
+        for (int i=0;i<numberOfItems;i++){
+            System.out.println("Please enter name of the dish : ");
+            menu.name=scanner.next();
+            System.out.println("Please enter the description : ");
+            menu.description=scanner.next();
+            System.out.println("Please enter the price : ");
+            menu.price=scanner.nextDouble();
+            System.out.println("Please enter the categories : ");
+            menu.categories=scanner.next();
+            System.out.println("Please enter the rating : ");
+            menu.rating=scanner.nextDouble();
+            menus.add(menus.size(),menu);
+        }
+        Admin.addMenu(name,menus);
+    }
     public  void deleteMenu(){
+        displayRestaurants();
         System.out.println("Enter the name of the restaurant you want to delete menu from");
         String name=scanner.next();
         Admin.deleteMenu(name);
@@ -221,5 +243,9 @@ public class Ui {
             transaction =scanner.next();
         }
 
+    }
+    public void display_cart()
+    {
+        Cart.displayCart();
     }
 }

@@ -1,5 +1,9 @@
 import ASU.CIS.Project.UI.*;
 import ASU.CIS.Project.Person.*;
+import ASU.CIS.Project.Resturants.*;
+import ASU.CIS.Project.Orders.*;
+
+
 
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -14,53 +18,91 @@ public class Main {
 //            Admin.instance();
 //            customer.saveData();
 //            admin.saveData();
-            customer.loadData();
-            admin.loadData();
+        customer.loadData();
+        admin.loadData();
         //------------------------------
-        Ui ui=new Ui();
+        Ui ui = new Ui();
 
-        int choose= ui.firstPage();
+        int choose = ui.firstPage(), x = 1;
 
-        if (choose==1){
+        while (x == 1) {
+            if (choose == 1) {
 
-            choose=ui.loginOrSignup();
+                choose = ui.loginOrSignup();
 
-            if(choose==1){
-               customer= customer.login();
-               customer.displayUserInfo();
+                if (choose == 1) {
+                    customer = customer.login();
+                    customer.displayUserInfo();
+                } else if (choose == 2) {
+                    customer.signup();
+                    customer = customer.login();
+                    customer.displayUserInfo();
+                }
+
+                choose = ui.homePage();
+
+                if (choose == 1) {
+                    Restaurant restaurant = ui.displayRestaurants();
+
+                } else
+                    ui.loginOrSignup();
+
+                choose = ui.homePageAfterSelectRestaurant();
+
+                if (choose == 1) {
+                    ui.selectDish();
+
+                    /*  Order order = new Order();*/
+                } else if (choose == 2) {
+                    ui.setReview();
+                } else if (choose == 3) {
+                    ui.display_cart();
+                } else if (choose == 4) {
+                    // until we know how order works
+                } else if (choose == 5) {
+                    ui.loginOrSignup();
+                }
+
+            } else if (choose == 2) {
+
+                choose = ui.loginOrSignup();
+
+                if (choose == 1) {
+                    admin = admin.login();
+                    admin.displayUserInfo();
+                } else if (choose == 2) {
+                    admin.signup();
+                    admin = admin.login();
+                    admin.displayUserInfo();
+                }
+
+                choose = ui.homePageAdmin();
+
+                if(choose == 1)
+                {
+                    ui.addRestaurantAdmin();
+                }
+                else if(choose == 2)
+                {
+                    ui.deleteDish();
+                }
+                else if(choose == 3)
+                {
+                    ui.addMenu();
+                }
+                else if(choose == 4)
+                {
+                    ui.deleteMenu();
+                }
+                else if(choose == 5)
+                {
+                    ui.loginOrSignup();
+                }
+
             }
-
-            else if (choose==2){
-                customer.signup();
-                customer= customer.login();
-                customer.displayUserInfo();
-            }
-
-            ui.homePage();
-/*
-            Restaurant restaurant= ui.displayRestaurants();*/
-
-            choose=ui.homePageAfterSelectRestaurant();
-
+            customer.saveData();
+            admin.saveData();
         }
-        else if (choose==2){
-
-            choose= ui.loginOrSignup();
-
-            if (choose==1) {
-                admin = admin.login();
-                admin.displayUserInfo();
-            }else if (choose==2){
-                admin.signup();
-                admin= admin.login();
-                admin.displayUserInfo();
-            }
-
-            choose= ui.homePageAdmin();
-
-        }
-        customer.saveData();
-        admin.saveData();
+        x = ui.doYouWantAnotherAction();
     }
-
 }

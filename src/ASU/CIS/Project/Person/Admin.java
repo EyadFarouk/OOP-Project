@@ -1,6 +1,7 @@
 package ASU.CIS.Project.Person;
 
 import ASU.CIS.Project.Interfaces.saveAndLoad;
+import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Menu;
 import ASU.CIS.Project.Resturants.Restaurant;
 
@@ -68,8 +69,10 @@ public class Admin extends User implements saveAndLoad {
        restaurants.remove(getRestaurant(name));
 
     }
-    public static void addMenu(Menu menu){
+    public static void addMenu(String name, List<Dish> menu){
+      Restaurant res = getRestaurant(name);
 
+      res.menu = menu;
     }
     public static void deleteMenu(String name){
 
