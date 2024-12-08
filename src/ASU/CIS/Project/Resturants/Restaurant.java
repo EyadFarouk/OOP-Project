@@ -64,7 +64,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
     }
     public void saveData(List<Restaurant> restaurantList) {
         try {
-            BufferedWriter fileWriter=new BufferedWriter(new FileWriter("restaurant.txt"));
+            BufferedWriter fileWriter=new BufferedWriter(new FileWriter("Data/restaurant.txt"));
                for (Restaurant restaurant :restaurantList) {
                    fileWriter.write(restaurant.name+'\n'+restaurant.address+'\n'+restaurant.contactInformation+'\n'+restaurant.rating+'\n');
                    for ( int i=0;i<restaurant.menu.size();i++){
@@ -83,7 +83,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
     public List<Restaurant> loadData(){
         List<Restaurant>restaurantList=new ArrayList<>();
         try {
-            BufferedReader reader=new BufferedReader(new FileReader("restaurant.txt"));
+            BufferedReader reader=new BufferedReader(new FileReader("Data/restaurant.txt"));
             int i=0;
             int j=0;
             String line;

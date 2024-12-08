@@ -26,7 +26,7 @@ public class Main {
         Ui ui = new Ui();
 
         int choose = ui.firstPage(), x = 1;
-
+        ui.displayRestaurants();
         while (x == 1) {
             if (choose == 1) {
 
