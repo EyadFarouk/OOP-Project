@@ -1,0 +1,30 @@
+mohamed
+hello world
+enter your name
+5.0
+hussein
+this equal hello
+100.0
+veg
+3.0
+hussein
+this equal hello
+100.0
+veg
+3.0
+
+mohamed
+hello world
+enter your name
+5.0
+talat
+this equal hello
+100.0
+veg
+3.0
+talat
+this equal hello
+100.0
+veg
+3.0
+
