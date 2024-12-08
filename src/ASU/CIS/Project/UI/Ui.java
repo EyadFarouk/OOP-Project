@@ -6,6 +6,7 @@ import ASU.CIS.Project.Resturants.*;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -140,7 +141,16 @@ public class Ui {
         System.out.println("Please enter the contact information : ");
         restaurant1.contactInformation=scanner.next();
         System.out.println("Please enter the rating of the restaurant : ");
-        restaurant1.rating=scanner.nextDouble();
+        while (true) {
+            try {
+                restaurant1.rating = scanner.nextDouble();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.print("Please enter a valid rating: ");
+            }
+            scanner.nextLine();
+        }
+
         System.out.println("next we want to add Menu items");
         Dish menu=new Dish();
         List<Dish>menus = null;
@@ -152,11 +162,29 @@ public class Ui {
             System.out.println("Please enter the description : ");
             menu.description=scanner.next();
             System.out.println("Please enter the price : ");
-            menu.price=scanner.nextDouble();
+            while (true) {
+                try {
+                    menu.price = scanner.nextDouble();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.print("Please enter a valid price: ");
+                }
+                scanner.nextLine();
+            }
+
             System.out.println("Please enter the categories : ");
             menu.categories=scanner.next();
             System.out.println("Please enter the rating : ");
-            menu.rating=scanner.nextDouble();
+            while (true) {
+                try {
+                    menu.rating = scanner.nextDouble();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.print("Please enter a valid rating : ");
+                }
+                scanner.nextLine();
+            }
+
             menus.add(menus.size(),menu);
         }
         restaurant1.menu=menus;
@@ -173,7 +201,7 @@ public class Ui {
         System.out.println("Please enter the name of the restaurant you want to add the menu of ");
         String name = scanner.nextLine();
         Dish menu=new Dish();
-        List<Dish>menus = null;
+        List<Dish>menus = new ArrayList<>();
         System.out.println("Please enter number of items in menu : ");
         int numberOfItems=scanner.nextInt();
         for (int i=0;i<numberOfItems;i++){
@@ -182,12 +210,34 @@ public class Ui {
             System.out.println("Please enter the description : ");
             menu.description=scanner.next();
             System.out.println("Please enter the price : ");
-            menu.price=scanner.nextDouble();
+            while (true) {
+                try {
+                    menu.price = scanner.nextDouble();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.print("Please enter a valid price: ");
+                }
+                scanner.nextLine();
+            }
+
             System.out.println("Please enter the categories : ");
             menu.categories=scanner.next();
             System.out.println("Please enter the rating : ");
-            menu.rating=scanner.nextDouble();
-            menus.add(menus.size(),menu);
+            while (true) {
+                try {
+                    menu.rating = scanner.nextDouble();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.print("Please enter a valid rating : ");
+                }
+                scanner.nextLine();
+            }
+
+            try {
+                menus.add(menus.size(),menu);
+            }catch (NullPointerException e){
+                System.out.println(e.getMessage());
+            }
         }
         Admin.addMenu(name,menus);
     }
