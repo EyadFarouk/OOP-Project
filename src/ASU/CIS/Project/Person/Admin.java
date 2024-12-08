@@ -2,7 +2,6 @@ package ASU.CIS.Project.Person;
 
 import ASU.CIS.Project.Interfaces.saveAndLoad;
 import ASU.CIS.Project.Resturants.Dish;
-import ASU.CIS.Project.Resturants.Menu;
 import ASU.CIS.Project.Resturants.Restaurant;
 
 import java.io.*;
@@ -10,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Admin class and the methods for the admin
+ */
 public class Admin extends User implements saveAndLoad {
    public static List<Restaurant>restaurants;
    static List<Admin> adminList=new ArrayList<>();
@@ -83,6 +85,10 @@ public class Admin extends User implements saveAndLoad {
         }
 
     }
+
+    /**
+     * This method is used to make the Admin remove
+     */
     public static void deleteDish(String nameOfRestaurant,String nameOfDish){
         Restaurant restaurant=getRestaurant(nameOfRestaurant);
         if (restaurant==null){
@@ -101,6 +107,9 @@ public class Admin extends User implements saveAndLoad {
 
     }
 
+    /**
+     * This method is used to make the admin signup and make a new account
+     */
     @Override
     public void signup() {
         super.signup();
@@ -109,6 +118,9 @@ public class Admin extends User implements saveAndLoad {
         adminList.add(this);
     }
 
+    /**
+     * This method is used to check if the email hasn't been used in another account
+     */
     private void checkEmailUnique(){
         Scanner scanner=new Scanner(System.in);
         while (true) {
@@ -126,6 +138,9 @@ public class Admin extends User implements saveAndLoad {
         }
     }
 
+    /**
+     * This method is used make the admin login to the system
+     */
     @Override
     public Admin login() {
         System.out.println("Welcome in Log in page");
@@ -150,6 +165,9 @@ public class Admin extends User implements saveAndLoad {
        }while (true);
     }
 
+    /**
+     * This method is used to save the data in the AdminData.csv file
+     */
     @Override
     public void saveData() {
         FileWriter fw;
@@ -172,6 +190,9 @@ public class Admin extends User implements saveAndLoad {
         }
     }
 
+    /**
+     * This method is used to load the data from the AdminData.csv file
+     */
     @Override
     public void loadData() {
         try {
@@ -204,7 +225,10 @@ public class Admin extends User implements saveAndLoad {
         }
     }
 
-
+    /**
+     * This method is used to turn the class values into a string
+     * @return A string consisting of the data of the customer
+     */
     public String toString() {
         return this.Fname + ',' + this.Lname + ',' + this.email + ',' + this.phone + ',' + this.age + ',' + this.gender + ',' + this.address + ',' + this.password + ','+'\n';
     }

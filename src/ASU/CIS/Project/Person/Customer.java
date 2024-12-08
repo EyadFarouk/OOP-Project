@@ -4,18 +4,27 @@ import ASU.CIS.Project.Interfaces.saveAndLoad;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Customer class and the methods for the customer
+ */
 public class Customer extends User implements saveAndLoad{
     String deliveryAddress;
     static List<Customer> userList=new ArrayList<>();
+
+    /**
+     * This method is used to display the details of the user
+     */
     public void displayUserInfo(){
         super.displayUserInfo();
         System.out.println("delivery address of user is : "+this.deliveryAddress);
     }
 
+    /**
+     * This method is used to make test-cases/instances
+     */
     public static void instance(){
         Customer Eyad=new Customer();
         Eyad.email="Eyad";
@@ -38,6 +47,10 @@ public class Customer extends User implements saveAndLoad{
         }
     }
 
+    /**
+     * This method is used to make the customer login
+     * @return The customer after logging-in successfully
+     */
     @Override
     public Customer login() {
         System.out.println("Welcome in Log in page");
@@ -62,6 +75,9 @@ public class Customer extends User implements saveAndLoad{
         }while (true);
     }
 
+    /**
+     * This method is used to make the customer signup
+     */
     @Override
     public void signup() {
         super.signup();
@@ -73,6 +89,9 @@ public class Customer extends User implements saveAndLoad{
         userList.add(this);
     }
 
+    /**
+     * This method is used to check if the email hasn't been used in another account
+     */
     private void checkEmailUnique(){
         while (true) {
             Scanner scanner=new Scanner(System.in);
@@ -90,6 +109,9 @@ public class Customer extends User implements saveAndLoad{
         }
     }
 
+    /**
+     * This method is used to save the data in the CustomerData.csv  file
+     */
     @Override
     public void saveData() {
         FileWriter fw;
@@ -112,6 +134,9 @@ public class Customer extends User implements saveAndLoad{
         }
     }
 
+    /**
+     * This method is used to load the data from the CustomerData.csv file
+     */
     @Override
     public void loadData() {
         try {
@@ -145,6 +170,10 @@ public class Customer extends User implements saveAndLoad{
         }
     }
 
+    /**
+     * This method is used to turn the class values into a string
+     * @return A string consisting of the data of the admin
+     */
     public String toString() {
         return this.Fname + ',' + this.Lname + ',' + this.email + ',' + this.phone + ',' + this.age + ',' + this.gender + ',' + this.address + ',' + this.password + ',' + this.deliveryAddress+'\n';
     }

@@ -2,6 +2,9 @@ package ASU.CIS.Project.Person;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Abstract user class and the methods for the admin and customer subclasses
+ */
 abstract public class User {
     String Fname;
     String Lname;
@@ -11,7 +14,15 @@ abstract public class User {
     String gender;
     String address;
     String password;
+
+    /**
+     * This method is used to make the user login
+     */
     abstract public User login();
+
+    /**
+     * This method is used to make the customer signup and make a new account
+     */
     public void signup(){
         System.out.println("Welcome in sign up page");
         Scanner scanner=new Scanner(System.in);
@@ -20,7 +31,7 @@ abstract public class User {
         System.out.print("Please enter your last name : ");
         this.Lname=checkNoNumbers(scanner.next());
         System.out.print("Please enter your email : ");
-        this.email=scanner.next();
+        this.email=checkEmailValid(scanner.next());
         System.out.print("Please enter your phone number : ");
         this.phone=scanner.next();
         System.out.print("Please enter your age : ");
@@ -41,6 +52,11 @@ abstract public class User {
         this.password=checkPasswordValid(scanner.next());
     }
 
+    /**
+     * This method is used to check if the password is valid and can be used
+     * @param password The inputted password that should be checked
+     * @return The password after checking
+     */
     private String checkPasswordValid(String password){
         while (true) {
             if (password.matches("^(?=.*[0-9])"       //Checks if the password has a number
@@ -76,6 +92,12 @@ abstract public class User {
         }
     }
 
+    /**
+     * This method is used to check if the inputted gender is valid
+     *
+     * @param gender The inputted gender that should be checked
+     * @return The gender after checking
+     */
     private String checkGender(String gender){
         while (true) {
             if (gender.equalsIgnoreCase("male") || gender.equalsIgnoreCase("m")) {
@@ -89,17 +111,47 @@ abstract public class User {
         }
     }
 
+    /**
+     * This method is used to check if the inputted email is valid
+     *
+     * @param email the input that should be checked
+     * @return The email after checking if it's valid
+     */
+    private String checkEmailValid(String email){
+        while (true) {
+            if(email.contains("@gmail.com")||email.contains("@yahoo.com")||email.contains("@outlook.com")||email.contains("@email.com")){
+                return email;
+            }
+            else {
+                System.err.print("Email address is not valid");
+                System.out.println("Please enter a valid email address: ");
+                Scanner scanner=new Scanner(System.in);
+                email = scanner.nextLine();
+            }
+
+        }
+    }
+    /**
+     * This method is used to check if the inputted name has no numbers nor special characters
+     *
+     * @param name The inputted name that should be checked
+     * @return The name after checking
+     */
     private String checkNoNumbers(String name){
         while(true){
-            Scanner scanner=new Scanner(System.in);
-            if(name.matches(".*\\d.*"))
+            if(name.matches(".*\\d.*") && name.matches("^.*[@#$%^&-+=()].*"))
             {
-                System.out.print("The name can't contain numbers: ");
-                name = scanner.next();
+                Scanner scanner=new Scanner(System.in);
+                System.out.print("The name can't contain numbers or special characters: ");
+                name = scanner.nextLine();
             }else
                 return name;
         }
     }
+
+    /**
+     * This method is used to display the details of the user
+     */
     public void displayUserInfo(){
         System.out.println("Name of user is : "+this.Fname+" "+this.Lname);
         System.out.println("Email of user is : "+this.email);
