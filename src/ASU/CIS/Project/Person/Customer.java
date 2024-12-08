@@ -111,6 +111,7 @@ public class Customer extends User implements saveAndLoad{
             }
         }
     }
+
     @Override
     public void loadData() {
         try {
@@ -143,6 +144,7 @@ public class Customer extends User implements saveAndLoad{
             System.out.println(e.getMessage());
         }
     }
+
     public String toString() {
         return this.Fname + ',' + this.Lname + ',' + this.email + ',' + this.phone + ',' + this.age + ',' + this.gender + ',' + this.address + ',' + this.password + ',' + this.deliveryAddress+'\n';
     }
