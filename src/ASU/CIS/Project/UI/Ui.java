@@ -9,19 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 public class Ui {
     Scanner scanner=new Scanner(System.in);
 
     static Restaurant restaurant=new Restaurant();
 
-    List<Restaurant>restaurants= new ArrayList<>();
+    public  static List<Restaurant>restaurants= new ArrayList<>();
 
     public  int firstPage(){
         System.out.println("welcome to the restaurant ");
         System.out.println("please enter the number of the action you want to operate");
         System.out.println("1- if you want to continue as a customer : ");
         System.out.println("2- if you want to continue as an Admin : ");
-
+        restaurants= restaurant.loadData();
         return scanner.nextInt();
     }
     public  int loginOrSignup(){
@@ -243,6 +245,10 @@ public class Ui {
             transaction =scanner.next();
         }
 
+    }
+    public void exitProgram(){
+        restaurant.saveData(restaurants);
+        exit(0);
     }
     public void display_cart()
     {
