@@ -1,6 +1,7 @@
 package ASU.CIS.Project.Resturants;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurant extends Menu implements Comparable<Restaurant> {
@@ -63,7 +64,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
     }
     public void saveData(List<Restaurant> restaurantList) {
         try {
-            BufferedWriter fileWriter=new BufferedWriter(new FileWriter("Data/restaurantdata.csv"));
+            BufferedWriter fileWriter=new BufferedWriter(new FileWriter("restaurant.txt"));
                for (Restaurant restaurant :restaurantList) {
                    fileWriter.write(restaurant.name+'\n'+restaurant.address+'\n'+restaurant.contactInformation+'\n'+restaurant.rating+'\n');
                    for ( int i=0;i<restaurant.menu.size();i++){
@@ -79,24 +80,33 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
         }
 
     }
-    public List<Restaurant> loadData(List<Restaurant>restaurantList){
+    public List<Restaurant> loadData(){
+        List<Restaurant>restaurantList=new ArrayList<>();
         try {
-            BufferedReader reader=new BufferedReader(new FileReader("Data/restaurantdata.csv"));
+            BufferedReader reader=new BufferedReader(new FileReader("restaurant.txt"));
             int i=0;
             int j=0;
             String line;
             Dish dish=new Dish();
             while ((line =reader.readLine())!=null){
                 this.name=line;
-                this.address=reader.readLine();
-                this.contactInformation=reader.readLine();
-                this.rating=Double.parseDouble(reader.readLine());
-                while ((line =reader.readLine()).isEmpty()){
+                line=reader.readLine();
+                this.address=line;
+                line=reader.readLine();
+                this.contactInformation=line;
+                line=reader.readLine();
+                this.rating=Double.parseDouble(line);
+                while (!(line =reader.readLine()).isEmpty()){
+                 //   System.out.println(j);
                     dish.name=line;
-                    dish.description=reader.readLine();
-                    dish.price=Double.parseDouble(reader.readLine());
-                    dish.categories=reader.readLine();
-                    dish.rating=Double.parseDouble(reader.readLine());
+                    line=reader.readLine();
+                    dish.description=line;
+                    line=reader.readLine();
+                    dish.price=Double.parseDouble(line);
+                    line=reader.readLine();
+                    dish.categories=line;
+                    line=reader.readLine();
+                    dish.rating=Double.parseDouble(line);
                     this.menu.add(j,dish);
                     j++;
                 }
