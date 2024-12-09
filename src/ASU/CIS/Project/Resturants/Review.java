@@ -1,5 +1,9 @@
 package ASU.CIS.Project.Resturants;
 
+import ASU.CIS.Project.Person.Delivery_Staff;
+
+import java.util.List;
+
 /**
  * This class is made to get the feedback of the customer
  */
@@ -8,7 +12,9 @@ public class Review {
 
     Restaurant restaurant;
 
-    int number_of_reviewsR,number_of_reviewsD;
+    List<String> notes;
+
+    int number_of_reviewsR,number_of_reviewsD,number_of_reviewsDS;
 
     /**
      * this is it's constructor, and it takes a restaurant object
@@ -38,7 +44,7 @@ public class Review {
      * @param rate the rate the user returns
      * @param name nameof the dish
      */
-    public void setReviewForDish(int rate, String name) {
+    public void setReviewForDish(double rate, String name) {
         number_of_reviewsD++;
 
       int i = 0;
@@ -52,6 +58,26 @@ public class Review {
             }
 
             restaurant.menu.get(i).rating = (restaurant.menu.get(i).rating + rate)/number_of_reviewsD;
+        }
+    }
+
+    /**
+     * This method is used to set the review of the delivery staff member and calculate the average rating
+     * @param name the deliveryman's first name
+     * @param location his current location
+     * @param rating the rating you want to give him
+     */
+    public void setReviewForDeliveryStaff(String name , String location ,double rating)
+    {
+        number_of_reviewsDS++;
+
+        Delivery_Staff delivery = new Delivery_Staff(location);
+
+        if(name.equals(delivery.Fname))
+        {
+            this.scoreRating = rating;
+
+            delivery.setRating ((delivery.getRating()+rating)/number_of_reviewsDS) ;
         }
     }
 }
