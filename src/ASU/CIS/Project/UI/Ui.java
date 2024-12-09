@@ -284,7 +284,7 @@ public class Ui {
         String deliveryAddress=scanner.next();
         System.out.println("Please enter the time of delivery : ");
         String timeOfDelivery=scanner.next();
-        System.out.println("Do you want to pay with card if yes please enter 1 if cash please enter 0 : ");
+        System.out.println("Do you want to pay with Card if yes please enter 1 if cash please enter 0 : ");
         boolean cart=scanner.nextBoolean();
         String transaction;
         if (cart){

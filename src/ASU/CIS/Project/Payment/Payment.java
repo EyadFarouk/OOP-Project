@@ -12,8 +12,8 @@ public class Payment {
         this.PaymentStatus = paymentStatus;
     }
 
-    /*public String CheckOut(card cardManager) {
-        card selectedCard = cardManager.SelectCard();
+    /*public String CheckOut(Card cardManager) {
+        Card selectedCard = cardManager.SelectCard();
         if (selectedCard == null) {
             setPaymentStatus("Failed");
             return "Payment Failed";

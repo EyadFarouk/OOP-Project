@@ -129,6 +129,7 @@ public class Customer extends User implements saveAndLoad{
                 if (!file.exists()) {file.mkdir();}
             } catch (IOException e) {
                 System.out.println(e.getMessage());
+                System.out.println("Something went wrong with saving the data");
                 break;
             }
         }
@@ -148,15 +149,15 @@ public class Customer extends User implements saveAndLoad{
             while((line = br.readLine()) != null) {
 //                System.out.println(line);
                 Customer customer= new Customer();
-                customer.Fname=(line.split(",")[0]);
-                customer.Lname=(line.split(",")[1]);
-                customer.email=(line.split(",")[2]);
-                customer.phone=(line.split(",")[3]);
-                customer.age=(Integer.parseInt(line.split(",")[4]));
-                customer.gender=(line.split(",")[5]);
-                customer.address=(line.split(",")[6]);
-                customer.password=(line.split(",")[7]);
-                customer.deliveryAddress=(line.split(",")[8]);
+                customer.Fname=line.split(",")[0];
+                customer.Lname=line.split(",")[1];
+                customer.email=line.split(",")[2];
+                customer.phone=line.split(",")[3];
+                customer.age=Integer.parseInt(line.split(",")[4]);
+                customer.gender=line.split(",")[5];
+                customer.address=line.split(",")[6];
+                customer.password=line.split(",")[7];
+                customer.deliveryAddress=line.split(",")[8];
                 userList.add(customer);
 //                System.out.println(userList.get(i).toString());
 //                i++;
@@ -167,6 +168,7 @@ public class Customer extends User implements saveAndLoad{
             if (!file.exists()) {file.mkdir();}
         } catch (IOException e) {
             System.out.println(e.getMessage());
+
         }
     }
 

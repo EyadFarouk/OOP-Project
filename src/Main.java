@@ -1,3 +1,4 @@
+import ASU.CIS.Project.Payment.Card;
 import ASU.CIS.Project.UI.*;
 import ASU.CIS.Project.Person.*;
 import ASU.CIS.Project.Resturants.*;
@@ -15,16 +16,19 @@ public class Main {
 
         Customer customer = new Customer();
         Admin admin = new Admin();
+        Card card = new Card();
         // A function to give fake data to test on
 //            Customer.instance();
 //            Admin.instance();
+//            Card.instance();
 //            customer.saveData();
 //            admin.saveData();
+//        card.saveData();
+        card.loadData();
         customer.loadData();
         admin.loadData();
         //------------------------------
         Ui ui = new Ui();
-
         int choose = ui.firstPage(), x = 1;
         while (x == 1) {
             if (choose == 1) {

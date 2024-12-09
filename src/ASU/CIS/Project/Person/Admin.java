@@ -185,6 +185,7 @@ public class Admin extends User implements saveAndLoad {
                 if (!file.exists()) {file.mkdir();}
             } catch (IOException e) {
                 System.out.println(e.getMessage());
+                System.out.println("Something went wrong with saving the data");
                 break;
             }
         }
@@ -204,14 +205,14 @@ public class Admin extends User implements saveAndLoad {
             while((line = br.readLine()) != null) {
 //                System.out.println(line);
                 Admin admin= new Admin();
-                admin.Fname=(line.split(",")[0]);
-                admin.Lname=(line.split(",")[1]);
-                admin.email=(line.split(",")[2]);
-                admin.phone=(line.split(",")[3]);
-                admin.age=(Integer.parseInt(line.split(",")[4]));
-                admin.gender=(line.split(",")[5]);
-                admin.address=(line.split(",")[6]);
-                admin.password=(line.split(",")[7]);
+                admin.Fname=line.split(",")[0];
+                admin.Lname=line.split(",")[1];
+                admin.email=line.split(",")[2];
+                admin.phone=line.split(",")[3];
+                admin.age=Integer.parseInt(line.split(",")[4]);
+                admin.gender=line.split(",")[5];
+                admin.address=line.split(",")[6];
+                admin.password=line.split(",")[7];
                 adminList.add(admin);
 //                System.out.println(userList.get(i).toString());
 //                i++;
@@ -230,6 +231,6 @@ public class Admin extends User implements saveAndLoad {
      * @return A string consisting of the data of the customer
      */
     public String toString() {
-        return this.Fname + ',' + this.Lname + ',' + this.email + ',' + this.phone + ',' + this.age + ',' + this.gender + ',' + this.address + ',' + this.password + ','+'\n';
+        return this.Fname + ',' + this.Lname + ',' + this.email + ',' + this.phone + ',' + this.age + ',' + this.gender + ',' + this.address + ',' + this.password +'\n';
     }
 }
