@@ -81,13 +81,24 @@ public class Ui {
     }
     public  void setReview(){
         Review review=new Review(restaurant);
-        System.out.println("please enter 1 if you want to rate restaurant or 2 if you want to rate dish");
+        System.out.println("please enter 1 if you want to rate restaurant 2 if you want to rate dish or 3 if you want to rate the delivery man");
         int choose=scanner.nextInt();
         int rate;
+        String note;
         if (choose==1){
             System.out.print("How would you rate your experience out of 5: ");
             rate=scanner.nextInt();
             review.setReviewForRestaurant(rate);
+            System.out.println("Would you like to ad a note ? (if yes click 1 if no click 2)");
+            choose = scanner.nextInt();
+            if(choose == 1)
+            {
+                for (int i=0;i<review.notes.size();i++)
+                {
+                    note = scanner.nextLine();
+                }
+            }
+
         }
         else if (choose==2){
             System.out.println("Please enter the name of dish : ");
@@ -95,6 +106,27 @@ public class Ui {
             System.out.println("How would you rate your Dish out of 5 : ");
             rate=scanner.nextInt();
             review.setReviewForDish(rate,name);
+            System.out.println("Would you like to ad a note ? (if yes click 1 if no click 2)");
+            choose = scanner.nextInt();
+            if(choose == 1)
+            {
+                for (int i=0;i<review.notes.size();i++)
+                {
+                    note = scanner.nextLine();
+                }
+            }
+            else if (choose==3) {
+                System.out.print("How would you rate the delivery out of 5: ");
+                rate = scanner.nextInt();
+                review.setReviewForDeliveryStaff(name, "nasr city", rate);
+                System.out.println("Would you like to ad a note ? (if yes click 1 if no click 2)");
+                choose = scanner.nextInt();
+                if (choose == 1) {
+                    for (int i = 0; i < review.notes.size(); i++) {
+                        note = scanner.nextLine();
+                    }
+                }
+            }
         }
     }
     public  int homePageAfterSelectRestaurant(){

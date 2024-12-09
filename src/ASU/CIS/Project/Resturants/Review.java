@@ -2,6 +2,7 @@ package ASU.CIS.Project.Resturants;
 
 import ASU.CIS.Project.Person.Delivery_Staff;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public class Review {
 
     Restaurant restaurant;
 
-    List<String> notes;
+    public List<String> notes = new ArrayList<>();
 
     int number_of_reviewsR,number_of_reviewsD,number_of_reviewsDS;
 
@@ -42,7 +43,7 @@ public class Review {
      * This method is used to set the review of the dish and calculate the average rating
      *
      * @param rate the rate the user returns
-     * @param name nameof the dish
+     * @param name name of the dish
      */
     public void setReviewForDish(double rate, String name) {
         number_of_reviewsD++;
