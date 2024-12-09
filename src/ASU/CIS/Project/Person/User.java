@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Abstract user class and the methods for the admin and customer subclasses
  */
 abstract public class User {
-    String Fname;
+    public String Fname;
     String Lname;
     String email;
     String phone;

@@ -17,6 +17,8 @@ public class Ui {
 
     static Restaurant restaurant=new Restaurant();
 
+
+
     public  static List<Restaurant>restaurants= new ArrayList<>();
 
     public  int firstPage(){
@@ -24,6 +26,7 @@ public class Ui {
         System.out.println("please enter the number of the action you want to operate");
         System.out.println("1- if you want to continue as a customer : ");
         System.out.println("2- if you want to continue as an Admin : ");
+        System.out.println("3- if you want to continue as a Delivery Staff Member : ");
         restaurants= restaurant.loadData();
         return scanner.nextInt();
     }
@@ -303,5 +306,15 @@ public class Ui {
     public void display_cart()
     {
         Cart.displayCart();
+    }
+
+    public void DisplayOrders(){
+        Order order = new Order( "Nasr city", "completed");
+        System.out.println(order.getOrderId());
+        System.out.println(order.getOrderDate());
+        System.out.println(order.getOrderLocation());
+        System.out.println(order.getOrderPrice());
+        System.out.println(order.getOrderState());
+
     }
 }
