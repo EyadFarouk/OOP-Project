@@ -62,7 +62,7 @@ abstract public class User {
             if (password.matches("^(?=.*[0-9])"       //Checks if the password has a number
                     + "(?=.*[a-z])"                         //Checks if the password has a small letter
                     + "(?=.*[A-Z])"                         //Checks if the password has a capital letter
-                    + "(?=.*[@#$%^&+=])"                    //Checks if the password has a special character
+                    + "(?=.*[!@#$%^&-+=()*])"                    //Checks if the password has a special character
                     + "(?=\\S+$).{8,20}$"))                //Checks if the password has at least 8 characters and has no white spaces
             {
                 return password;
@@ -79,7 +79,7 @@ abstract public class User {
                 if (!password.matches(".*[A-Z].*")) {
                     System.err.println("Password must have at least one upper case letter");
                 }
-                if (!password.matches("^.*[@#$%^&-+=()].*")) {
+                if (!password.matches("^.*[!@#$%^&-+=()*].*")) {
                     System.err.println("Password must have at least one special character");
                 }
                 if (password.contains(" ")) {
