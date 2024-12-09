@@ -62,7 +62,7 @@ abstract public class User {
             if (password.matches("^(?=.*[0-9])"       //Checks if the password has a number
                     + "(?=.*[a-z])"                         //Checks if the password has a small letter
                     + "(?=.*[A-Z])"                         //Checks if the password has a capital letter
-                    + "(?=.*[@#$%^&+=])"                    //Checks if the password has a special character
+                    + "(?=.*[!@#$%^&-+=()*])"                    //Checks if the password has a special character
                     + "(?=\\S+$).{8,20}$"))                //Checks if the password has at least 8 characters and has no white spaces
             {
                 return password;
