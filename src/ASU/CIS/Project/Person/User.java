@@ -79,7 +79,7 @@ abstract public class User {
                 if (!password.matches(".*[A-Z].*")) {
                     System.err.println("Password must have at least one upper case letter");
                 }
-                if (!password.matches("^.*[@#$%^&-+=()].*")) {
+                if (!password.matches("^.*[!@#$%^&-+=()*].*")) {
                     System.err.println("Password must have at least one special character");
                 }
                 if (password.contains(" ")) {
