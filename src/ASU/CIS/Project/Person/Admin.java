@@ -3,6 +3,7 @@ package ASU.CIS.Project.Person;
 import ASU.CIS.Project.Interfaces.saveAndLoad;
 import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Restaurant;
+import ASU.CIS.Project.UI.Ui;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,6 +16,9 @@ import java.util.Scanner;
 public class Admin extends User implements saveAndLoad {
    public static List<Restaurant>restaurants;
    static List<Admin> adminList=new ArrayList<>();
+   public Admin(){
+      restaurants= Ui.restaurants;
+   }
 
    static public void instance(){
         Admin Eyad=new Admin();
@@ -64,17 +68,18 @@ public class Admin extends User implements saveAndLoad {
     public static void addRestaurant(Restaurant restaurant){
 
        restaurants.add(restaurants.size(), restaurant);
-
+       Ui.restaurants=restaurants;
     }
     public static void deleteRestaurant(String name){
 
        restaurants.remove(getRestaurant(name));
+        Ui.restaurants=restaurants;
 
     }
     public static void addMenu(String name, List<Dish> menu){
       Restaurant res = getRestaurant(name);
-
       res.menu = menu;
+      Ui.restaurants=restaurants;
     }
     public static void deleteMenu(String name){
 
@@ -83,6 +88,7 @@ public class Admin extends User implements saveAndLoad {
         }else{
             getRestaurant(name).menu.clear();
         }
+        Ui.restaurants=restaurants;
 
     }
 
@@ -104,7 +110,7 @@ public class Admin extends User implements saveAndLoad {
             }
 
         }
-
+        Ui.restaurants=restaurants;
     }
 
     /**

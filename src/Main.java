@@ -30,27 +30,28 @@ public class Main {
         //------------------------------
         Ui ui = new Ui();
         int choose = ui.firstPage(), x = 1;
-        while (x == 1) {
+
+        if (choose == 1) {
+
+            choose = ui.loginOrSignup();
+
             if (choose == 1) {
-
-                choose = ui.loginOrSignup();
-
-                if (choose == 1) {
-                    customer = customer.login();
-                    customer.displayUserInfo();
-                } else if (choose == 2) {
-                    customer.signup();
-                    customer = customer.login();
-                    customer.displayUserInfo();
-                }
-
+                customer = customer.login();
+                customer.displayUserInfo();
+            } else if (choose == 2) {
+                customer.signup();
+                customer = customer.login();
+                customer.displayUserInfo();
+            }
+            while (x == 1) {
                 choose = ui.homePage();
 
                 if (choose == 1) {
                     Restaurant restaurant = ui.displayRestaurants();
 
-                } else
+                } else {
                     ui.loginOrSignup();
+                }
 
                 choose = ui.homePageAfterSelectRestaurant();
 
@@ -68,46 +69,43 @@ public class Main {
                     ui.loginOrSignup();
                 }
 
-            } else if (choose == 2) {
-
-                choose = ui.loginOrSignup();
-
-                if (choose == 1) {
-                    admin = admin.login();
-                    admin.displayUserInfo();
-                } else if (choose == 2) {
-                    admin.signup();
-                    admin = admin.login();
-                    admin.displayUserInfo();
-                }
-
-                choose = ui.homePageAdmin();
-
-                if(choose == 1)
-                {
-                    ui.addRestaurantAdmin();
-                }
-                else if(choose == 2)
-                {
-                    ui.deleteDish();
-                }
-                else if(choose == 3)
-                {
-                    ui.addMenu();
-                }
-                else if(choose == 4)
-                {
-                    ui.deleteMenu();
-                }
-                else if(choose == 5)
-                {
-                    ui.loginOrSignup();
-                }
 
             }
+
+            x = ui.doYouWantAnotherAction();
             customer.saveData();
             admin.saveData();
+            ui.exitProgram();
+        } else if (choose == 2) {
+
+            choose = ui.loginOrSignup();
+
+            if (choose == 1) {
+                admin = admin.login();
+                admin.displayUserInfo();
+            } else if (choose == 2) {
+                admin.signup();
+                admin = admin.login();
+                admin.displayUserInfo();
+            }
+                do {
+                    choose = ui.homePageAdmin();
+
+                    if (choose == 1) {
+                        ui.addRestaurantAdmin();
+                        ui.displayRestaurants();
+                    } else if (choose == 2) {
+                        ui.deleteDish();
+                    } else if (choose == 3) {
+                        ui.addMenu();
+                    } else if (choose == 4) {
+                        ui.deleteMenu();
+                    } else if (choose == 5) {
+                        ui.loginOrSignup();
+                    }
+                }while (ui.doYouWantAnotherAction()==1);
+                admin.saveData();
+                ui.exitProgram();
         }
-        x = ui.doYouWantAnotherAction();
     }
 }

@@ -57,27 +57,11 @@ public class Ui {
         restaurant=restaurants.get(choose-1);
         return restaurants.get(choose-1);
     }
-    public  void selectDish(){
-        System.out.println("please choose the dish you want to order");
+    public  int selectDish(){
         restaurant.displayMenu();
+        System.out.println("please choose the dish you want to order");
         int choose=scanner.nextInt();
-        System.out.println("Do you want to add this to your cart enter 1 if you agree");
-        int cart=scanner.nextInt();
-        if (cart==1){
-            System.out.println("Please enter quantity you desire : ");
-            int quantity =scanner.nextInt();
-            System.out.println("Do you want any addition if yes then please enter 1 : ");
-            int x=scanner.nextInt();
-            if (x==1){
-                System.out.println("Enter the addition you want");
-                String add =scanner.next();
-                Cart.addItem(restaurant.menu.get(choose-1), quantity,add );
-            }else {
-                Cart.addItem(restaurant.menu.get(choose-1), quantity,null);
-            }
-
-        }
-
+        return choose;
     }
     public  void setReview(){
         Review review=new Review(restaurant);
@@ -168,7 +152,6 @@ public class Ui {
     }
     public  void addRestaurantAdmin(){
         Restaurant restaurant1=new Restaurant();
-
         System.out.println("Please enter the name of the restaurant : ");
         restaurant1.name=scanner.next();
         System.out.println("Please enter the address : ");
@@ -185,7 +168,6 @@ public class Ui {
             }
             scanner.nextLine();
         }
-
         System.out.println("next we want to add Menu items");
         Dish menu=new Dish();
         List<Dish>menus = null;
