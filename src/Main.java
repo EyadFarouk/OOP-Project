@@ -6,6 +6,7 @@ import ASU.CIS.Project.Orders.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -13,99 +14,122 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-
-        Customer customer = new Customer();
-        Admin admin = new Admin();
-        Card card = new Card();
-        // A function to give fake data to test on
-//            Customer.instance();
-//            Admin.instance();
-//            Card.instance();
-//            customer.saveData();
-//            admin.saveData();
-//        card.saveData();
-        card.loadData();
-        customer.loadData();
-        admin.loadData();
-        //------------------------------
-        Ui ui = new Ui();
-        int choose = ui.firstPage(), x = 1;
-
-        if (choose == 1) {
-
-            choose = ui.loginOrSignup();
-
-            if (choose == 1) {
-                customer = customer.login();
-                customer.displayUserInfo();
-            } else if (choose == 2) {
+        Ui ui=new Ui();
+        int choose=ui.firstPage();
+        if (choose==1){
+            Customer customer = new Customer();
+            customer.loadData();
+            choose=ui.loginOrSignup();
+            if (choose==1){
+                customer.login();
+            }
+            else if(choose==2){
                 customer.signup();
-                customer = customer.login();
-                customer.displayUserInfo();
             }
-            while (x == 1) {
-                choose = ui.homePage();
+            Restaurant restaurant=new Restaurant();
+            List<Restaurant>restaurants=restaurant.loadData();
+            Scanner scanner=new Scanner(System.in);
+            Dish dish=new Dish();
+            Card card = new Card();
+            card.loadData();
 
-                if (choose == 1) {
-                    Restaurant restaurant = ui.displayRestaurants();
+            int x;
+            do {
+                choose=ui.homePage();
+                if (choose==1){
+                    restaurant.displayRestaurant(restaurants);
+                    System.out.println("Enter number of restaurant you want : ");
+                    restaurant=restaurants.get(scanner.nextInt()-1);
+                }
+                else if (choose==2){
+                    restaurant.displayRestaurantWithMenu(restaurants);
+                    System.out.println("Enter number of restaurant you want : ");
+                    restaurant=restaurants.get(scanner.nextInt()-1);
+                }
+                else if (choose==3){
+                    restaurant.displayMenu(restaurant.menu);
+                    System.out.println("Enter number of Dish you want : ");
+                    dish=restaurant.menu.get(scanner.nextInt()-1);
+                }
+                else if (choose==4){
+                    System.out.println("Please enter order location : ");
+                    String orderLocation = scanner.nextLine();
+                    Order order=new Order(orderLocation,"Preparing");
+                    order.addFoodItem(dish);
+                }
+                else if (choose==5){
 
-                } else {
-                    ui.loginOrSignup();
+                }
+                else if (choose==6){
+                    Review review=new Review(restaurant);
+                    System.out.println("Please enter rating : ");
+                    review.setReviewForRestaurant(scanner.nextDouble());
+                }
+                else if (choose==7){
+                    Review review=new Review(restaurant);
+                    System.out.println("Please enter rating : ");
+                    review.setReviewForDish(scanner.nextDouble(),dish.name);
+                }
+                else if (choose==8){
+
                 }
 
-                choose = ui.homePageAfterSelectRestaurant();
-
-                if (choose == 1) {
-                    ui.selectDish();
-
-                    /*  Order order = new Order();*/
-                } else if (choose == 2) {
-                    ui.setReview();
-                } else if (choose == 3) {
-                    ui.display_cart();
-                } else if (choose == 4) {
-                    // until we know how order works
-                } else if (choose == 5) {
-                    ui.loginOrSignup();
-                }
-
-
-            }
-
-            x = ui.doYouWantAnotherAction();
-            customer.saveData();
-            admin.saveData();
-            ui.exitProgram();
-        } else if (choose == 2) {
-
-            choose = ui.loginOrSignup();
-
-            if (choose == 1) {
-                admin = admin.login();
-                admin.displayUserInfo();
-            } else if (choose == 2) {
-                admin.signup();
-                admin = admin.login();
-                admin.displayUserInfo();
-            }
-                do {
-                    choose = ui.homePageAdmin();
-
-                    if (choose == 1) {
-                        ui.addRestaurantAdmin();
-                        ui.displayRestaurants();
-                    } else if (choose == 2) {
-                        ui.deleteDish();
-                    } else if (choose == 3) {
-                        ui.addMenu();
-                    } else if (choose == 4) {
-                        ui.deleteMenu();
-                    } else if (choose == 5) {
-                        ui.loginOrSignup();
-                    }
-                }while (ui.doYouWantAnotherAction()==1);
-                admin.saveData();
-                ui.exitProgram();
+                x= ui.doYouWantAnotherAction();
+            }while (x==1);
+           restaurant.saveData(restaurants);
+           customer.saveData();
+           card.saveData();
         }
+        else if (choose==2){
+            Admin admin = new Admin();
+            admin.loadData();
+            choose= ui.loginOrSignup();
+            if (choose==1){
+                admin.login();
+            }
+            else if (choose==2){
+                admin.signup();
+            }
+            int x;
+            Restaurant restaurant=new Restaurant();
+            List<Restaurant>restaurants=restaurant.loadData();
+            do {
+                choose= ui.homePageAdmin();
+                if (choose==1){
+                    Admin.restaurants=restaurants;
+                    admin.addRestaurant();
+                    restaurants=Admin.restaurants;
+                }
+                else if (choose==2){
+                    Admin.restaurants=restaurants;
+                    admin.deleteRestaurant();
+                    restaurants=Admin.restaurants;
+                }
+                else if (choose==3){
+                    Admin.restaurants=restaurants;
+                    admin.addMenu();
+                    restaurants=Admin.restaurants;
+                }
+                else if (choose==4){
+                    Admin.restaurants=restaurants;
+                    admin.deleteMenu();
+                    restaurants=Admin.restaurants;
+                }
+                else if (choose==5){
+                    restaurant.displayRestaurantWithMenu(restaurants);
+                }
+                else if (choose==6){
+
+                }
+
+               x = ui.doYouWantAnotherAction();
+            }while (x==1);
+            restaurant.saveData(restaurants);
+            admin.saveData();
+        }
+        else if (choose==3){
+            Delivery_Staff deliveryStaff=new Delivery_Staff("cairo");
+        }
+
     }
 }

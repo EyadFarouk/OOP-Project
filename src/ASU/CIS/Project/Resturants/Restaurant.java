@@ -11,7 +11,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
     public String address;
     public String contactInformation;
     public double rating;
-    public void displayMenu(){
+    public void displayMenu(List<Dish>menu){
         for (int i=0;i< menu.size();i++){
             System.out.println("name of item "+(i+1) +" : "+menu.get(i).name);
             System.out.println("description of item "+(i+1) +" : "+menu.get(i).description);
@@ -19,6 +19,39 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
             System.out.println("categories of item "+(i+1) +" : "+menu.get(i).categories);
             System.out.println("rating of item "+(i+1) +" : "+menu.get(i).rating);
         }
+    }
+    public void displayRestaurant(List<Restaurant>restaurants){
+        int i=1;
+        for (Restaurant restaurant:restaurants){
+            System.out.println("Name of restaurant "+i+" : "+restaurant.name);
+            System.out.println("address of restaurant "+i+" : "+restaurant.address);
+            System.out.println("contact information of restaurant "+i+" : "+restaurant.contactInformation);
+            System.out.println("Name of restaurant "+i+" : "+restaurant.rating);
+            i++;
+        }
+    }
+    public void displayRestaurantWithMenu(List<Restaurant>restaurants){
+        int j=1;
+        for (Restaurant restaurant:restaurants){
+            System.out.println("Name of restaurant "+j+" : "+restaurant.name);
+            System.out.println("address of restaurant "+j+" : "+restaurant.address);
+            System.out.println("contact information of restaurant "+j+" : "+restaurant.contactInformation);
+            System.out.println("Name of restaurant "+j+" : "+restaurant.rating);
+            j++;
+            for (int i=0;i< restaurant.menu.size();i++){
+                System.out.println("name of item "+(i+1) +" : "+restaurant.menu.get(i).name);
+                System.out.println("description of item "+(i+1) +" : "+restaurant.menu.get(i).description);
+                System.out.println("price of item "+(i+1) +" : "+restaurant.menu.get(i).price);
+                System.out.println("categories of item "+(i+1) +" : "+restaurant.menu.get(i).categories);
+                System.out.println("rating of item "+(i+1) +" : "+restaurant.menu.get(i).rating);
+            }
+        }
+    }
+    public Restaurant getRestaurant(int i,List<Restaurant>restaurants){
+        return restaurants.get(i-1);
+    }
+    public Dish getDish(int i,List<Dish>menu){
+        return menu.get(i-1);
     }
     public Dish searchAboutDishWithName(String name){
         for (Dish dish : menu) {
@@ -89,14 +122,16 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
             int j=0;
             String line;
             Dish dish=new Dish();
+            Restaurant restaurant=new Restaurant();
             while ((line =reader.readLine())!=null){
-                this.name=line;
+                restaurant.name=line;
                 line=reader.readLine();
-                this.address=line;
+                restaurant.address=line;
                 line=reader.readLine();
-                this.contactInformation=line;
+                restaurant.contactInformation=line;
                 line=reader.readLine();
-                this.rating=Double.parseDouble(line);
+                restaurant.rating=Double.parseDouble(line);
+                List<Dish>menu=new ArrayList<>();
                 while (!(line =reader.readLine()).isEmpty()){
                  //   System.out.println(j);
                     dish.name=line;
@@ -108,10 +143,13 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
                     dish.categories=line;
                     line=reader.readLine();
                     dish.rating=Double.parseDouble(line);
-                    this.menu.add(j,dish);
+                    menu.add(j,dish);
+                    dish=new Dish();
                     j++;
                 }
-                restaurantList.add(i,this);
+                restaurant.menu=menu;
+                restaurantList.add(i,restaurant);
+                restaurant=new Restaurant();
                 j=0;
                 i++;
             }

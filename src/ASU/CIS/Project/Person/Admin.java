@@ -16,9 +16,7 @@ import java.util.Scanner;
 public class Admin extends User implements saveAndLoad {
    public static List<Restaurant>restaurants;
    static List<Admin> adminList=new ArrayList<>();
-   public Admin(){
-      restaurants= Ui.restaurants;
-   }
+
 
    static public void instance(){
         Admin Eyad=new Admin();
@@ -40,7 +38,7 @@ public class Admin extends User implements saveAndLoad {
         }
    }
 
-    public static Restaurant getRestaurant(String name){
+    public  Restaurant getRestaurant(String name){
       try {
           for (Restaurant restaurant:restaurants){
               if (name.equals(restaurant.name)){
@@ -52,7 +50,7 @@ public class Admin extends User implements saveAndLoad {
       }
        return null;
     }
-    public static int getMenu(String name,Restaurant restaurant){
+    public  int getMenu(String name,Restaurant restaurant){
        int i;
      try {
          for (i=0;i<restaurant.menu.size();i++){
@@ -65,37 +63,94 @@ public class Admin extends User implements saveAndLoad {
      }
        return 10000;
     }
-    public static void addRestaurant(Restaurant restaurant){
+    public  void addRestaurant(){
+        Restaurant restaurant=new Restaurant();
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Please enter name of restaurant : ");
+        restaurant.name=scanner.nextLine();
+        System.out.println("Please enter address of restaurant : ");
+        restaurant.address=scanner.nextLine();
+        System.out.println("Please enter contact information : ");
+        restaurant.contactInformation=scanner.nextLine();
+        System.out.println("Please enter rating of restaurant : ");
+        restaurant.rating=scanner.nextDouble();
+        scanner.nextLine();
+        System.out.println("Please enter number of item in menu : ");
+        int x=scanner.nextInt();
+        scanner.nextLine();
+        Dish dish=new Dish();
+        for(int i=0;i<x;i++){
+            System.out.println("Please enter name of dish : ");
+            dish.name=scanner.nextLine();
+            System.out.println("Please enter description of dish : ");
+            dish.description=scanner.nextLine();
+            System.out.println("Please enter price of dish : ");
+            dish.price=scanner.nextDouble();
+            scanner.nextLine();
+            System.out.println("Please enter type of dish : ");
+            dish.categories=scanner.nextLine();
+            System.out.println("Please enter ration of dish : ");
+            dish.rating=scanner.nextDouble();
+            scanner.nextLine();
+            restaurant.menu.add(dish);
+            dish=new Dish();
+        }
+        restaurants.add(restaurants.size(), restaurant);
 
-       restaurants.add(restaurants.size(), restaurant);
-       Ui.restaurants=restaurants;
     }
-    public static void deleteRestaurant(String name){
-
+    public  void deleteRestaurant(){
+       Scanner scanner=new Scanner(System.in);
+       String name;
+       System.out.println("Please enter name of restaurant : ");
+       name=scanner.nextLine();
        restaurants.remove(getRestaurant(name));
-        Ui.restaurants=restaurants;
 
     }
-    public static void addMenu(String name, List<Dish> menu){
-      Restaurant res = getRestaurant(name);
-      res.menu = menu;
-      Ui.restaurants=restaurants;
+    public  void addMenu( ){
+       String name;
+       Scanner scanner=new Scanner(System.in);
+        System.out.println("Please enter name of restaurant : ");
+        name=scanner.nextLine();
+        System.out.println("Please enter number of item in menu : ");
+        Restaurant res = getRestaurant(name);
+        int x=scanner.nextInt();
+        scanner.nextLine();
+        Dish dish=new Dish();
+        for(int i=0;i<x;i++){
+            System.out.println("Please enter name of dish : ");
+            dish.name=scanner.nextLine();
+            System.out.println("Please enter description of dish : ");
+            dish.description=scanner.nextLine();
+            System.out.println("Please enter price of dish : ");
+            dish.price=scanner.nextDouble();
+            scanner.nextLine();
+            System.out.println("Please enter type of dish : ");
+            dish.categories=scanner.nextLine();
+            System.out.println("Please enter ration of dish : ");
+            dish.rating=scanner.nextDouble();
+            scanner.nextLine();
+            res.menu.add(dish);
+            dish=new Dish();
+        }
     }
-    public static void deleteMenu(String name){
-
+    public  void deleteMenu(){
+       Scanner scanner=new Scanner(System.in);
+        String name;
+        System.out.println("Please enter name of restaurant : ");
+        name=scanner.nextLine();
         if (getRestaurant(name)==null){
             System.out.println("Restaurant not found");
         }else{
-            getRestaurant(name).menu.clear();
+            getRestaurant(name).menu=new ArrayList<>();
         }
-        Ui.restaurants=restaurants;
+
 
     }
 
     /**
      * This method is used to make the Admin remove
      */
-    public static void deleteDish(String nameOfRestaurant,String nameOfDish){
+    public  void deleteDish(String nameOfRestaurant,String nameOfDish){
         Restaurant restaurant=getRestaurant(nameOfRestaurant);
         if (restaurant==null){
             System.out.println("Restaurant is not found");
@@ -110,7 +165,6 @@ public class Admin extends User implements saveAndLoad {
             }
 
         }
-        Ui.restaurants=restaurants;
     }
 
     /**
