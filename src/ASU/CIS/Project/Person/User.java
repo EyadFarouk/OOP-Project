@@ -27,13 +27,13 @@ abstract public class User {
         System.out.println("Welcome in sign up page");
         Scanner scanner=new Scanner(System.in);
         System.out.print("Please enter your first name : ");
-        this.Fname= checkNoNumbers(scanner.next());
+        this.Fname= checkNoNumbers(scanner.nextLine());
         System.out.print("Please enter your last name : ");
-        this.Lname=checkNoNumbers(scanner.next());
+        this.Lname=checkNoNumbers(scanner.nextLine());
         System.out.print("Please enter your email : ");
-        this.email=checkEmailValid(scanner.next());
+        this.email=checkEmailValid(scanner.nextLine());
         System.out.print("Please enter your phone number : ");
-        this.phone=scanner.next();
+        this.phone=scanner.nextLine();
         System.out.print("Please enter your age : ");
         while (true) {
             try {
@@ -45,11 +45,35 @@ abstract public class User {
             scanner.nextLine(); // clears the buffer
         }
         System.out.print("Please enter your gender : ");
-        this.gender=checkGender(scanner.next());
+        this.gender=checkGender(scanner.nextLine());
         System.out.print("Please enter your address : ");
-        this.address=scanner.next();
+        this.address=scanner.nextLine();
         System.out.print("Please enter your password : ");
-        this.password=checkPasswordValid(scanner.next());
+        this.password=checkPasswordValid(scanner.nextLine());
+    }
+
+    public int checkNumberValid(int CheckIfIntOrDouble,String s){
+        Scanner scanner=new Scanner(System.in);
+        while (true) {
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.print(s);
+            }
+            scanner.nextLine(); // clears the buffer
+        }
+    }
+
+    public double checkNumberValid(double CheckIfIntOrDouble, String s){
+        Scanner scanner=new Scanner(System.in);
+        while (true) {
+            try {
+                return scanner.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.print(s);
+            }
+            scanner.nextLine(); // clears the buffer
+        }
     }
 
     /**
