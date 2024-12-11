@@ -155,6 +155,7 @@ public class Main {
             else if (choose==2){
                 deliveryStaff.signup();
             }
+            System.out.println();
 
 
         }
