@@ -56,10 +56,10 @@ public class Customer extends User implements saveAndLoad{
         System.out.println("Welcome in Log in page");
         do {
             Scanner scanner=new Scanner(System.in);
-            System.out.println("Please enter your email : ");
-            this.email=scanner.next();
-            System.out.println("Please enter your password : ");
-            this.password=scanner.next();
+            System.out.print("Please enter your email : ");
+            this.email=scanner.nextLine();
+            System.out.print("Please enter your password : ");
+            this.password=scanner.nextLine();
             for (int i = 0; i < userList.size(); i++) {
                 if (this.email.equals(userList.get(i).email)) {
                     if (this.password.equals(userList.get(i).password)) {
@@ -83,7 +83,7 @@ public class Customer extends User implements saveAndLoad{
         super.signup();
         Scanner scanner=new Scanner(System.in);
         System.out.print("Please enter your Delivery Address : ");
-        this.deliveryAddress=scanner.next();
+        this.deliveryAddress=scanner.nextLine();
         checkEmailUnique();
         System.out.println("Sign up successful");
         userList.add(this);
@@ -105,7 +105,7 @@ public class Customer extends User implements saveAndLoad{
             if (!exists) {
                 break;
             }
-            this.email=scanner.next();
+            this.email=scanner.nextLine();
         }
     }
 

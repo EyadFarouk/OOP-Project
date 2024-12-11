@@ -3,7 +3,6 @@ package ASU.CIS.Project.Person;
 import ASU.CIS.Project.Interfaces.saveAndLoad;
 import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Restaurant;
-import ASU.CIS.Project.UI.Ui;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -73,25 +72,12 @@ public class Admin extends User implements saveAndLoad {
         System.out.println("Please enter contact information : ");
         restaurant.contactInformation=scanner.nextLine();
         System.out.println("Please enter rating of restaurant : ");
-        restaurant.rating=scanner.nextDouble();
-        scanner.nextLine();
+        restaurant.rating=checkNumberValid(1.0,"Please enter a valid rating: ");
         System.out.println("Please enter number of item in menu : ");
-        int x=scanner.nextInt();
-        scanner.nextLine();
+        int x=super.checkNumberValid(1,"Please enter a valid number of item: ");
         Dish dish=new Dish();
         for(int i=0;i<x;i++){
-            System.out.println("Please enter name of dish : ");
-            dish.name=scanner.nextLine();
-            System.out.println("Please enter description of dish : ");
-            dish.description=scanner.nextLine();
-            System.out.println("Please enter price of dish : ");
-            dish.price=scanner.nextDouble();
-            scanner.nextLine();
-            System.out.println("Please enter type of dish : ");
-            dish.categories=scanner.nextLine();
-            System.out.println("Please enter ration of dish : ");
-            dish.rating=scanner.nextDouble();
-            scanner.nextLine();
+            AddDish(scanner, dish);
             restaurant.menu.add(dish);
             dish=new Dish();
         }
@@ -113,26 +99,28 @@ public class Admin extends User implements saveAndLoad {
         name=scanner.nextLine();
         System.out.println("Please enter number of item in menu : ");
         Restaurant res = getRestaurant(name);
-        int x=scanner.nextInt();
-        scanner.nextLine();
+        int x=checkNumberValid(1,"Please enter a valid number of item: ");
         Dish dish=new Dish();
         for(int i=0;i<x;i++){
-            System.out.println("Please enter name of dish : ");
-            dish.name=scanner.nextLine();
-            System.out.println("Please enter description of dish : ");
-            dish.description=scanner.nextLine();
-            System.out.println("Please enter price of dish : ");
-            dish.price=scanner.nextDouble();
-            scanner.nextLine();
-            System.out.println("Please enter type of dish : ");
-            dish.categories=scanner.nextLine();
-            System.out.println("Please enter ration of dish : ");
-            dish.rating=scanner.nextDouble();
-            scanner.nextLine();
+            AddDish(scanner, dish);
             res.menu.add(dish);
             dish=new Dish();
         }
     }
+
+    private void AddDish(Scanner scanner, Dish dish) {
+        System.out.println("Please enter name of dish : ");
+        dish.name=scanner.nextLine();
+        System.out.println("Please enter description of dish : ");
+        dish.description=scanner.nextLine();
+        System.out.println("Please enter price of dish : ");
+        dish.price=checkNumberValid(1.0,"Please enter a valid price: ");
+        System.out.println("Please enter type of dish : ");
+        dish.categories=scanner.nextLine();
+        System.out.println("Please enter ration of dish : ");
+        dish.rating=checkNumberValid(1.0,"Please enter a valid ration of the dish: ");
+    }
+
     public  void deleteMenu(){
        Scanner scanner=new Scanner(System.in);
         String name;
@@ -194,7 +182,7 @@ public class Admin extends User implements saveAndLoad {
             if (!exists) {
                 break;
             }
-            this.email=scanner.next();
+            this.email=scanner.nextLine();
         }
     }
 
@@ -207,9 +195,9 @@ public class Admin extends User implements saveAndLoad {
        do {
            Scanner scanner = new Scanner(System.in);
            System.out.print("Please enter your email : ");
-           this.email = scanner.next();
+           this.email = scanner.nextLine();
            System.out.print("Please enter your password : ");
-           this.password = scanner.next();
+           this.password = scanner.nextLine();
            for (int i = 0; i < adminList.size(); i++) {
                if (this.email.equals(adminList.get(i).email)) {
                    if (this.password.equals(adminList.get(i).password)) {
