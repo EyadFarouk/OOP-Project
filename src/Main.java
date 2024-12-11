@@ -32,7 +32,7 @@ public class Main {
             Dish dish=new Dish();
             Card card = new Card();
             card.loadData();
-
+            List<Review>reviews=new ArrayList<>();
             int x;
             do {
                 choose=ui.homePage();
@@ -79,7 +79,16 @@ public class Main {
                 else if (choose==6){
                     Review review=new Review(restaurant);
                     System.out.println("Please enter rating : ");
+                    reviews=review.loadDataReviewRestaurant();
+                    for(int i=0;i<reviews.size();i++){
+                        if (reviews.get(i).restaurant.name.equals(restaurant.name)){
+                            Review.number_of_reviewsR=reviews.get(i).getNumber_of_reviewsR();
+                            break;
+                        }
+                    }
                     review.setReviewForRestaurant(scanner.nextDouble());
+                    reviews.add(review);
+                    review.saveData(reviews);
                 }
                 else if (choose==7){
                     Review review=new Review(restaurant);
@@ -142,6 +151,7 @@ public class Main {
             }while (x==1);
             restaurant.saveData(restaurants);
             admin.saveData();
+
         }
         else if (choose==3){
             Scanner scanner=new Scanner(System.in);

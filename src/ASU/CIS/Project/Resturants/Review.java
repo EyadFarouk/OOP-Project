@@ -2,6 +2,7 @@ package ASU.CIS.Project.Resturants;
 
 import ASU.CIS.Project.Person.Delivery_Staff;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +12,12 @@ import java.util.List;
 public class Review {
     double scoreRating;
 
-    Restaurant restaurant;
+    public Restaurant restaurant;
 
     public List<String> notes = new ArrayList<>();
 
-    int number_of_reviewsR,number_of_reviewsD,number_of_reviewsDS;
+    public Review(){}
+    public static int number_of_reviewsR=0,number_of_reviewsD=0,number_of_reviewsDS=0;
 
     /**
      * this is it's constructor, and it takes a restaurant object
@@ -26,12 +28,17 @@ public class Review {
         this.restaurant = restaurant;
     }
 
+    public  int getNumber_of_reviewsR() {
+        return number_of_reviewsR;
+    }
+
     /**
      * This method sets the restaurant's rating and calculate the average rating
      *
      * @param Rating the rating the user gives
      */
     public void setReviewForRestaurant(double Rating) {
+        System.out.println(number_of_reviewsR);
         number_of_reviewsR++;
 
         this.scoreRating = Rating;
@@ -80,5 +87,42 @@ public class Review {
 
             delivery.setRating ((delivery.getRating()+rating)/number_of_reviewsDS) ;
         }
+    }
+    public void saveData(List<Review>reviews){
+        try {
+            BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter("Data/reviews.txt"));
+             for (Review review : reviews){
+                 bufferedWriter.write(review.restaurant.name+'\n');
+                 bufferedWriter.write(String.valueOf(review.scoreRating)+'\n');
+                 bufferedWriter.write(String.valueOf(review.number_of_reviewsR)+'\n');
+             }
+            bufferedWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public List<Review>loadDataReviewRestaurant(){
+        List<Review>reviews=new ArrayList<>();
+        try {
+            BufferedReader bufferedReader=new BufferedReader(new FileReader("Data/reviews.txt"));
+            String line;
+            Restaurant restaurant1=new Restaurant();
+            Review review=new Review();
+            while ((line=bufferedReader.readLine())!=null){
+                restaurant1.name=line;
+                review.restaurant=restaurant1;
+                line=bufferedReader.readLine();
+                review.scoreRating=Double.parseDouble(line);
+                line=bufferedReader.readLine();
+                review.number_of_reviewsR=Integer.parseInt(line);
+                reviews.add(review);
+                restaurant1=new Restaurant();
+                review=new Review();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return reviews;
     }
 }
