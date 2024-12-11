@@ -39,17 +39,33 @@ public class Main {
                 if (choose==1){
                     restaurant.displayRestaurant(restaurants);
                     System.out.println("Enter number of restaurant you want : ");
-                    restaurant=restaurants.get(scanner.nextInt()-1);
+                    int number= scanner.nextInt();
+                    if (number<=restaurants.size()){
+                        restaurant=restaurants.get(number-1);
+                    }else{
+                        System.out.println("number is wrong try again");
+                    }
                 }
                 else if (choose==2){
                     restaurant.displayRestaurantWithMenu(restaurants);
                     System.out.println("Enter number of restaurant you want : ");
-                    restaurant=restaurants.get(scanner.nextInt()-1);
+                    int number= scanner.nextInt();
+                    if (number<=restaurants.size()){
+                        restaurant=restaurants.get(number-1);
+                    }else{
+                        System.out.println("number is wrong try again");
+                    }
                 }
                 else if (choose==3){
                     restaurant.displayMenu(restaurant.menu);
                     System.out.println("Enter number of Dish you want : ");
-                    dish=restaurant.menu.get(scanner.nextInt()-1);
+                    int number= scanner.nextInt();
+                    if (number<=restaurant.menu.size()){
+                        dish=restaurant.menu.get(number-1);
+                    }else{
+                        System.out.println("number is wrong try again");
+                    }
+
                 }
                 else if (choose==4){
                     System.out.println("Please enter order location : ");
@@ -128,7 +144,19 @@ public class Main {
             admin.saveData();
         }
         else if (choose==3){
-            Delivery_Staff deliveryStaff=new Delivery_Staff("cairo");
+            Scanner scanner=new Scanner(System.in);
+            System.out.println("enter the location you work in : ");
+            String location =scanner.nextLine();
+            Delivery_Staff deliveryStaff=new Delivery_Staff(location);
+            choose=ui.loginOrSignup();
+            if (choose==1){
+                deliveryStaff.login();
+            }
+            else if (choose==2){
+                deliveryStaff.signup();
+            }
+
+
         }
 
     }

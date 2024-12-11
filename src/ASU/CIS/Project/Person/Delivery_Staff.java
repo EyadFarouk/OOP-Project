@@ -20,6 +20,7 @@ public class Delivery_Staff extends User implements saveAndLoad {
      * Constructor to instantiate delivery man
      * @param location shows the current location of the delivery man
      */
+
     public Delivery_Staff(String location) {
         this.Location = location;
     }
