@@ -118,7 +118,7 @@ public class Admin extends User implements saveAndLoad {
         System.out.println("Please enter type of dish : ");
         dish.categories=scanner.nextLine();
         System.out.println("Please enter ration of dish : ");
-        dish.rating=checkNumberValid(1.0,"Please enter a valid ration of the dish: ");
+        dish.rating=checkNumberValid(1.0,"Please enter a valid rating of the dish: ");
     }
 
     public  void deleteMenu(){

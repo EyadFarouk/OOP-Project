@@ -15,10 +15,13 @@ public class Review {
     public Restaurant restaurant;
 
     public List<String> notes = new ArrayList<>();
+    public String nameOfDelivery;
 
-    public Review(){}
-    public static int number_of_reviewsR=0,number_of_reviewsD=0,number_of_reviewsDS=0;
 
+    public  int number_of_reviewsR=0,number_of_reviewsD=0,number_of_reviewsDS=0;
+    public Review(){
+        restaurant=new Restaurant();
+    }
     /**
      * this is it's constructor, and it takes a restaurant object
      *
@@ -28,9 +31,6 @@ public class Review {
         this.restaurant = restaurant;
     }
 
-    public  int getNumber_of_reviewsR() {
-        return number_of_reviewsR;
-    }
 
     /**
      * This method sets the restaurant's rating and calculate the average rating
@@ -38,7 +38,6 @@ public class Review {
      * @param Rating the rating the user gives
      */
     public void setReviewForRestaurant(double Rating) {
-        System.out.println(number_of_reviewsR);
         number_of_reviewsR++;
 
         this.scoreRating = Rating;
@@ -71,22 +70,15 @@ public class Review {
 
     /**
      * This method is used to set the review of the delivery staff member and calculate the average rating
-     * @param name the deliveryman's first name
-     * @param location his current location
+     * @param deliveryStaff the deliveryman's first name
      * @param rating the rating you want to give him
      */
-    public void setReviewForDeliveryStaff(String name , String location ,double rating)
+    public void setReviewForDeliveryStaff(Delivery_Staff deliveryStaff ,double rating)
     {
         number_of_reviewsDS++;
-
-        Delivery_Staff delivery = new Delivery_Staff(location);
-
-        if(name.equals(delivery.Fname))
-        {
-            this.scoreRating = rating;
-
-            delivery.setRating ((delivery.getRating()+rating)/number_of_reviewsDS) ;
-        }
+        nameOfDelivery=deliveryStaff.Fname;
+        this.scoreRating = rating;
+        deliveryStaff.setRating ((deliveryStaff.getRating()+rating)/number_of_reviewsDS) ;
     }
     public void saveData(List<Review>reviews){
         try {
@@ -106,17 +98,49 @@ public class Review {
         try {
             BufferedReader bufferedReader=new BufferedReader(new FileReader("Data/reviews.txt"));
             String line;
-            Restaurant restaurant1=new Restaurant();
+
             Review review=new Review();
             while ((line=bufferedReader.readLine())!=null){
-                restaurant1.name=line;
-                review.restaurant=restaurant1;
+                review.restaurant.name=line;
                 line=bufferedReader.readLine();
                 review.scoreRating=Double.parseDouble(line);
                 line=bufferedReader.readLine();
                 review.number_of_reviewsR=Integer.parseInt(line);
                 reviews.add(review);
-                restaurant1=new Restaurant();
+                review=new Review();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return reviews;
+    }
+    public void saveDataReviewDelivery(List<Review>reviews){
+        try {
+            BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter("Data/reviewsDelivery.txt"));
+            for (Review review : reviews){
+                bufferedWriter.write(review.nameOfDelivery+'\n');
+                bufferedWriter.write(String.valueOf(review.scoreRating)+'\n');
+                bufferedWriter.write(String.valueOf(review.number_of_reviewsDS)+'\n');
+            }
+            bufferedWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public List<Review>loadDataReviewDelivery(){
+        List<Review>reviews=new ArrayList<>();
+        try {
+            BufferedReader bufferedReader=new BufferedReader(new FileReader("Data/reviewsDelivery.txt"));
+            String line;
+            Review review=new Review();
+            while ((line=bufferedReader.readLine())!=null){
+                review.nameOfDelivery=line;
+                line=bufferedReader.readLine();
+                review.scoreRating=Double.parseDouble(line);
+                line=bufferedReader.readLine();
+                review.number_of_reviewsDS=Integer.parseInt(line);
+                reviews.add(review);
                 review=new Review();
             }
             bufferedReader.close();

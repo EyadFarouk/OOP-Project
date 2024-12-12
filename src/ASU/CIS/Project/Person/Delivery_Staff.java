@@ -41,6 +41,10 @@ public class Delivery_Staff extends User implements saveAndLoad {
         this.rating = rating;
     }
 
+    public void setFname(String fname){
+        super.Fname=fname;
+    }
+    public String getFname(){return super.Fname;}
     @Override
     public void saveData() {
 

@@ -21,7 +21,7 @@ public class Main {
             customer.loadData();
             choose=ui.loginOrSignup();
             if (choose==1){
-                customer.login();
+          //      customer.login();
             }
             else if(choose==2){
                 customer.signup();
@@ -32,7 +32,8 @@ public class Main {
             Dish dish=new Dish();
             Card card = new Card();
             card.loadData();
-            List<Review>reviews=new ArrayList<>();
+            List<Review>reviewsRestaurant=new ArrayList<>();
+            List<Review>reviewsDelivery=new ArrayList<>();
             int x;
             do {
                 choose=ui.homePage();
@@ -79,16 +80,15 @@ public class Main {
                 else if (choose==6){
                     Review review=new Review(restaurant);
                     System.out.println("Please enter rating : ");
-                    reviews=review.loadDataReviewRestaurant();
-                    for(int i=0;i<reviews.size();i++){
-                        if (reviews.get(i).restaurant.name.equals(restaurant.name)){
-                            Review.number_of_reviewsR=reviews.get(i).getNumber_of_reviewsR();
-                            break;
+                    reviewsRestaurant=review.loadDataReviewRestaurant();
+                    for(int i=0;i<reviewsRestaurant.size();i++){
+                        if (reviewsRestaurant.get(i).restaurant.name.equals(restaurant.name)){
+                            review.number_of_reviewsR++;
                         }
                     }
                     review.setReviewForRestaurant(scanner.nextDouble());
-                    reviews.add(review);
-                    review.saveData(reviews);
+                    reviewsRestaurant.add(review);
+                    review.saveData(reviewsRestaurant);
                 }
                 else if (choose==7){
                     Review review=new Review(restaurant);
@@ -96,7 +96,25 @@ public class Main {
                     review.setReviewForDish(scanner.nextDouble(),dish.name);
                 }
                 else if (choose==8){
-
+                    Review review=new Review();
+                    reviewsDelivery=review.loadDataReviewDelivery();
+                    System.out.println("Please enter name of delivery : ");
+                    scanner.nextLine();
+                    String name=scanner.nextLine();
+                    System.out.println("Please enter location of delivery : ");
+                    String location = scanner.nextLine();
+                    System.out.println("please enter your rating : ");
+                    //we should make check to get delivery from file important
+                    Delivery_Staff deliveryStaff=new Delivery_Staff(location);
+                    deliveryStaff.setFname(name);
+                    for(int i=0;i<reviewsDelivery.size();i++){
+                        if (reviewsDelivery.get(i).nameOfDelivery.equals(deliveryStaff.getFname())){
+                            review.number_of_reviewsDS++;
+                        }
+                    }
+                    review.setReviewForDeliveryStaff(deliveryStaff,scanner.nextDouble());
+                    reviewsDelivery.add(review);
+                    review.saveDataReviewDelivery(reviewsDelivery);
                 }
 
                 x= ui.doYouWantAnotherAction();
@@ -110,7 +128,7 @@ public class Main {
             admin.loadData();
             choose= ui.loginOrSignup();
             if (choose==1){
-                admin.login();
+            //    admin.login();
             }
             else if (choose==2){
                 admin.signup();

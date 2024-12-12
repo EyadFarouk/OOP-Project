@@ -36,7 +36,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
             System.out.println("Name of restaurant "+j+" : "+restaurant.name);
             System.out.println("address of restaurant "+j+" : "+restaurant.address);
             System.out.println("contact information of restaurant "+j+" : "+restaurant.contactInformation);
-            System.out.println("Name of restaurant "+j+" : "+restaurant.rating);
+            System.out.println("Rating of restaurant "+j+" : "+restaurant.rating);
             j++;
             for (int i=0;i< restaurant.menu.size();i++){
                 System.out.println("name of item "+(i+1) +" : "+restaurant.menu.get(i).name);

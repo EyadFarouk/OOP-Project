@@ -1,21 +1,6 @@
 mohamed
 hello world
 enter your name
-7.0
-hussein
-this equal hello
-100.0
-veg
-3.0
-hussein
-this equal hello
-100.0
-veg
-3.0
-
-mohamed
-hello world
-enter your name
 2.6666666666666665
 talat
 this equal hello
@@ -27,4 +12,14 @@ this equal hello
 100.0
 veg
 3.0
+
+uosef
+hello
+hi
+4.0
+amir
+hl
+3.0
+ck
+2.0
 
