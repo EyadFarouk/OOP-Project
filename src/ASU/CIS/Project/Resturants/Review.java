@@ -5,6 +5,7 @@ import ASU.CIS.Project.Person.Delivery_Staff;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * This class is made to get the feedback of the customer
@@ -14,7 +15,7 @@ public class Review {
 
     public Restaurant restaurant;
 
-    public List<String> notes = new ArrayList<>();
+    public String note;
     public String nameOfDelivery;
 
 
@@ -39,7 +40,9 @@ public class Review {
      */
     public void setReviewForRestaurant(double Rating) {
         number_of_reviewsR++;
-
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("If you have any note please enter : ");
+        note=scanner.nextLine();
         this.scoreRating = Rating;
 
         restaurant.rating = (restaurant.rating + Rating) / number_of_reviewsR;
@@ -75,6 +78,9 @@ public class Review {
      */
     public void setReviewForDeliveryStaff(Delivery_Staff deliveryStaff ,double rating)
     {
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("If you have any note please enter : ");
+        note=scanner.nextLine();
         number_of_reviewsDS++;
         nameOfDelivery=deliveryStaff.Fname;
         this.scoreRating = rating;
@@ -87,6 +93,7 @@ public class Review {
                  bufferedWriter.write(review.restaurant.name+'\n');
                  bufferedWriter.write(String.valueOf(review.scoreRating)+'\n');
                  bufferedWriter.write(String.valueOf(review.number_of_reviewsR)+'\n');
+                 bufferedWriter.write(review.note+'\n');
              }
             bufferedWriter.close();
         } catch (IOException e) {
@@ -106,6 +113,8 @@ public class Review {
                 review.scoreRating=Double.parseDouble(line);
                 line=bufferedReader.readLine();
                 review.number_of_reviewsR=Integer.parseInt(line);
+                line=bufferedReader.readLine();
+                review.note=line;
                 reviews.add(review);
                 review=new Review();
             }
@@ -122,6 +131,7 @@ public class Review {
                 bufferedWriter.write(review.nameOfDelivery+'\n');
                 bufferedWriter.write(String.valueOf(review.scoreRating)+'\n');
                 bufferedWriter.write(String.valueOf(review.number_of_reviewsDS)+'\n');
+                bufferedWriter.write(review.note+'\n');
             }
             bufferedWriter.close();
         } catch (IOException e) {
@@ -140,6 +150,8 @@ public class Review {
                 review.scoreRating=Double.parseDouble(line);
                 line=bufferedReader.readLine();
                 review.number_of_reviewsDS=Integer.parseInt(line);
+                line=bufferedReader.readLine();
+                review.note=line;
                 reviews.add(review);
                 review=new Review();
             }
