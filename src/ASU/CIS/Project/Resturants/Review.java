@@ -49,29 +49,6 @@ public class Review {
     }
 
     /**
-     * This method is used to set the review of the dish and calculate the average rating
-     *
-     * @param rate the rate the user returns
-     * @param name name of the dish
-     */
-    public void setReviewForDish(double rate, String name) {
-        number_of_reviewsD++;
-
-      int i = 0;
-
-        while(true) {
-            i++;
-            if (name.equals(restaurant.menu.get(i).name)) {
-                this.scoreRating = rate;
-
-                break;
-            }
-
-            restaurant.menu.get(i).rating = (restaurant.menu.get(i).rating + rate)/number_of_reviewsD;
-        }
-    }
-
-    /**
      * This method is used to set the review of the delivery staff member and calculate the average rating
      * @param deliveryStaff the deliveryman's first name
      * @param rating the rating you want to give him

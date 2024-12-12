@@ -34,13 +34,13 @@ public class Ui {
     public  int homePage(){
 
         System.out.println("Hello in home page please enter the number of the action you want to operate");
-        System.out.println("1- if you want to display restaurants : ");
-        System.out.println("2- if you want to display restaurants with menu : ");
-        System.out.println("3- if you want to display menu : ");
-        System.out.println("4- if you want the make order : ");
-        System.out.println("5- if you want to check order : ");
-        System.out.println("6- if you want to make review to restaurant : ");
-        System.out.println("7- if you want to make review to dish : ");
+        System.out.println("1- if you want to display the restaurants : ");
+        System.out.println("2- if you want to display the restaurants with the menu : ");
+        System.out.println("3- if you want to display the menu : ");
+        System.out.println("4- if you want to make an order : ");
+        System.out.println("5- if you want to check your order : ");
+        System.out.println("6- if you want to make a review for the restaurant : ");
+        System.out.println("7- if you want to review the Delivery staff member : ");
         System.out.println("8- if you want to log out : ");
         return scanner.nextInt();
     }
@@ -67,7 +67,7 @@ public class Ui {
         System.out.println("2- if you want to delete a restaurant : ");
         System.out.println("3- if you want to add a menu : ");
         System.out.println("4- if you want to delete a menu : ");
-        System.out.println("5- if you want to display restaurant with menu : ");
+        System.out.println("5- if you want to display restaurant with a menu : ");
         System.out.println("6- if you want to log out");
 
         return scanner.nextInt();

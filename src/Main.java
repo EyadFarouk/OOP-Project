@@ -40,7 +40,7 @@ public class Main {
                 choose=ui.homePage();
                 if (choose==1){
                     restaurant.displayRestaurant(restaurants);
-                    System.out.println("Enter number of restaurant you want : ");
+                    System.out.println("choose which restaurant you want to view : ");
                     int number= scanner.nextInt();
                     if (number<=restaurants.size()){
                         restaurant=restaurants.get(number-1);
@@ -50,7 +50,7 @@ public class Main {
                 }
                 else if (choose==2){
                     restaurant.displayRestaurantWithMenu(restaurants);
-                    System.out.println("Enter number of restaurant you want : ");
+                    System.out.println("choose which restaurant you want to view : ");
                     int number= scanner.nextInt();
                     if (number<=restaurants.size()){
                         restaurant=restaurants.get(number-1);
@@ -60,7 +60,7 @@ public class Main {
                 }
                 else if (choose==3){
                     restaurant.displayMenu(restaurant.menu);
-                    System.out.println("Enter number of Dish you want : ");
+                    System.out.println("choose the Dish you want to order : ");
                     int number= scanner.nextInt();
                     if (number<=restaurant.menu.size()){
                         dish=restaurant.menu.get(number-1);
@@ -70,7 +70,7 @@ public class Main {
 
                 }
                 else if (choose==4){
-                    System.out.println("Please enter order location : ");
+                    System.out.println("Please enter your location : ");
                     String orderLocation = scanner.nextLine();
                     Order order=new Order(orderLocation,"Preparing");
                     order.addFoodItem(dish);
@@ -80,7 +80,7 @@ public class Main {
                 }
                 else if (choose==6){
                     Review review=new Review(restaurant);
-                    System.out.println("Please enter rating : ");
+                    System.out.println("Please enter the rating : ");
                     for(int i=0;i<reviewsRestaurant.size();i++){
                         if (reviewsRestaurant.get(i).restaurant.name.equals(restaurant.name)){
                             review.number_of_reviewsR++;
@@ -91,13 +91,8 @@ public class Main {
 
                 }
                 else if (choose==7){
-                    Review review=new Review(restaurant);
-                    System.out.println("Please enter rating : ");
-                    review.setReviewForDish(scanner.nextDouble(),dish.name);
-                }
-                else if (choose==8){
                     Review review=new Review();
-                    System.out.println("Please enter name of delivery : ");
+                    System.out.println("Please enter name of the delivery staff member : ");
                     scanner.nextLine();
                     String name=scanner.nextLine();
                     System.out.println("Please enter location of delivery : ");
@@ -114,7 +109,8 @@ public class Main {
                     review.setReviewForDeliveryStaff(deliveryStaff,scanner.nextDouble());
                     reviewsDelivery.add(review);
                 }
-
+              /*  else if(choose == 8)
+                    ui.exitProgram();*/
                 x= ui.doYouWantAnotherAction();
             }while (x==1);
            restaurant.saveData(restaurants);
