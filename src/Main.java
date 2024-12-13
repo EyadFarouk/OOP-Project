@@ -4,7 +4,6 @@ import ASU.CIS.Project.Person.*;
 import ASU.CIS.Project.Resturants.*;
 import ASU.CIS.Project.Orders.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,32 +39,32 @@ public class Main {
                 choose=ui.homePage();
                 if (choose==1){
                     restaurant.displayRestaurant(restaurants);
-                    System.out.println("choose which restaurant you want to view : ");
+                    System.out.print("choose which restaurant you want to view : ");
                     int number= scanner.nextInt();
                     if (number<=restaurants.size()){
                         restaurant=restaurants.get(number-1);
                     }else{
-                        System.out.println("number is wrong try again");
+                        System.out.print("number is wrong try again: ");
                     }
                 }
                 else if (choose==2){
                     restaurant.displayRestaurantWithMenu(restaurants);
-                    System.out.println("choose which restaurant you want to view : ");
+                    System.out.print("choose which restaurant you want to view : ");
                     int number= scanner.nextInt();
                     if (number<=restaurants.size()){
                         restaurant=restaurants.get(number-1);
                     }else{
-                        System.out.println("number is wrong try again");
+                        System.out.print("number is wrong try again: ");
                     }
                 }
                 else if (choose==3){
                     restaurant.displayMenu(restaurant.menu);
-                    System.out.println("choose the Dish you want to order : ");
+                    System.out.print("choose the Dish you want to order : ");
                     int number= scanner.nextInt();
                     if (number<=restaurant.menu.size()){
                         dish=restaurant.menu.get(number-1);
                     }else{
-                        System.out.println("number is wrong try again");
+                        System.out.print("number is wrong try again: ");
                     }
 
                 }

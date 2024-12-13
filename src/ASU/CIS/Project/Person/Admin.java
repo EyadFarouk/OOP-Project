@@ -1,5 +1,6 @@
 package ASU.CIS.Project.Person;
 
+import ASU.CIS.Project.Interfaces.checkNumberValid;
 import ASU.CIS.Project.Interfaces.saveAndLoad;
 import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Restaurant;
@@ -12,7 +13,7 @@ import java.util.Scanner;
 /**
  * Admin class and the methods for the admin
  */
-public class Admin extends User implements saveAndLoad {
+public class Admin extends User implements saveAndLoad, checkNumberValid {
    public static List<Restaurant>restaurants;
    static List<Admin> adminList=new ArrayList<>();
 
@@ -72,9 +73,9 @@ public class Admin extends User implements saveAndLoad {
         System.out.println("Please enter contact information : ");
         restaurant.contactInformation=scanner.nextLine();
         System.out.println("Please enter rating of restaurant : ");
-        restaurant.rating=checkNumberValid(1.0,"Please enter a valid rating: ");
+        restaurant.rating=checkNumber(1.0,"Please enter a valid rating: ");
         System.out.println("Please enter number of item in menu : ");
-        int x=super.checkNumberValid(1,"Please enter a valid number of item: ");
+        int x=checkNumber(1,"Please enter a valid number of item: ");
         Dish dish=new Dish();
         for(int i=0;i<x;i++){
             AddDish(scanner, dish);
@@ -99,7 +100,7 @@ public class Admin extends User implements saveAndLoad {
         name=scanner.nextLine();
         System.out.println("Please enter number of item in menu : ");
         Restaurant res = getRestaurant(name);
-        int x=checkNumberValid(1,"Please enter a valid number of item: ");
+        int x=checkNumber(1,"Please enter a valid number of item: ");
         Dish dish=new Dish();
         for(int i=0;i<x;i++){
             AddDish(scanner, dish);
@@ -114,11 +115,11 @@ public class Admin extends User implements saveAndLoad {
         System.out.println("Please enter description of dish : ");
         dish.description=scanner.nextLine();
         System.out.println("Please enter price of dish : ");
-        dish.price=checkNumberValid(1.0,"Please enter a valid price: ");
+        dish.price=checkNumber(1.0,"Please enter a valid price: ");
         System.out.println("Please enter type of dish : ");
         dish.categories=scanner.nextLine();
         System.out.println("Please enter ration of dish : ");
-        dish.rating=checkNumberValid(1.0,"Please enter a valid rating of the dish: ");
+        dish.rating=checkNumber(1.0,"Please enter a valid rating of the dish: ");
     }
 
     public  void deleteMenu(){
@@ -199,7 +200,7 @@ public class Admin extends User implements saveAndLoad {
            System.out.print("Please enter your password : ");
            this.password = scanner.nextLine();
            for (int i = 0; i < adminList.size(); i++) {
-               if (this.email.equals(adminList.get(i).email)) {
+               if (this.email.equalsIgnoreCase(adminList.get(i).email)) {
                    if (this.password.equals(adminList.get(i).password)) {
                        System.out.println("log in success");
                        return adminList.get(i);

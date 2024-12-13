@@ -1,11 +1,12 @@
 package ASU.CIS.Project.Person;
-import java.util.InputMismatchException;
+import ASU.CIS.Project.Interfaces.checkNumberValid;
+
 import java.util.Scanner;
 
 /**
  * Abstract user class and the methods for the admin and customer subclasses
  */
-abstract public class User {
+abstract public class User implements checkNumberValid {
     public String Fname;
     String Lname;
     String email;
@@ -31,49 +32,17 @@ abstract public class User {
         System.out.print("Please enter your last name : ");
         this.Lname=checkNoNumbers(scanner.nextLine());
         System.out.print("Please enter your email : ");
-        this.email=checkEmailValid(scanner.nextLine());
+        this.email=checkEmailValid(scanner.nextLine()).toLowerCase();
         System.out.print("Please enter your phone number : ");
         this.phone=scanner.nextLine();
         System.out.print("Please enter your age : ");
-        while (true) {
-            try {
-                this.age = scanner.nextInt();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.print("Please enter a valid age: ");
-            }
-            scanner.nextLine(); // clears the buffer
-        }
+        this.age=checkNumber(1,"Please enter a valid price: ");
         System.out.print("Please enter your gender : ");
         this.gender=checkGender(scanner.nextLine());
         System.out.print("Please enter your address : ");
         this.address=scanner.nextLine();
         System.out.print("Please enter your password : ");
         this.password=checkPasswordValid(scanner.nextLine());
-    }
-
-    public int checkNumberValid(int CheckIfIntOrDouble,String s){
-        Scanner scanner=new Scanner(System.in);
-        while (true) {
-            try {
-                return scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.print(s);
-            }
-            scanner.nextLine(); // clears the buffer
-        }
-    }
-
-    public double checkNumberValid(double CheckIfIntOrDouble, String s){
-        Scanner scanner=new Scanner(System.in);
-        while (true) {
-            try {
-                return scanner.nextDouble();
-            } catch (InputMismatchException e) {
-                System.out.print(s);
-            }
-            scanner.nextLine(); // clears the buffer
-        }
     }
 
     /**
@@ -108,6 +77,11 @@ abstract public class User {
                 }
                 if (password.contains(" ")) {
                     System.err.println("Password mustn't have spaces");
+                }
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException _) {
+
                 }
                 System.out.print("Enter a valid password: ");
                 Scanner scanner=new Scanner(System.in);
@@ -148,6 +122,11 @@ abstract public class User {
             }
             else {
                 System.err.print("Email address is not valid");
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException _) {
+
+                }
                 System.out.println("Please enter a valid email address: ");
                 Scanner scanner=new Scanner(System.in);
                 email = scanner.nextLine();

@@ -13,11 +13,12 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
     public double rating;
     public void displayMenu(List<Dish>menu){
         for (int i=0;i< menu.size();i++){
+            System.out.println("Item no. : " + (i+1));
             System.out.println("name of item "+(i+1) +" : "+menu.get(i).name);
             System.out.println("description of item "+(i+1) +" : "+menu.get(i).description);
             System.out.println("price of item "+(i+1) +" : "+menu.get(i).price);
             System.out.println("categories of item "+(i+1) +" : "+menu.get(i).categories);
-            System.out.println("rating of item "+(i+1) +" : "+menu.get(i).rating);
+            System.out.println("rating of item "+(i+1) +" : "+menu.get(i).rating+'\n');
         }
     }
     public void displayRestaurant(List<Restaurant>restaurants){
@@ -26,24 +27,26 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
             System.out.println("Name of restaurant "+i+" : "+restaurant.name);
             System.out.println("address of restaurant "+i+" : "+restaurant.address);
             System.out.println("contact information of restaurant "+i+" : "+restaurant.contactInformation);
-            System.out.println("rating of restaurant "+i+" : "+restaurant.rating);
+            System.out.println("rating of restaurant "+i+" : "+restaurant.rating + '\n');
             i++;
         }
     }
     public void displayRestaurantWithMenu(List<Restaurant>restaurants){
         int j=1;
         for (Restaurant restaurant:restaurants){
+            System.out.println("Restaurant "+j+" ----");
             System.out.println("Name of restaurant "+j+" : "+restaurant.name);
             System.out.println("address of restaurant "+j+" : "+restaurant.address);
             System.out.println("contact information of restaurant "+j+" : "+restaurant.contactInformation);
-            System.out.println("Rating of restaurant "+j+" : "+restaurant.rating);
+            System.out.println("Rating of restaurant "+j+" : "+restaurant.rating+'\n');
             j++;
+            System.out.println("The menu of restaurant "+j+" ----");
             for (int i=0;i< restaurant.menu.size();i++){
                 System.out.println("name of item "+(i+1) +" : "+restaurant.menu.get(i).name);
                 System.out.println("description of item "+(i+1) +" : "+restaurant.menu.get(i).description);
                 System.out.println("price of item "+(i+1) +" : "+restaurant.menu.get(i).price);
                 System.out.println("categories of item "+(i+1) +" : "+restaurant.menu.get(i).categories);
-                System.out.println("rating of item "+(i+1) +" : "+restaurant.menu.get(i).rating);
+                System.out.println("rating of item "+(i+1) +" : "+restaurant.menu.get(i).rating+'\n');
             }
         }
     }

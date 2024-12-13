@@ -61,7 +61,7 @@ public class Customer extends User implements saveAndLoad{
             System.out.print("Please enter your password : ");
             this.password=scanner.nextLine();
             for (int i = 0; i < userList.size(); i++) {
-                if (this.email.equals(userList.get(i).email)) {
+                if (this.email.equalsIgnoreCase(userList.get(i).email)) {
                     if (this.password.equals(userList.get(i).password)) {
                         System.out.println("log in success");
                         return userList.get(i);
