@@ -103,7 +103,7 @@ abstract public class User implements checkNumberValid {
             } else if (gender.equalsIgnoreCase("female") || gender.equalsIgnoreCase("f")) {
                 return "Female";
             } else
-                System.out.println("Please enter a valid gender: ");
+                System.out.print("Please enter a valid gender: ");
             Scanner scanner=new Scanner(System.in);
             gender = scanner.nextLine();
         }
@@ -121,13 +121,13 @@ abstract public class User implements checkNumberValid {
                 return email;
             }
             else {
-                System.err.print("Email address is not valid");
+                System.err.println("Email address is not valid");
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
 
                 }
-                System.out.println("Please enter a valid email address: ");
+                System.out.print("Please enter a valid email address: ");
                 Scanner scanner=new Scanner(System.in);
                 email = scanner.nextLine();
             }
