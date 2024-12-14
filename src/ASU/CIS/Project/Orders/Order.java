@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Order {
     private String orderId;
     private Date orderDate;
-    private List<Dish> foodItems=new ArrayList<>();
+    private  static List<Dish> foodItems=new ArrayList<>();
     private double totalPrice;
     private String orderLocation;
     private String orderState; // state of the order (Pending, Completed, Canceled)
@@ -20,7 +20,7 @@ public class Order {
     public Order(String orderLocation, String orderState) {
         this.orderId = generateRandomOrderId();
         this.orderDate = new Date();
-        this.foodItems = new ArrayList<>();
+        //foodItems = new ArrayList<>();
         this.totalPrice = 0.0;
         this.orderLocation = orderLocation;
         this.orderState = orderState;

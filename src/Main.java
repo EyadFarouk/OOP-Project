@@ -70,6 +70,7 @@ public class Main {
                 }
                 else if (choose==4){
                     System.out.println("Please enter your location : ");
+                    scanner.nextLine();//clean buffer
                     String orderLocation = scanner.nextLine();
                     Order order=new Order(orderLocation,"Preparing");
                     order.makeOrder();
