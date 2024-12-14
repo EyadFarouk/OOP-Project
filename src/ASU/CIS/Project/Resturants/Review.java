@@ -48,6 +48,10 @@ public class Review {
         restaurant.rating = (restaurant.rating*(number_of_reviewsR-1)+Rating) / number_of_reviewsR;
     }
 
+    /**
+     * gets the score rating
+     * @return returns score rating
+     */
     public double getScoreRating() {
         return scoreRating;
     }

@@ -35,6 +35,10 @@ public class Ui implements checkNumberValid {
         System.out.print("choice No. : ");
         return checkNumber(1,2,"Please enter a valid number: ");
     }
+    public void logOut(){
+        System.out.println("you are logged out");
+        runProject();
+    }
     public  int homePage(){
 
         System.out.println("Hello in home page please enter the number of the action you want to operate");
@@ -83,6 +87,7 @@ public class Ui implements checkNumberValid {
         System.out.println("Hello in home page please enter the number of the action you want to operate");
         System.out.println("[1] if you want to set order state ");
         System.out.println("[2] if you want to see order details");
+        System.out.println("[3] if you want to log out");
         System.out.print("choice No. : ");
     return checkNumber(1,2,"Please enter a valid number");
     }
@@ -180,8 +185,9 @@ public class Ui implements checkNumberValid {
                 review.setReviewForDeliveryStaff(deliveryStaff,scanner.nextDouble());
                 reviewsDelivery.add(review);
             }
-              /*  else if(choose == 8)
-                    ui.exitProgram();*/
+                else if(choose == 8) {
+                logOut();
+            }
             x= doYouWantAnotherAction();
         }while (x==1);
         restaurant.saveData(restaurants);
@@ -231,7 +237,7 @@ public class Ui implements checkNumberValid {
                 restaurant.displayRestaurantWithMenu(restaurants);
             }
             else if (choose==6){
-
+                logOut();
             }
 
             x = doYouWantAnotherAction();
@@ -269,6 +275,11 @@ public class Ui implements checkNumberValid {
                     System.out.println("Order's Location : " + order.getOrderLocation());
                     System.out.println("Order's State : " + order.getOrderState());
                 }
+
+            }
+            else if(choose == 3)
+            {
+                logOut();
             }
             x = doYouWantAnotherAction();
         }while(x == 1);
