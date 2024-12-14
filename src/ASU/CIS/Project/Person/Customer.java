@@ -25,6 +25,9 @@ public class Customer extends User implements saveAndLoad{
     /**
      * This method is used to make test-cases/instances
      */
+    public String getAddress(){
+        return super.address;
+    }
     public static void instance(){
         Customer Eyad=new Customer();
         Eyad.email="Eyad";

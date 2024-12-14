@@ -10,7 +10,9 @@ import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Restaurant;
 import ASU.CIS.Project.Resturants.Review;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Ui implements checkNumberValid {
@@ -102,6 +104,7 @@ public class Ui implements checkNumberValid {
         Card card = new Card();
         card.loadData();
         Review rev=new Review();
+        List<Order>orders=order.loadData();
         List<Review>reviewsRestaurant=rev.loadDataReviewRestaurant();
         List<Review>reviewsDelivery=rev.loadDataReviewDelivery();
         int x = 1;
@@ -116,7 +119,8 @@ public class Ui implements checkNumberValid {
                 }else{
                     System.out.print("number is wrong try again: ");
                 }
-            }else if (choose==2){
+            }
+            else if (choose==2){
                 restaurant.displayRestaurantWithMenu(restaurants);
                 System.out.print("choose which restaurant you want to view : ");
                 int number= checkNumber(1,restaurants.size(),"Invalid character. Please enter a valid number: ");
@@ -125,25 +129,31 @@ public class Ui implements checkNumberValid {
                 }else{
                     System.out.print("number is wrong try again: ");
                 }
-            }else if (choose==3){
+            }
+            else if (choose==3){
                 restaurant.displayMenu(restaurant.menu);
                 System.out.print("choose the Dish you want to order : ");
-                int number= checkNumber(1,restaurants.size(),"Invalid character. Please enter a valid number: ");
+                int number= checkNumber(1,restaurant.menu.size(),"Invalid character. Please enter a valid number: ");
                 if (number<=restaurant.menu.size()){
                     dish=restaurant.menu.get(number-1);
                 }else{
                     System.out.print("number is wrong try again: ");
                 }
 
-            }else if (choose==4){
+            }
+            else if (choose==4){
                 System.out.println("Please enter your location : ");
                 scanner.nextLine();//clean buffer
                 String orderLocation = scanner.nextLine();
                 Order order=new Order(orderLocation,"Preparing");
                 order.makeOrder();
-            }else if (choose==5){
+                orders.add(order);
+                order.saveData(orders);
+            }
+            else if (choose==5){
                 order.addFoodItem(dish);
-            }else if (choose==6){
+            }
+            else if (choose==6){
                 Review review=new Review(restaurant);
                 System.out.println("Please enter the rating : ");
                 for(int i=0;i<reviewsRestaurant.size();i++){
@@ -154,7 +164,8 @@ public class Ui implements checkNumberValid {
                 review.setReviewForRestaurant(scanner.nextDouble());
                 reviewsRestaurant.add(review);
 
-            }else if (choose==7){
+            }
+            else if (choose==7){
                 Review review=new Review();
                 System.out.println("Please enter name of the delivery staff member : ");
                 scanner.nextLine();
@@ -172,8 +183,49 @@ public class Ui implements checkNumberValid {
                 }
                 review.setReviewForDeliveryStaff(deliveryStaff,scanner.nextDouble());
                 reviewsDelivery.add(review);
-            }else if(choose == 8)
+            }
+            else if (choose==8){
+                System.out.println("Please enter type you want to search about : ");
+                List<Dish>dishes= restaurant.menu.stream().
+                        filter(dish2-> Objects.equals(dish2.categories, scanner.nextLine())).toList();
+                restaurant.displayMenu(dishes);
+                System.out.println("Please enter number of dish you want to select : ");
+                int number= checkNumber(1,dishes.size(),"Invalid character. Please enter a valid number: ");
+                dish=dishes.get(number-1);
+            }
+            else if (choose==9){
+                System.out.println("Please enter name of dish you want to search about : ");
+                List<Dish>dishes= restaurant.menu.stream().filter(dish1 -> dish1.name.equals(scanner.nextLine())).toList();
+                if (dishes.get(0)==null){
+                    System.out.println("name is not found");
+                }
+                else{
+                    dish=dishes.get(0);
+                }
+            }
+            else if (choose==10) {
+                System.out.println("enter higer price you want to search about : ");
+                int price=checkNumber(1,1000,"Invalid character. Please enter a valid number: ");
+                List<Dish>dishes=restaurant.menu.stream().filter(dish1 -> dish1.price<price).toList();
+                restaurant.displayMenu(dishes);
+                System.out.println("Please enter number of dish you want to select : ");
+                int number= checkNumber(1,dishes.size(),"Invalid character. Please enter a valid number: ");
+                dish=dishes.get(number-1);
+            }
+            else if (choose==11){
+                List<Restaurant>restaurantList=restaurants
+                        .stream()
+                        .filter(restaurant1 -> restaurant1.address.equals(customer.getAddress()))
+                        .toList();
+                restaurant.displayRestaurant(restaurantList);
+                System.out.print("choose which restaurant you want to view : ");
+                int number= checkNumber(1,restaurantList.size(),"Invalid character. Please enter a valid number: ");
+                restaurant=restaurantList.get(number);
+            }
+            else if(choose == 12){
                 x = logOut();
+            }
+
         }while (x==1);
         restaurant.saveData(restaurants);
         customer.saveData();
