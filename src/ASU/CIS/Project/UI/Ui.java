@@ -182,6 +182,8 @@ public class Ui implements checkNumberValid {
             }
               /*  else if(choose == 8)
                     ui.exitProgram();*/
+            else
+                System.out.println("invalid choice");
             x= doYouWantAnotherAction();
         }while (x==1);
         restaurant.saveData(restaurants);
@@ -233,6 +235,8 @@ public class Ui implements checkNumberValid {
             else if (choose==6){
 
             }
+            else
+                System.out.println("invalid choice");
 
             x = doYouWantAnotherAction();
         }while (x==1);
@@ -266,6 +270,8 @@ public class Ui implements checkNumberValid {
                 System.out.println("Order's Location : " + order.getOrderLocation());
                 System.out.println("Order's State : " + order.getOrderState());
             }
+            else
+                System.out.println("invalid choice");
             x = doYouWantAnotherAction();
         }while(x == 1);
     }
@@ -284,6 +290,11 @@ public class Ui implements checkNumberValid {
         else if (choose == 3)
         {
             deliveryPath();
+        }
+        else
+        {
+            System.out.println("Invalid choice");
+            runProject();
         }
     }
 }
