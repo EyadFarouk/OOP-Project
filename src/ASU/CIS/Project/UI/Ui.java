@@ -78,6 +78,13 @@ public class Ui implements checkNumberValid {
         System.out.print("choice No. : ");
         return checkNumber(1,"Please enter a valid number: ");
     }
+    public  int homePageDelivery() {
+        System.out.println("Hello in home page please enter the number of the action you want to operate");
+        System.out.println("[1] if you want to set order state ");
+        System.out.println("[2] if you want to see order details");
+        System.out.print("choice No. : ");
+    return checkNumber(1,"Please enter a valid number");
+    }
     public void customerPath() {
         Customer customer = new Customer();
         customer.loadData();
@@ -261,9 +268,10 @@ public class Ui implements checkNumberValid {
         else if (choose == 2)
         {
             adminPath();
-        } else if (choose == 3)
+        }
+        else if (choose == 3)
         {
-        deliveryPath();
+            deliveryPath();
         }
     }
 }
