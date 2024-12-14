@@ -17,6 +17,9 @@ import static java.lang.System.exit;
 
 public class Ui implements checkNumberValid {
 
+    Order order=new Order();
+
+
     public  int firstPage(){
         System.out.println("welcome to the restaurant ");
         System.out.println("please enter the number of the action you want to operate");
@@ -146,7 +149,6 @@ public class Ui implements checkNumberValid {
                 order.makeOrder();
             }
             else if (choose==5){
-                Order order=new Order();
                 order.addFoodItem(dish);
             }
             else if (choose==6){
@@ -242,6 +244,7 @@ public class Ui implements checkNumberValid {
     }
     public void deliveryPath()
     {
+        int x;
         Scanner scanner=new Scanner(System.in);
         System.out.println("enter the location you work in : ");
         String location =scanner.nextLine();
@@ -253,9 +256,20 @@ public class Ui implements checkNumberValid {
         else if (choose==2){
             deliveryStaff.signup();
         }
-        choose = homePageDelivery();
-
-
+        do {
+            choose = homePageDelivery();
+            if (choose == 1) {
+                System.out.println("what's current order state?");
+                order.setOrderState(scanner.nextLine());
+            } else if (choose == 2) {
+                System.out.println("Order's ID : " + order.getOrderId());
+                System.out.println("Order's date : " + order.getOrderDate());
+                System.out.println("Order's price is : " + order.getOrderPrice());
+                System.out.println("Order's Location : " + order.getOrderLocation());
+                System.out.println("Order's State : " + order.getOrderState());
+            }
+            x = doYouWantAnotherAction();
+        }while(x == 1);
     }
 
     public void runProject()
