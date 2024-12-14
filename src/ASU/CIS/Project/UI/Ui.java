@@ -41,7 +41,7 @@ public class Ui implements checkNumberValid {
         System.out.println("[2] if you want to display the restaurants with the menu");
         System.out.println("[3] if you want to display the menu");
         System.out.println("[4] if you want to make an order");
-        System.out.println("[5] if you want to check your order");
+        System.out.println("[5] if you want to add item to your order");
         System.out.println("[6] if you want to make a review for the restaurant");
         System.out.println("[7] if you want to review the Delivery staff member");
         System.out.println("[8] if you want to log out");

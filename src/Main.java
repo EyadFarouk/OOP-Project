@@ -70,12 +70,14 @@ public class Main {
                 }
                 else if (choose==4){
                     System.out.println("Please enter your location : ");
+                    scanner.nextLine();//clean buffer
                     String orderLocation = scanner.nextLine();
                     Order order=new Order(orderLocation,"Preparing");
-                    order.addFoodItem(dish);
+                    order.makeOrder();
                 }
                 else if (choose==5){
-
+                    Order order=new Order();
+                    order.addFoodItem(dish);
                 }
                 else if (choose==6){
                     Review review=new Review(restaurant);
