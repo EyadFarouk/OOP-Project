@@ -1,6 +1,8 @@
 package ASU.CIS.Project.Orders;
 
+import ASU.CIS.Project.Payment.Card;
 import ASU.CIS.Project.Resturants.Dish;
+import ASU.CIS.Project.Resturants.Restaurant;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +12,7 @@ import java.util.UUID;
 public class Order {
     private String orderId;
     private Date orderDate;
-    private List<Dish> foodItems;
+    private List<Dish> foodItems=new ArrayList<>();
     private double totalPrice;
     private String orderLocation;
     private String orderState; // state of the order (Pending, Completed, Canceled)
@@ -22,6 +24,8 @@ public class Order {
         this.totalPrice = 0.0;
         this.orderLocation = orderLocation;
         this.orderState = orderState;
+    }
+    public Order(){
     }
 
     // Generate a random order ID using UUID
@@ -35,10 +39,12 @@ public class Order {
         totalPrice += dish.price; // update total price
     }
 
-    // For adding a List of Food I
-    public void addFoodItems(List<Dish> foods) {
-        for (Dish food : foods)
-            addFoodItem(food);
+        public void makeOrder(){
+        System.out.println("order include : ");
+        Restaurant restaurant=new Restaurant();
+        restaurant.displayMenu(foodItems);
+        Card card=new Card();
+        card.SelectCard();
     }
 
     /* === Getters === */

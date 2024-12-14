@@ -72,10 +72,11 @@ public class Main {
                     System.out.println("Please enter your location : ");
                     String orderLocation = scanner.nextLine();
                     Order order=new Order(orderLocation,"Preparing");
-                    order.addFoodItem(dish);
+                    order.makeOrder();
                 }
                 else if (choose==5){
-
+                    Order order=new Order();
+                    order.addFoodItem(dish);
                 }
                 else if (choose==6){
                     Review review=new Review(restaurant);

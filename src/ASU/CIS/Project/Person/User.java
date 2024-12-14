@@ -80,7 +80,7 @@ abstract public class User implements checkNumberValid {
                 }
                 try {
                     Thread.sleep(100);
-                } catch (InterruptedException _) {
+                } catch (InterruptedException e) {
 
                 }
                 System.out.print("Enter a valid password: ");
@@ -124,7 +124,7 @@ abstract public class User implements checkNumberValid {
                 System.err.print("Email address is not valid");
                 try {
                     Thread.sleep(100);
-                } catch (InterruptedException _) {
+                } catch (InterruptedException e) {
 
                 }
                 System.out.println("Please enter a valid email address: ");
