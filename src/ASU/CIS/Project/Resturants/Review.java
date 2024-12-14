@@ -55,7 +55,7 @@ public class Review {
     /**
      * This method is used to set the review of the delivery staff member and calculate the average rating
      * @param deliveryStaff the deliveryman's first name
-     * @param rating the rating you want to give him
+     * @param Rating the rating you want to give him
      */
     public void setReviewForDeliveryStaff(Delivery_Staff deliveryStaff ,double Rating)
     {
