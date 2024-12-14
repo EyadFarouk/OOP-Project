@@ -81,99 +81,109 @@ public class Ui implements checkNumberValid {
     public void customerPath() {
         Customer customer = new Customer();
         customer.loadData();
-        int choose = loginOrSignup();
-        if (choose == 1) {
+        int choose=loginOrSignup();
+        if (choose==1){
             //      customer.login();
-        } else if (choose == 2) {
+        }
+        else if(choose==2){
             customer.signup();
         }
-        Restaurant restaurant = new Restaurant();
-        List<Restaurant> restaurants = restaurant.loadData();
-        Scanner scanner = new Scanner(System.in);
-        Dish dish = new Dish();
+        Restaurant restaurant=new Restaurant();
+        List<Restaurant>restaurants=restaurant.loadData();
+        Scanner scanner=new Scanner(System.in);
+        Dish dish=new Dish();
         Card card = new Card();
         card.loadData();
-        Review rev = new Review();
-        List<Review> reviewsRestaurant = rev.loadDataReviewRestaurant();
-        List<Review> reviewsDelivery = rev.loadDataReviewDelivery();
+        Review rev=new Review();
+        List<Review>reviewsRestaurant=rev.loadDataReviewRestaurant();
+        List<Review>reviewsDelivery=rev.loadDataReviewDelivery();
         int x;
         do {
-            choose = homePage();
-            if (choose == 1) {
+             choose=homePage();
+            if (choose==1){
                 restaurant.displayRestaurant(restaurants);
                 System.out.print("choose which restaurant you want to view : ");
-                int number = scanner.nextInt();
-                if (number <= restaurants.size()) {
-                    restaurant = restaurants.get(number - 1);
-                } else {
+                int number= scanner.nextInt();
+                if (number<=restaurants.size()){
+                    restaurant=restaurants.get(number-1);
+                }else{
                     System.out.print("number is wrong try again: ");
                 }
-            } else if (choose == 2) {
+            }
+            else if (choose==2){
                 restaurant.displayRestaurantWithMenu(restaurants);
                 System.out.print("choose which restaurant you want to view : ");
-                int number = scanner.nextInt();
-                if (number <= restaurants.size()) {
-                    restaurant = restaurants.get(number - 1);
-                } else {
+                int number= scanner.nextInt();
+                if (number<=restaurants.size()){
+                    restaurant=restaurants.get(number-1);
+                }else{
                     System.out.print("number is wrong try again: ");
                 }
-            } else if (choose == 3) {
+            }
+            else if (choose==3){
                 restaurant.displayMenu(restaurant.menu);
                 System.out.print("choose the Dish you want to order : ");
-                int number = scanner.nextInt();
-                if (number <= restaurant.menu.size()) {
-                    dish = restaurant.menu.get(number - 1);
-                } else {
+                int number= scanner.nextInt();
+                if (number<=restaurant.menu.size()){
+                    dish=restaurant.menu.get(number-1);
+                }else{
                     System.out.print("number is wrong try again: ");
                 }
 
-            } else if (choose == 4) {
+            }
+            else if (choose==4){
                 System.out.println("Please enter your location : ");
+                scanner.nextLine();//clean buffer
                 String orderLocation = scanner.nextLine();
-                Order order = new Order(orderLocation, "Preparing");
+                Order order=new Order(orderLocation,"Preparing");
+                order.makeOrder();
+            }
+            else if (choose==5){
+                Order order=new Order();
                 order.addFoodItem(dish);
-            } else if (choose == 5) {
-
-            } else if (choose == 6) {
-                Review review = new Review(restaurant);
+            }
+            else if (choose==6){
+                Review review=new Review(restaurant);
                 System.out.println("Please enter the rating : ");
-                for (int i = 0; i < reviewsRestaurant.size(); i++) {
-                    if (reviewsRestaurant.get(i).restaurant.name.equals(restaurant.name)) {
+                for(int i=0;i<reviewsRestaurant.size();i++){
+                    if (reviewsRestaurant.get(i).restaurant.name.equals(restaurant.name)){
                         review.number_of_reviewsR++;
                     }
                 }
                 review.setReviewForRestaurant(scanner.nextDouble());
                 reviewsRestaurant.add(review);
 
-            } else if (choose == 7) {
-                Review review = new Review();
+            }
+            else if (choose==7){
+                Review review=new Review();
                 System.out.println("Please enter name of the delivery staff member : ");
                 scanner.nextLine();
-                String name = scanner.nextLine();
+                String name=scanner.nextLine();
                 System.out.println("Please enter location of delivery : ");
                 String location = scanner.nextLine();
                 System.out.println("please enter your rating : ");
                 //we should make check to get delivery from file important
-                Delivery_Staff deliveryStaff = new Delivery_Staff(location);
+                Delivery_Staff deliveryStaff=new Delivery_Staff(location);
                 deliveryStaff.setFname(name);
-                for (int i = 0; i < reviewsDelivery.size(); i++) {
-                    if (reviewsDelivery.get(i).nameOfDelivery.equals(deliveryStaff.getFname())) {
+                for(int i=0;i<reviewsDelivery.size();i++){
+                    if (reviewsDelivery.get(i).nameOfDelivery.equals(deliveryStaff.getFname())){
                         review.number_of_reviewsDS++;
                     }
                 }
-                review.setReviewForDeliveryStaff(deliveryStaff, scanner.nextDouble());
+                review.setReviewForDeliveryStaff(deliveryStaff,scanner.nextDouble());
                 reviewsDelivery.add(review);
             }
               /*  else if(choose == 8)
                     ui.exitProgram();*/
-            x = doYouWantAnotherAction();
-        } while (x == 1);
+            x= doYouWantAnotherAction();
+        }while (x==1);
         restaurant.saveData(restaurants);
         customer.saveData();
         card.saveData();
         rev.saveDataReviewDelivery(reviewsDelivery);
         rev.saveData(reviewsRestaurant);
     }
+
     public void adminPath()
     {
         Admin admin = new Admin();
@@ -237,7 +247,10 @@ public class Ui implements checkNumberValid {
             deliveryStaff.signup();
         }
         System.out.println();
+
+
     }
+
     public void runProject()
     {
         int choose=firstPage();
