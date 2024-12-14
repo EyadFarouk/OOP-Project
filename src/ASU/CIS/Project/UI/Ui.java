@@ -264,7 +264,8 @@ public class Ui implements checkNumberValid {
             }else if (choose == 3) {
                 deliveryPath();
             }
-            System.out.println("would you like to close the program or login again: (0 if no 1 if yes)");
+            System.out.println("[0] if you want to close the program");
+            System.out.println("[1] if you want to go to the login screen");
             choose = scan.nextInt();
             if(choose == 0)
             {
