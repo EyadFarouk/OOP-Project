@@ -133,6 +133,11 @@ public class Main {
             int x;
             Restaurant restaurant=new Restaurant();
             List<Restaurant>restaurants=restaurant.loadData();
+            Card card=new Card();
+            card.loadData();
+            Review review=new Review();
+            List<Review>reviewsRestaurant=review.loadDataReviewRestaurant();
+            List<Review>reviewsDelivery=review.loadDataReviewDelivery();
             do {
                 choose= ui.homePageAdmin();
                 if (choose==1){
@@ -159,7 +164,30 @@ public class Main {
                     restaurant.displayRestaurantWithMenu(restaurants);
                 }
                 else if (choose==6){
-
+                    for (Review review1:reviewsRestaurant){
+                        System.out.println("the name of restaurant : "+review1.restaurant.name);
+                        System.out.println("the rating he enter is : "+review1.getScoreRating());
+                        System.out.println("the number of rate is : "+review1.number_of_reviewsR);
+                        System.out.println("the note he enter is : "+review1.note);
+                    }
+                }
+                else if (choose==7){
+                    for (Review review1:reviewsDelivery){
+                        System.out.println("the name of restaurant : "+review1.nameOfDelivery);
+                        System.out.println("the rating he enter is : "+review1.getScoreRating());
+                        System.out.println("the number of rate is : "+review1.number_of_reviewsDS);
+                        System.out.println("the note he enter is : "+review1.note);
+                    }
+                }
+                else if (choose==8){
+                    Card card1=new Card();
+                    card.AddNewCard(card1);
+                }
+                else if (choose==9){
+                    card.removeCard();
+                }
+                else if (choose==10){
+                    //log out
                 }
 
                x = ui.doYouWantAnotherAction();
