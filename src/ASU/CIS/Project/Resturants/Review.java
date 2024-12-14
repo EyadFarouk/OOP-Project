@@ -45,7 +45,7 @@ public class Review {
         note=scanner.nextLine();
         this.scoreRating = Rating;
 
-        restaurant.rating = (restaurant.rating + Rating) / number_of_reviewsR;
+        restaurant.rating = (restaurant.rating*(number_of_reviewsR-1)+Rating) / number_of_reviewsR;
     }
 
     public double getScoreRating() {
@@ -57,15 +57,15 @@ public class Review {
      * @param deliveryStaff the deliveryman's first name
      * @param rating the rating you want to give him
      */
-    public void setReviewForDeliveryStaff(Delivery_Staff deliveryStaff ,double rating)
+    public void setReviewForDeliveryStaff(Delivery_Staff deliveryStaff ,double Rating)
     {
         Scanner scanner=new Scanner(System.in);
         System.out.println("If you have any note please enter : ");
         note=scanner.nextLine();
         number_of_reviewsDS++;
         nameOfDelivery=deliveryStaff.Fname;
-        this.scoreRating = rating;
-        deliveryStaff.setRating ((deliveryStaff.getRating()+rating)/number_of_reviewsDS) ;
+        this.scoreRating = Rating;
+        deliveryStaff.setRating((deliveryStaff.getRating()*(number_of_reviewsDS-1)+Rating) / number_of_reviewsDS);
     }
     public void saveData(List<Review>reviews){
         try {
