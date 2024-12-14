@@ -16,7 +16,7 @@ veg
 uosef
 hello
 hi
-4.0
+7.0
 amir
 hl
 3.0
