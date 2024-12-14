@@ -133,6 +133,11 @@ public class Main {
             int x;
             Restaurant restaurant=new Restaurant();
             List<Restaurant>restaurants=restaurant.loadData();
+            Card card=new Card();
+            card.loadData();
+            Review review=new Review();
+            List<Review>reviewsDelivery=review.loadDataReviewDelivery();
+            List<Review>reviewsRestaurant=review.loadDataReviewRestaurant();
             do {
                 choose= ui.homePageAdmin();
                 if (choose==1){
@@ -159,7 +164,30 @@ public class Main {
                     restaurant.displayRestaurantWithMenu(restaurants);
                 }
                 else if (choose==6){
-
+                    Card card1=new Card();
+                    card.AddNewCard(card1);
+                }
+                else if (choose==7){
+                    card.removeCard();
+                }
+                else if (choose==8){
+                    for(Review review1:reviewsRestaurant){
+                        System.out.println("name of restaurant : "+review1.restaurant.name);
+                        System.out.println("rating : "+review1.getScoreRating());
+                        System.out.println("number of this rating : "+review1.number_of_reviewsR);
+                        System.out.println("note he enter : "+review1.note);
+                    }
+                }
+                else if (choose==9){
+                    for(Review review1:reviewsDelivery){
+                        System.out.println("name of restaurant : "+review1.nameOfDelivery);
+                        System.out.println("rating : "+review1.getScoreRating());
+                        System.out.println("number of this rating : "+review1.number_of_reviewsDS);
+                        System.out.println("note he enter : "+review1.note);
+                    }
+                }
+                else if (choose==10){
+                    //log out
                 }
 
                x = ui.doYouWantAnotherAction();

@@ -19,7 +19,7 @@ public class Review {
     public String nameOfDelivery;
 
 
-    public  int number_of_reviewsR=0,number_of_reviewsD=0,number_of_reviewsDS=0;
+    public  int number_of_reviewsR=0,number_of_reviewsDS=0;
     public Review(){
         restaurant=new Restaurant();
     }
@@ -46,6 +46,10 @@ public class Review {
         this.scoreRating = Rating;
 
         restaurant.rating = (restaurant.rating + Rating) / number_of_reviewsR;
+    }
+
+    public double getScoreRating() {
+        return scoreRating;
     }
 
     /**

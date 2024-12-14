@@ -125,7 +125,7 @@ public class Card implements saveAndLoad {
         }
     }
 
-    public void removeCard(Card card) {
+    public void removeCard() {
         for (int i = 0; i < cardList.size(); i++) {
             System.out.println("enter the number of the Card");
             this.CardNum = scanner.nextLine();
