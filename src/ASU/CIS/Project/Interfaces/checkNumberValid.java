@@ -12,6 +12,7 @@ public interface checkNumberValid {
      * @param LowerNumber The least number that the user can choose from
      * @param HighestNumber The highest number that the user can choose from
      * @param s The error message that should appear if the user didn't enter a real number
+     * @return Returns an int number after checking
      */
     default int checkNumber(int LowerNumber,int HighestNumber, String s){
         Scanner scanner=new Scanner(System.in);
@@ -33,6 +34,7 @@ public interface checkNumberValid {
      * @param LowerNumber The least number that the user can choose from
      * @param HighestNumber The highest number that the user can choose from
      * @param s The error message that should appear if the user didn't enter a real number
+     * @return Returns a double number after checking
      */
     default double checkNumber(double LowerNumber,double HighestNumber, String s){
         Scanner scanner=new Scanner(System.in);

@@ -34,7 +34,7 @@ abstract public class User implements checkNumberValid {
         System.out.print("Please enter your email : ");
         this.email=checkEmailValid(scanner.nextLine()).toLowerCase();
         System.out.print("Please enter your phone number : ");
-        this.phone=scanner.nextLine();
+        this.phone=checkOnlyNumbers(scanner.nextLine());
         System.out.print("Please enter your age : ");
         this.age=checkNumber(0,120,"Please enter a valid age: ");
         System.out.print("Please enter your gender : ");
@@ -79,7 +79,7 @@ abstract public class User implements checkNumberValid {
                     System.err.println("Password mustn't have spaces");
                 }
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
 
                 }
@@ -123,7 +123,7 @@ abstract public class User implements checkNumberValid {
             else {
                 System.err.println("Email address is not valid");
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                 } catch (InterruptedException e) {
 
                 }
@@ -149,6 +149,27 @@ abstract public class User implements checkNumberValid {
                 name = scanner.nextLine();
             }else
                 return name;
+        }
+    }
+
+    private String checkOnlyNumbers(String number){
+        while(true){
+            if(number.matches("^[0-9]*$") && number.length() == 11){
+                return number;
+            }else{
+                Scanner scanner=new Scanner(System.in);
+                if(!number.matches("^[0-9]*$"))
+                    System.err.println("The number can't contain non-numeric characters");
+                if(number.length()!=11)
+                    System.err.println("The number should be 11 digits");
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+
+                }
+                System.out.print("Please enter a valid number: ");
+                number = scanner.nextLine();
+            }
         }
     }
 
