@@ -9,6 +9,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * this class is responsible for the orders
+ */
 public class Order {
     private String orderId;
     private Date orderDate;
@@ -17,6 +20,11 @@ public class Order {
     private String orderLocation;
     private String orderState; // state of the order (Pending, Completed, Canceled)
 
+    /**
+     * this is the constructor and it takes two parameters
+     * @param orderLocation the location the order is headed to
+     * @param orderState the current state of the order
+     */
     public Order(String orderLocation, String orderState) {
         this.orderId = generateRandomOrderId();
         this.orderDate = new Date();
@@ -25,20 +33,37 @@ public class Order {
         this.orderLocation = orderLocation;
         this.orderState = orderState;
     }
+
+    /**
+     * a default constructor
+     */
     public Order(){
     }
 
     // Generate a random order ID using UUID
+
+    /**
+     * this method is used to generate a random order ID
+     * @return and it returns the ID as a String
+     */
     private String generateRandomOrderId() {
         return UUID.randomUUID().toString();
     }
 
     // For adding one Food Instance
+
+    /**
+     * this method is used for adding food  items to the order
+     * @param dish it takes a dish object
+     */
     public void addFoodItem(Dish dish) {
         foodItems.add(dish);
         totalPrice += dish.price; // update total price
     }
 
+    /**
+     * this method uses the addFoodItem method to create new orders
+     */
         public void makeOrder(){
         if (foodItems.isEmpty()){
             System.out.println("you should choose food first");
@@ -52,13 +77,39 @@ public class Order {
     }
 
     /* === Getters === */
+
+    /**
+     * gets the order ID
+     * @return returns order ID
+     */
     public String getOrderId() { return orderId; }
+    /**
+     * gets the order date
+     * @return returns order date
+     */
     public Date getOrderDate() { return orderDate; }
+    /**
+     * gets the order's total price
+     * @return returns order total price
+     */
     public double getOrderPrice() { return totalPrice; }
+    /**
+     * gets the order location
+     * @return returns order location
+     */
     public String getOrderLocation() { return orderLocation; }
+    /**
+     * gets the order state
+     * @return returns order state
+     */
     public String getOrderState() { return orderState; }
 
     /* === Setters ===*/
+
+    /**
+     * sets the order state
+     * @param orderState takes the current state of the order
+     */
     public void setOrderState(String orderState) { this.orderState = orderState; }
 
     // override the toString() method
