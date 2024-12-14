@@ -264,11 +264,15 @@ public class Ui implements checkNumberValid {
                 System.out.println("what's current order state?");
                 order.setOrderState(scanner.nextLine());
             } else if (choose == 2) {
-                System.out.println("Order's ID : " + order.getOrderId());
-                System.out.println("Order's date : " + order.getOrderDate());
-                System.out.println("Order's price is : " + order.getOrderPrice());
-                System.out.println("Order's Location : " + order.getOrderLocation());
-                System.out.println("Order's State : " + order.getOrderState());
+                System.out.println("Please enter the order's ID : ");
+                String ID = scanner.nextLine();
+                if(ID.equals(order.getOrderId())) {
+                    System.out.println("Order's ID : " + order.getOrderId());
+                    System.out.println("Order's date : " + order.getOrderDate());
+                    System.out.println("Order's price is : " + order.getOrderPrice());
+                    System.out.println("Order's Location : " + order.getOrderLocation());
+                    System.out.println("Order's State : " + order.getOrderState());
+                }
             }
             else
                 System.out.println("invalid choice");
