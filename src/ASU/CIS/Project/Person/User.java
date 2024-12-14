@@ -36,7 +36,7 @@ abstract public class User implements checkNumberValid {
         System.out.print("Please enter your phone number : ");
         this.phone=scanner.nextLine();
         System.out.print("Please enter your age : ");
-        this.age=checkNumber(1,"Please enter a valid price: ");
+        this.age=checkNumber(0,120,"Please enter a valid age: ");
         System.out.print("Please enter your gender : ");
         this.gender=checkGender(scanner.nextLine());
         System.out.print("Please enter your address : ");

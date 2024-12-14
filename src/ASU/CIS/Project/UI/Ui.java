@@ -25,7 +25,7 @@ public class Ui implements checkNumberValid {
         System.out.println("[2] if you want to continue as an Admin ");
         System.out.println("[3] if you want to continue as a Delivery Staff Member ");
         System.out.print("choice No. : ");
-        return checkNumber(1,"Please enter a valid number: ");
+        return checkNumber(1,3,"Please enter a valid number: ");
     }
     public  int loginOrSignup(){
         System.out.println("welcome to the restaurant ");
@@ -33,7 +33,7 @@ public class Ui implements checkNumberValid {
         System.out.println("[1] if you want to log in");
         System.out.println("[2] if you want to sign up");
         System.out.print("choice No. : ");
-        return checkNumber(1,"Please enter a valid number: ");
+        return checkNumber(1,2,"Please enter a valid number: ");
     }
     public  int homePage(){
 
@@ -47,7 +47,7 @@ public class Ui implements checkNumberValid {
         System.out.println("[7] if you want to review the Delivery staff member");
         System.out.println("[8] if you want to log out");
         System.out.print("choice No. : ");
-        return checkNumber(1,"Please enter a valid number: ");
+        return checkNumber(1,8,"Please enter a valid number: ");
     }
 
     public  int doYouWantAnotherAction(){
@@ -57,7 +57,7 @@ public class Ui implements checkNumberValid {
             System.out.println("[1] Another action");
             System.out.println("[2] Exit the program");
             System.out.print("Choice No. : ");
-            choose =checkNumber(1,"Please enter a valid number: ");
+            choose =checkNumber(1,2,"Please enter a valid number: ");
             if (choose==1){
                 return choose;
             }
@@ -77,14 +77,14 @@ public class Ui implements checkNumberValid {
         System.out.println("[5] if you want to display restaurant with a menu");
         System.out.println("[6] if you want to log out");
         System.out.print("choice No. : ");
-        return checkNumber(1,"Please enter a valid number: ");
+        return checkNumber(1,6,"Please enter a valid number: ");
     }
     public  int homePageDelivery() {
         System.out.println("Hello in home page please enter the number of the action you want to operate");
         System.out.println("[1] if you want to set order state ");
         System.out.println("[2] if you want to see order details");
         System.out.print("choice No. : ");
-    return checkNumber(1,"Please enter a valid number");
+    return checkNumber(1,2,"Please enter a valid number");
     }
     public void customerPath() {
         Customer customer = new Customer();
@@ -111,7 +111,7 @@ public class Ui implements checkNumberValid {
             if (choose==1){
                 restaurant.displayRestaurant(restaurants);
                 System.out.print("choose which restaurant you want to view : ");
-                int number= checkNumber(1,"Invalid character. Please enter a valid number: ");
+                int number= checkNumber(1,restaurants.size(),"Invalid character. Please enter a valid number: ");
                 if (number<=restaurants.size()){
                     restaurant=restaurants.get(number-1);
                 }else{
@@ -121,7 +121,7 @@ public class Ui implements checkNumberValid {
             else if (choose==2){
                 restaurant.displayRestaurantWithMenu(restaurants);
                 System.out.print("choose which restaurant you want to view : ");
-                int number= checkNumber(1,"Invalid character. Please enter a valid number: ");
+                int number= checkNumber(1,restaurants.size(),"Invalid character. Please enter a valid number: ");
                 if (number<=restaurants.size()){
                     restaurant=restaurants.get(number-1);
                 }else{
@@ -131,7 +131,7 @@ public class Ui implements checkNumberValid {
             else if (choose==3){
                 restaurant.displayMenu(restaurant.menu);
                 System.out.print("choose the Dish you want to order : ");
-                int number= checkNumber(1,"Invalid character. Please enter a valid number: ");
+                int number= checkNumber(1,restaurants.size(),"Invalid character. Please enter a valid number: ");
                 if (number<=restaurant.menu.size()){
                     dish=restaurant.menu.get(number-1);
                 }else{
@@ -182,8 +182,6 @@ public class Ui implements checkNumberValid {
             }
               /*  else if(choose == 8)
                     ui.exitProgram();*/
-            else
-                System.out.println("invalid choice");
             x= doYouWantAnotherAction();
         }while (x==1);
         restaurant.saveData(restaurants);
@@ -235,8 +233,6 @@ public class Ui implements checkNumberValid {
             else if (choose==6){
 
             }
-            else
-                System.out.println("invalid choice");
 
             x = doYouWantAnotherAction();
         }while (x==1);
@@ -274,8 +270,6 @@ public class Ui implements checkNumberValid {
                     System.out.println("Order's State : " + order.getOrderState());
                 }
             }
-            else
-                System.out.println("invalid choice");
             x = doYouWantAnotherAction();
         }while(x == 1);
     }
@@ -294,11 +288,6 @@ public class Ui implements checkNumberValid {
         else if (choose == 3)
         {
             deliveryPath();
-        }
-        else
-        {
-            System.out.println("Invalid choice");
-            runProject();
         }
     }
 }

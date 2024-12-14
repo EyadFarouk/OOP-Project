@@ -34,6 +34,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
     public void displayRestaurant(List<Restaurant>restaurants){
         int i=1;
         for (Restaurant restaurant:restaurants){
+            System.out.println("==========================");
             System.out.println("Name of restaurant "+i+" : "+restaurant.name);
             System.out.println("address of restaurant "+i+" : "+restaurant.address);
             System.out.println("contact information of restaurant "+i+" : "+restaurant.contactInformation);
@@ -47,13 +48,16 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
     public void displayRestaurantWithMenu(List<Restaurant>restaurants){
         int j=1;
         for (Restaurant restaurant:restaurants){
+            System.out.println("==========================");
             System.out.println("Restaurant "+j+" ----");
             System.out.println("Name of restaurant "+j+" : "+restaurant.name);
             System.out.println("address of restaurant "+j+" : "+restaurant.address);
             System.out.println("contact information of restaurant "+j+" : "+restaurant.contactInformation);
             System.out.println("Rating of restaurant "+j+" : "+restaurant.rating+'\n');
             j++;
-            System.out.println("The menu of restaurant "+j+" ----");
+            System.out.println("--------------------------");
+            System.out.println("The menu of restaurant "+(j-1));
+            System.out.println("--------------------------");
             for (int i=0;i< restaurant.menu.size();i++){
                 System.out.println("name of item "+(i+1) +" : "+restaurant.menu.get(i).name);
                 System.out.println("description of item "+(i+1) +" : "+restaurant.menu.get(i).description);

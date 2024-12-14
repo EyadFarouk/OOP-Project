@@ -1,5 +1,5 @@
 FName,LName,Email,Phone,Age,Gender,Address,Password,Delivery Address
-Alaa,Samy,alaa@email.com,+201234567820,0,Female,Miami,Eyad,Miami
+Alaa,Samy,alaa@email.com,+201234567820,20,Female,Miami,Eyad,Miami
 Mohamed,Sadek,sadek@email.com,+201234567890,20,Male,Cairo,password0,Cairo
 Noha,Ali,noha@email.com,+201234567891,43,Female,Cairo,password1,Cairo
 Eman,Mahmoud,eman@email.com,+201234567892,23,Female,Shubra,password2,Shubra

@@ -2,25 +2,47 @@ package ASU.CIS.Project.Interfaces;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+/**
+ * An interface to check numbers if they are valid and in the desired range
+ */
 public interface checkNumberValid {
-    default int checkNumber(int CheckIfIntOrDouble, String s){
+
+    /**
+     * This method is used to check the number if it's a real number and check if it's in the range
+     * @param LowerNumber The least number that the user can choose from
+     * @param HighestNumber The highest number that the user can choose from
+     * @param s The error message that should appear if the user didn't enter a real number
+     */
+    default int checkNumber(int LowerNumber,int HighestNumber, String s){
         Scanner scanner=new Scanner(System.in);
         while (true) {
             try {
-                return scanner.nextInt();
+                int x=scanner.nextInt();
+
+                if(!(x>=LowerNumber) || !(x<=HighestNumber) && HighestNumber!=100)
+                    System.out.print("Please enter a valid number between " + LowerNumber + " and " + HighestNumber + ": ");
+                else return x;
             } catch (InputMismatchException e) {
                 System.out.print(s);
             }
             scanner.nextLine(); // clears the buffer
         }
     }
-
-    default double checkNumber(double CheckIfIntOrDouble, String s){
+    /**
+     * This method is used to check the number if it's a real number and check if it's in the range
+     * @param LowerNumber The least number that the user can choose from
+     * @param HighestNumber The highest number that the user can choose from
+     * @param s The error message that should appear if the user didn't enter a real number
+     */
+    default double checkNumber(double LowerNumber,double HighestNumber, String s){
         Scanner scanner=new Scanner(System.in);
         while (true) {
             try {
-                return scanner.nextDouble();
+                double x=scanner.nextDouble();
+
+                if(!(x>=LowerNumber) || !(x<=HighestNumber) && HighestNumber!=100.0)
+                    System.out.print("Please enter a valid number between " + LowerNumber + " and " + HighestNumber + ": ");
+                else return x;
             } catch (InputMismatchException e) {
                 System.out.print(s);
             }

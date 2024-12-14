@@ -73,9 +73,9 @@ public class Admin extends User implements saveAndLoad, checkNumberValid {
         System.out.println("Please enter contact information : ");
         restaurant.contactInformation=scanner.nextLine();
         System.out.println("Please enter rating of restaurant : ");
-        restaurant.rating=checkNumber(1.0,"Please enter a valid rating: ");
+        restaurant.rating=checkNumber(0.0,5.0,"Please enter a valid rating: ");
         System.out.println("Please enter number of item in menu : ");
-        int x=checkNumber(1,"Please enter a valid number of item: ");
+        int x=checkNumber(0,100,"Please enter a valid number of item: ");
         Dish dish=new Dish();
         for(int i=0;i<x;i++){
             AddDish(scanner, dish);
@@ -100,7 +100,7 @@ public class Admin extends User implements saveAndLoad, checkNumberValid {
         name=scanner.nextLine();
         System.out.println("Please enter number of item in menu : ");
         Restaurant res = getRestaurant(name);
-        int x=checkNumber(1,"Please enter a valid number of item: ");
+        int x=checkNumber(1,100,"Please enter a valid number of item: ");
         Dish dish=new Dish();
         for(int i=0;i<x;i++){
             AddDish(scanner, dish);
@@ -115,11 +115,11 @@ public class Admin extends User implements saveAndLoad, checkNumberValid {
         System.out.println("Please enter description of dish : ");
         dish.description=scanner.nextLine();
         System.out.println("Please enter price of dish : ");
-        dish.price=checkNumber(1.0,"Please enter a valid price: ");
+        dish.price=checkNumber(1.0,100.0,"Please enter a valid price: ");
         System.out.println("Please enter type of dish : ");
         dish.categories=scanner.nextLine();
         System.out.println("Please enter ration of dish : ");
-        dish.rating=checkNumber(1.0,"Please enter a valid rating of the dish: ");
+        dish.rating=checkNumber(1.0,100.0,"Please enter a valid rating of the dish: ");
     }
 
     public  void deleteMenu(){
