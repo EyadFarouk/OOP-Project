@@ -4,13 +4,20 @@ package ASU.CIS.Project.Resturants;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * this class is to make every thing about restaurant and menu
+ * */
 public class Restaurant extends Menu implements Comparable<Restaurant> {
 
     public String name;
+
     public String address;
     public String contactInformation;
+
     public double rating;
+    /**
+     * this method has @param listof Dish to print at
+     * */
     public void displayMenu(List<Dish>menu){
         for (int i=0;i< menu.size();i++){
             System.out.println("Item no. : " + (i+1));
@@ -21,6 +28,9 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
             System.out.println("rating of item "+(i+1) +" : "+menu.get(i).rating+'\n');
         }
     }
+    /**
+     * this method has @param listof restaurant to print it without menu
+     * */
     public void displayRestaurant(List<Restaurant>restaurants){
         int i=1;
         for (Restaurant restaurant:restaurants){
@@ -31,6 +41,9 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
             i++;
         }
     }
+    /**
+     * this method has @param listof restaurant to print it with menu
+     * */
     public void displayRestaurantWithMenu(List<Restaurant>restaurants){
         int j=1;
         for (Restaurant restaurant:restaurants){
@@ -50,13 +63,22 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
             }
         }
     }
+    /**
+     * this method has @param listof restaurant and @param int to get restaurant in list
+     * */
     public Restaurant getRestaurant(int i,List<Restaurant>restaurants){
         return restaurants.get(i-1);
     }
+    /**
+     * this method has @param listof Dish and @param int to get dish from list
+     * */
     public Dish getDish(int i,List<Dish>menu){
         return menu.get(i-1);
     }
-    public Dish searchAboutDishWithName(String name){
+    /**
+     * this method has @param listof Dish and @param String to get dish with her name
+     * */
+    public Dish searchAboutDishWithName(String name,List<Dish>menu){
         for (Dish dish : menu) {
             if (name.equals(dish.name)) {
                 System.out.println("dish is available");
@@ -67,7 +89,10 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
         return null;
 
     }
-    public Dish searchAboutDishWithDescription(String description){
+    /**
+     * this method has @param listof Dish and @param String to get dish with her description
+     * */
+    public Dish searchAboutDishWithDescription(String description,List<Dish>menu){
         for (Dish dish : menu) {
             if (description.equals(dish.description)) {
                 System.out.println("dish is available");
@@ -78,7 +103,10 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
         System.out.println("dish is not available ");
         return null;
     }
-    public Dish searchAboutDishWithCategories(String categories){
+    /**
+     * this method @param listof Dish and @param String to get dish with type
+     * */
+    public Dish searchAboutDishWithCategories(String categories,List<Dish>menu){
         for (Dish dish : menu) {
             if (categories.equals(dish.categories)) {
                 System.out.println("dish is available");
@@ -89,7 +117,9 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
         System.out.println("dish is not available");
         return null;
     }
-
+    /**
+     * this method to sort object with the rating
+     * */
     @Override
     public int compareTo(Restaurant o) {
         if (this.rating>o.rating){
@@ -99,6 +129,9 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
         }
         return 0;
     }
+    /**
+     * this method has @param listof restaurant to save data in file
+     * */
     public void saveData(List<Restaurant> restaurantList) {
         try {
             BufferedWriter fileWriter=new BufferedWriter(new FileWriter("Data/restaurant.txt"));
@@ -117,6 +150,9 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
         }
 
     }
+    /**
+     * this method to load data from file
+     * */
     public List<Restaurant> loadData(){
         List<Restaurant>restaurantList=new ArrayList<>();
         try {
