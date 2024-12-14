@@ -40,6 +40,10 @@ public class Order {
     }
 
         public void makeOrder(){
+        if (foodItems.isEmpty()){
+            System.out.println("you should choose food first");
+            return;
+        }
         System.out.println("order include : ");
         Restaurant restaurant=new Restaurant();
         restaurant.displayMenu(foodItems);
