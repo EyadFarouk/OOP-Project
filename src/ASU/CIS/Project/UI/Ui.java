@@ -13,8 +13,6 @@ import ASU.CIS.Project.Resturants.Review;
 import java.util.List;
 import java.util.Scanner;
 
-import static java.lang.System.exit;
-
 public class Ui implements checkNumberValid {
 
     Order order=new Order();
@@ -113,7 +111,7 @@ public class Ui implements checkNumberValid {
             if (choose==1){
                 restaurant.displayRestaurant(restaurants);
                 System.out.print("choose which restaurant you want to view : ");
-                int number= scanner.nextInt();
+                int number= checkNumber(1,"Invalid character. Please enter a valid number: ");
                 if (number<=restaurants.size()){
                     restaurant=restaurants.get(number-1);
                 }else{
@@ -123,7 +121,7 @@ public class Ui implements checkNumberValid {
             else if (choose==2){
                 restaurant.displayRestaurantWithMenu(restaurants);
                 System.out.print("choose which restaurant you want to view : ");
-                int number= scanner.nextInt();
+                int number= checkNumber(1,"Invalid character. Please enter a valid number: ");
                 if (number<=restaurants.size()){
                     restaurant=restaurants.get(number-1);
                 }else{
@@ -133,7 +131,7 @@ public class Ui implements checkNumberValid {
             else if (choose==3){
                 restaurant.displayMenu(restaurant.menu);
                 System.out.print("choose the Dish you want to order : ");
-                int number= scanner.nextInt();
+                int number= checkNumber(1,"Invalid character. Please enter a valid number: ");
                 if (number<=restaurant.menu.size()){
                     dish=restaurant.menu.get(number-1);
                 }else{
