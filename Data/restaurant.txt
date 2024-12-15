@@ -1,25 +1,30 @@
-mohamed
-hello world
-enter your name
-2.6666666666666665
-talat
-this equal hello
-100.0
-veg
-3.0
-talat
-this equal hello
-100.0
-veg
-3.0
+karam al sham
+cairo
+19601
+4.0
+shorma
+bread with chicken
+50.0
+chicken
+4.5
+fata
+rise with chicken
+75.0
+chicken
+4.0
 
-uosef
-hello
-hi
-7.0
-amir
-hl
+gad
+Elraml Station
+19567
+4.0
+burger
+bread with meat
+30.0
+meat
+4.0
+pizza
+bread with vegatbles
+50.0
+breads
 3.0
-ck
-2.0
 

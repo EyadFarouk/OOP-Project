@@ -4,6 +4,7 @@ import ASU.CIS.Project.Payment.Card;
 import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Restaurant;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Order {
         this.orderId = generateRandomOrderId();
         this.orderDate = new Date();
         //foodItems = new ArrayList<>();
-        this.totalPrice = 0.0;
+       // this.totalPrice = 0.0;
         this.orderLocation = orderLocation;
         this.orderState = orderState;
     }
@@ -37,8 +38,7 @@ public class Order {
     /**
      * a default constructor
      */
-    public Order(){
-    }
+    public Order(){}
 
     // Generate a random order ID using UUID
 
@@ -73,7 +73,7 @@ public class Order {
         Restaurant restaurant=new Restaurant();
         restaurant.displayMenu(foodItems);
         Card card=new Card();
-        card.SelectCard();
+       // card.SelectCard();
     }
 
     /* === Getters === */
@@ -128,5 +128,46 @@ public class Order {
                 .append("\nOrder Location: ").append(orderLocation)
                 .append("\nOrder State: ").append(orderState);
         return sb.toString();
+    }
+    public void saveData(List<Order>orders){
+        try {
+            BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter("Data/orders.txt"));
+            for (Order order:orders){
+                if (order.orderState.equals("delivered")){
+                    continue;
+                }
+                bufferedWriter.write(order.orderId+'\n');
+                bufferedWriter.write(order.orderLocation+'\n');
+                bufferedWriter.write(order.orderState+'\n');
+                bufferedWriter.write(String.valueOf(order.totalPrice)+'\n');
+            }
+            bufferedWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public List<Order>loadData(){
+        List <Order>orders=new ArrayList<>();
+        try {
+            BufferedReader bufferedReader=new BufferedReader(new FileReader("Data/orders.txt"));
+            String line;
+            Order order=new Order();
+            while ((line=bufferedReader.readLine())!=null){
+                order.orderId=line;
+                line= bufferedReader.readLine();
+                order.orderLocation=line;
+                line=bufferedReader.readLine();
+                order.orderState=line;
+                line=bufferedReader.readLine();
+                order.totalPrice=Double.valueOf(line);
+                orders.add(order);
+                order=new Order();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return orders;
     }
 }
