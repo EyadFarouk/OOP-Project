@@ -49,9 +49,13 @@ public class Ui implements checkNumberValid {
         System.out.println("[5] if you want to add item to your order");
         System.out.println("[6] if you want to make a review for the restaurant");
         System.out.println("[7] if you want to review the Delivery staff member");
-        System.out.println("[8] if you want to log out");
+        System.out.println("[8] if you want to search for a dish by it's category");
+        System.out.println("[9] if you want to search for a dish by it's name");
+        System.out.println("[10] if you want to set a price range for dishes");
+        System.out.println("[11] if you want to display the restaurants in order");
+        System.out.println("[12] if you want to log out");
         System.out.print("choice No. : ");
-        return checkNumber(1,8,"Please enter a valid number: ");
+        return checkNumber(1,12,"Please enter a valid number: ");
     }
 
     public  int doYouWantAnotherAction(){
@@ -185,16 +189,16 @@ public class Ui implements checkNumberValid {
                 reviewsDelivery.add(review);
             }
             else if (choose==8){
-                System.out.println("Please enter type you want to search about : ");
+                System.out.println("Please enter what category you want to search : ");
                 List<Dish>dishes= restaurant.menu.stream().
                         filter(dish2-> Objects.equals(dish2.categories, scanner.nextLine())).toList();
                 restaurant.displayMenu(dishes);
-                System.out.println("Please enter number of dish you want to select : ");
+                System.out.println("Please enter the number of the dish you want to select : ");
                 int number= checkNumber(1,dishes.size(),"Invalid character. Please enter a valid number: ");
                 dish=dishes.get(number-1);
             }
             else if (choose==9){
-                System.out.println("Please enter name of dish you want to search about : ");
+                System.out.println("Please enter the name of the dish you want to search : ");
                 List<Dish>dishes= restaurant.menu.stream().filter(dish1 -> dish1.name.equals(scanner.nextLine())).toList();
                 if (dishes.get(0)==null){
                     System.out.println("name is not found");
@@ -204,11 +208,11 @@ public class Ui implements checkNumberValid {
                 }
             }
             else if (choose==10) {
-                System.out.println("enter higer price you want to search about : ");
+                System.out.println("enter the highest price you want to search : ");
                 int price=checkNumber(1,1000,"Invalid character. Please enter a valid number: ");
                 List<Dish>dishes=restaurant.menu.stream().filter(dish1 -> dish1.price<price).toList();
                 restaurant.displayMenu(dishes);
-                System.out.println("Please enter number of dish you want to select : ");
+                System.out.println("Please enter the number of the dish you want to select : ");
                 int number= checkNumber(1,dishes.size(),"Invalid character. Please enter a valid number: ");
                 dish=dishes.get(number-1);
             }
