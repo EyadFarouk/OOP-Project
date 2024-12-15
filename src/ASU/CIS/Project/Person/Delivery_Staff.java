@@ -14,8 +14,6 @@ import java.util.Scanner;
  * 3- Location
  * 4- Rating
  */
-
-
 public class Delivery_Staff extends User implements saveAndLoad {
 
     private double rating;               //kept private to be set by admin only

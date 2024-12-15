@@ -78,7 +78,6 @@ public class Ui implements checkNumberValid {
     }
     public void customerPath() {
         Customer customer = new Customer();
-        customer.loadData();
         int choose=loginOrSignup();
         if (choose==1){
             //      customer.login();
@@ -90,8 +89,6 @@ public class Ui implements checkNumberValid {
         List<Restaurant>restaurants=restaurant.loadData();
         Scanner scanner=new Scanner(System.in);
         Dish dish=new Dish();
-        Card card = new Card();
-        card.loadData();
         Review rev=new Review();
         List<Order>orders=order.loadData();
         List<Review>reviewsRestaurant=rev.loadDataReviewRestaurant();
@@ -217,15 +214,12 @@ public class Ui implements checkNumberValid {
 
         }while (x==1);
         restaurant.saveData(restaurants);
-        customer.saveData();
-        card.saveData();
         rev.saveDataReviewDelivery(reviewsDelivery);
         rev.saveData(reviewsRestaurant);
     }
     public void adminPath()
     {
         Admin admin = new Admin();
-        admin.loadData();
         int choose= loginOrSignup();
         if (choose==1){
             //    admin.login();
@@ -297,6 +291,36 @@ public class Ui implements checkNumberValid {
                 x = logOut();
         }while(x == 1);
     }
+
+    public void saveData(){
+        Customer customer=new Customer();
+        customer.saveData();
+
+        Admin admin=new Admin();
+        admin.saveData();
+
+        Delivery_Staff deliveryStaff=new Delivery_Staff("shubra");
+        deliveryStaff.saveData();
+
+        Card card=new Card();
+        card.saveData();
+    }
+
+    public void loadData(){
+        Customer customer = new Customer();
+        customer.loadData();
+
+        Admin admin = new Admin();
+        admin.loadData();
+
+
+        Card card = new Card();
+        card.loadData();
+
+        Delivery_Staff deliveryStaff=new Delivery_Staff("shubra");
+        deliveryStaff.loadData();
+    }
+
     public void runProject() {
         Scanner scan = new Scanner(System.in);
         boolean x = true;
