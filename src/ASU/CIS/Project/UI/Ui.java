@@ -80,7 +80,7 @@ public class Ui implements checkNumberValid {
         Customer customer = new Customer();
         int choose=loginOrSignup();
         if (choose==1){
-            //      customer.login();
+            customer.login();
         }
         else if(choose==2){
             customer.signup();
@@ -142,8 +142,8 @@ public class Ui implements checkNumberValid {
             else if (choose==6){
                 Review review=new Review(restaurant);
                 System.out.println("Please enter the rating : ");
-                for(int i=0;i<reviewsRestaurant.size();i++){
-                    if (reviewsRestaurant.get(i).restaurant.name.equals(restaurant.name)){
+                for (Review value : reviewsRestaurant) {
+                    if (value.restaurant.name.equals(restaurant.name)) {
                         review.number_of_reviewsR++;
                     }
                 }
@@ -162,8 +162,8 @@ public class Ui implements checkNumberValid {
                 //we should make check to get delivery from file important
                 Delivery_Staff deliveryStaff=new Delivery_Staff(location);
                 deliveryStaff.setFname(name);
-                for(int i=0;i<reviewsDelivery.size();i++){
-                    if (reviewsDelivery.get(i).nameOfDelivery.equals(deliveryStaff.getFname())){
+                for (Review value : reviewsDelivery) {
+                    if (value.nameOfDelivery.equals(deliveryStaff.getFname())) {
                         review.number_of_reviewsDS++;
                     }
                 }
@@ -222,7 +222,7 @@ public class Ui implements checkNumberValid {
         Admin admin = new Admin();
         int choose= loginOrSignup();
         if (choose==1){
-            //    admin.login();
+            admin.login();
         }else if (choose==2){
             admin.signup();
         }
