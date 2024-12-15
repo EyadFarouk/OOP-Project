@@ -10,7 +10,6 @@ import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Restaurant;
 import ASU.CIS.Project.Resturants.Review;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -56,21 +55,6 @@ public class Ui implements checkNumberValid {
         System.out.println("[12] if you want to log out");
         System.out.print("choice No. : ");
         return checkNumber(1,12,"Please enter a valid number: ");
-    }
-
-    public  int doYouWantAnotherAction(){
-        int choose;
-        do {
-            System.out.println("[1] Another action");
-            System.out.println("[2] Exit the program");
-            System.out.print("Choice No. : ");
-            choose =checkNumber(1,2,"Please enter a valid number: ");
-            if (choose==1){
-                return choose;
-            } else if (choose==2){
-                return choose;
-            }
-        }while(true);
     }
     public  int homePageAdmin(){
         System.out.println("Hello in home page please enter the number of the action you want to operate");
@@ -200,11 +184,11 @@ public class Ui implements checkNumberValid {
             else if (choose==9){
                 System.out.println("Please enter the name of the dish you want to search : ");
                 List<Dish>dishes= restaurant.menu.stream().filter(dish1 -> dish1.name.equals(scanner.nextLine())).toList();
-                if (dishes.get(0)==null){
+                if (dishes.getFirst()==null){
                     System.out.println("name is not found");
                 }
                 else{
-                    dish=dishes.get(0);
+                    dish=dishes.getFirst();
                 }
             }
             else if (choose==10) {
