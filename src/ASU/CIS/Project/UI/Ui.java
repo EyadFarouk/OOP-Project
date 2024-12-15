@@ -147,7 +147,7 @@ public class Ui implements checkNumberValid {
                         review.number_of_reviewsR++;
                     }
                 }
-                review.setReviewForRestaurant(scanner.nextDouble());
+                review.setReviewForRestaurant(checkNumber(1.0,5.0,"Invalid character please enter number : "));
                 reviewsRestaurant.add(review);
 
             }
@@ -167,7 +167,7 @@ public class Ui implements checkNumberValid {
                         review.number_of_reviewsDS++;
                     }
                 }
-                review.setReviewForDeliveryStaff(deliveryStaff,scanner.nextDouble());
+                review.setReviewForDeliveryStaff(deliveryStaff,checkNumber(1.0,5.0,"Invalid character please enter number : "));
                 reviewsDelivery.add(review);
             }
             else if (choose==8){
