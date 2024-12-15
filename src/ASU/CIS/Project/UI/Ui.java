@@ -63,9 +63,10 @@ public class Ui implements checkNumberValid {
         System.out.println("[3] if you want to add a menu");
         System.out.println("[4] if you want to delete a menu");
         System.out.println("[5] if you want to display restaurant with a menu");
-        System.out.println("[6] if you want to log out");
+        System.out.println("[6] if you want to add a delivery staff member");
+        System.out.println("[7] if you want to log out");
         System.out.print("choice No. : ");
-        return checkNumber(1,6,"Please enter a valid number: ");
+        return checkNumber(1,7,"Please enter a valid number: ");
     }
     public  int homePageDelivery() {
         System.out.println("Hello in home page please enter the number of the action you want to operate");
@@ -235,27 +236,31 @@ public class Ui implements checkNumberValid {
         Restaurant restaurant=new Restaurant();
         List<Restaurant>restaurants=restaurant.loadData();
         do {
-            choose= homePageAdmin();
-            if (choose==1){
-                Admin.restaurants=restaurants;
+            choose = homePageAdmin();
+            if (choose == 1) {
+                Admin.restaurants = restaurants;
                 admin.addRestaurant();
-                restaurants=Admin.restaurants;
-            }else if (choose==2){
-                Admin.restaurants=restaurants;
+                restaurants = Admin.restaurants;
+            }else if (choose == 2) {
+                Admin.restaurants = restaurants;
                 admin.deleteRestaurant();
-                restaurants=Admin.restaurants;
-            }else if (choose==3){
-                Admin.restaurants=restaurants;
+                restaurants = Admin.restaurants;
+            }else if (choose == 3) {
+                Admin.restaurants = restaurants;
                 admin.addMenu();
-                restaurants=Admin.restaurants;
-            }else if (choose==4){
-                Admin.restaurants=restaurants;
+                restaurants = Admin.restaurants;
+            }else if (choose == 4) {
+                Admin.restaurants = restaurants;
                 admin.deleteMenu();
-                restaurants=Admin.restaurants;
-            }else if (choose==5){
+                restaurants = Admin.restaurants;
+            }else if (choose == 5) {
                 restaurant.displayRestaurantWithMenu(restaurants);
-            }else if(choose==6)
+            }else if (choose == 6){
+                Delivery_Staff delivery= new Delivery_Staff("shubra");
+                delivery.signup();
+            }else if (choose==7) {
                 x = logOut();
+            }
         }while (x==1);
         restaurant.saveData(restaurants);
         admin.saveData();
