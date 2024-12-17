@@ -72,9 +72,10 @@ public class Ui implements checkNumberValid {
         System.out.println("Hello in home page please enter the number of the action you want to operate");
         System.out.println("[1] if you want to set order state ");
         System.out.println("[2] if you want to see order details");
-        System.out.println("[3] if you want to log out");
+        System.out.println("[3] if you want to display all orders");
+        System.out.println("[4] if you want to log out");
         System.out.print("choice No. : ");
-    return checkNumber(1,2,"Please enter a valid number");
+    return checkNumber(1,4,"Please enter a valid number");
     }
     public void customerPath() {
         Customer customer = new Customer();
@@ -295,24 +296,45 @@ public class Ui implements checkNumberValid {
         }else if (choose==2){
             deliveryStaff.signup();
         }
+        Order order1=new Order();
+        List<Order>orders=order1.loadData();
         do {
             choose = homePageDelivery();
             if (choose == 1) {
-                System.out.println("what's current order state?");
-                order.setOrderState(scanner.nextLine());
-            }else if (choose == 2) {
+                String ID = scanner.nextLine();
+                for (Order order2:orders){
+                    if(ID.equals(order2.getOrderId())) {
+                        order=order2;
+                        System.out.println("what's current order state?");
+                        order.setOrderState(scanner.nextLine());
+                    }
+                }
+            }
+            else if (choose == 2) {
                 System.out.println("Please enter the order's ID : ");
                 String ID = scanner.nextLine();
-                if(ID.equals(order.getOrderId())) {
-                    System.out.println("Order's ID : " + order.getOrderId());
-                    System.out.println("Order's date : " + order.getOrderDate());
-                    System.out.println("Order's price is : " + order.getOrderPrice());
-                    System.out.println("Order's Location : " + order.getOrderLocation());
-                    System.out.println("Order's State : " + order.getOrderState());
+                for (Order order2:orders){
+                    if(ID.equals(order2.getOrderId())) {
+                        System.out.println("Order's ID : " + order.getOrderId());
+                        System.out.println("Order's price is : " + order.getOrderPrice());
+                        System.out.println("Order's Location : " + order.getOrderLocation());
+                        System.out.println("Order's State : " + order.getOrderState());
+                    }
                 }
-            }else if(choose == 3)
+
+            }
+            else if (choose==3){
+                for (Order order2:orders){
+                    System.out.println("Order's ID : " + order2.getOrderId());
+                    System.out.println("Order's price is : " + order2.getOrderPrice());
+                    System.out.println("Order's Location : " + order2.getOrderLocation());
+                    System.out.println("Order's State : " + order2.getOrderState());
+                }
+            }
+            else if(choose == 4)
                 x = logOut();
         }while(x == 1);
+        order1.saveData(orders);
     }
 
     public void saveData(){
