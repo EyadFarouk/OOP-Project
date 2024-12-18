@@ -2,6 +2,7 @@ package ASU.CIS.Project.UI;
 
 import ASU.CIS.Project.Interfaces.checkNumberValid;
 import ASU.CIS.Project.Orders.Order;
+import ASU.CIS.Project.Orders.State;
 import ASU.CIS.Project.Payment.Card;
 import ASU.CIS.Project.Person.Admin;
 import ASU.CIS.Project.Person.Customer;
@@ -11,6 +12,7 @@ import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Restaurant;
 import ASU.CIS.Project.Resturants.Review;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -136,7 +138,7 @@ public class Ui implements checkNumberValid {
                 System.out.println("Please enter your location : ");
                 scanner.nextLine();//clean buffer
                 String orderLocation = scanner.nextLine();
-                Order order=new Order(orderLocation,"Preparing");
+                Order order=new Order(orderLocation,State.Preparing);
                 order.makeOrder();
                 orders.add(order);
 
@@ -310,7 +312,11 @@ public class Ui implements checkNumberValid {
                     if(ID.equals(order2.getOrderId())) {
                         order=order2;
                         System.out.println("what's current order state?");
-                        order.setOrderState(scanner.nextLine());
+                        int i=1;
+                        for (State state:State.values()){
+                            System.out.println("State "+i+" : "+state);
+                        }
+                        order.setOrderState(State.valueOf(scanner.nextLine()));
                     }
                 }
             }
