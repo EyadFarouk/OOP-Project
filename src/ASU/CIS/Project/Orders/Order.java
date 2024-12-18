@@ -1,23 +1,22 @@
 package ASU.CIS.Project.Orders;
 
+import ASU.CIS.Project.Interfaces.checkNumberValid;
 import ASU.CIS.Project.Payment.Card;
 import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Restaurant;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * this class is responsible for the orders
  */
-public class Order {
+public class Order implements checkNumberValid {
     private String orderId;
     private Date orderDate;
     private  static List<Dish> foodItems=new ArrayList<>();
-    private double totalPrice;
+    private static List<Integer>quantites=new ArrayList<Integer>();
+    private static double totalPrice;
     private String orderLocation;
    // state of the order (Pending, Completed, Canceled)
     private State orderState;
@@ -29,8 +28,6 @@ public class Order {
     public Order(String orderLocation, State orderState) {
         this.orderId = generateRandomOrderId();
         this.orderDate = new Date();
-        //foodItems = new ArrayList<>();
-       // this.totalPrice = 0.0;
         this.orderLocation = orderLocation;
         this.orderState = orderState;
     }
@@ -57,8 +54,12 @@ public class Order {
      * @param dish it takes a dish object
      */
     public void addFoodItem(Dish dish) {
+        Scanner scanner=new Scanner(System.in);
         foodItems.add(dish);
-        totalPrice += dish.price; // update total price
+        System.out.println("Please enter how many do you want : ");
+        int number= scanner.nextInt();
+        quantites.add(number);
+        totalPrice += (dish.price*number); // update total price
     }
 
     /**
@@ -73,7 +74,15 @@ public class Order {
         Restaurant restaurant=new Restaurant();
         restaurant.displayMenu(foodItems);
         Card card=new Card();
-        card.SelectCard();
+        System.out.println("if you want to pay with card please enter 1 : ");
+        System.out.println("if you want to pay cash please enter 2 : ");
+        int number=checkNumber(1,2,"number is wrong try again");
+        if (number==1){
+            card.SelectCard();
+        }else if (number==2){
+            System.out.println("total price is : "+totalPrice);
+        }
+
     }
 
     /* === Getters === */

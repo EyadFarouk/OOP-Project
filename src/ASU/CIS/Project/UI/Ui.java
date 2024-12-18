@@ -141,12 +141,9 @@ public class Ui implements checkNumberValid {
                 else{
                     System.out.println("You should choose restaurant first");
                 }
-
-
             }
             else if (choose==4){
                 System.out.println("Please enter your location : ");
-                scanner.nextLine();//clean buffer
                 String orderLocation = scanner.nextLine();
                 Order order=new Order(orderLocation,State.Preparing);
                 order.makeOrder();
@@ -317,7 +314,7 @@ public class Ui implements checkNumberValid {
         Delivery_Staff deliveryStaff=new Delivery_Staff(location);
         int choose=loginOrSignup();
         if (choose==1){
-            deliveryStaff.login();
+         //   deliveryStaff.login();
         }else if (choose==2){
             deliveryStaff.signup();
         }
@@ -344,10 +341,10 @@ public class Ui implements checkNumberValid {
                 String ID = scanner.nextLine();
                 for (Order order2:orders){
                     if(ID.equals(order2.getOrderId())) {
-                        System.out.println("Order's ID : " + order.getOrderId());
-                        System.out.println("Order's price is : " + order.getOrderPrice());
-                        System.out.println("Order's Location : " + order.getOrderLocation());
-                        System.out.println("Order's State : " + order.getOrderState());
+                        System.out.println("Order's ID : " + order2.getOrderId());
+                        System.out.println("Order's price is : " + order2.getOrderPrice());
+                        System.out.println("Order's Location : " + order2.getOrderLocation());
+                        System.out.println("Order's State : " + order2.getOrderState());
                     }
                 }
 
