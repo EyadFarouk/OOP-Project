@@ -14,11 +14,11 @@ import java.util.Scanner;
  * Admin class and the methods for the admin
  */
 public class Admin extends User implements saveAndLoad, checkNumberValid {
-   public static List<Restaurant>restaurants;
+    public static List<Restaurant>restaurants;
     public static List<Admin> adminList=new ArrayList<>();
 
 
-   static public void instance(){
+    static public void instance(){
         Admin Eyad=new Admin();
         Eyad.email="AEyad";
         Eyad.password="AEyad";

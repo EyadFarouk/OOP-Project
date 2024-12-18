@@ -1,13 +1,15 @@
 package ASU.CIS.Project.Resturants;
 
 
+import ASU.CIS.Project.Interfaces.Checker;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 /**
  * this class is to make every thing about restaurant and menu
  * */
-public class Restaurant extends Menu implements Comparable<Restaurant> {
+public class Restaurant extends Menu implements Comparable<Restaurant>, Checker {
 
     public String name;
 
