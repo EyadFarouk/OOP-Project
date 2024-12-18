@@ -128,14 +128,20 @@ public class Ui implements checkNumberValid {
                 }
             }
             else if (choose==3){
-                restaurant.displayMenu(restaurant.menu);
-                System.out.print("choose the Dish you want to order : ");
-                int number= checkNumber(1,restaurant.menu.size(),"Invalid character. Please enter a valid number: ");
-                if (number<=restaurant.menu.size()){
-                    dish=restaurant.menu.get(number-1);
-                }else{
-                    System.out.print("number is wrong try again: ");
+                if (restaurant.name!=null){
+                    restaurant.displayMenu(restaurant.menu);
+                    System.out.print("choose the Dish you want to order : ");
+                    int number= checkNumber(1,restaurant.menu.size(),"Invalid character. Please enter a valid number: ");
+                    if (number<=restaurant.menu.size()){
+                        dish=restaurant.menu.get(number-1);
+                    }else{
+                        System.out.print("number is wrong try again: ");
+                    }
                 }
+                else{
+                    System.out.println("You should choose restaurant first");
+                }
+
 
             }
             else if (choose==4){
@@ -182,7 +188,7 @@ public class Ui implements checkNumberValid {
                 reviewsDelivery.add(review);
             }
             else if (choose==8){
-                if (!restaurant.menu.isEmpty()){
+                if (restaurant.menu!=null){
                     System.out.println("Please enter what category you want to search : ");
                     String type=scanner.nextLine();
                     List<Dish>dishes= restaurant.menu.stream().
@@ -243,7 +249,12 @@ public class Ui implements checkNumberValid {
             }
             else if (choose==12){
                 RestaurantLocation restaurantLocation=new RestaurantLocation();
-                restaurantLocation.getLocation(restaurant.url);
+                if (restaurant.name!=null){
+                    restaurantLocation.getLocation(restaurant.url);
+                }else{
+                    System.out.println("You should choose restaurant first");
+                }
+
             }
             else if(choose == 13){
                 x = logOut();
