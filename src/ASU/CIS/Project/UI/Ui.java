@@ -10,8 +10,11 @@ import ASU.CIS.Project.Person.Delivery_Staff;
 import ASU.CIS.Project.Person.User;
 import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Restaurant;
+import ASU.CIS.Project.Resturants.RestaurantLocation;
 import ASU.CIS.Project.Resturants.Review;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -55,9 +58,10 @@ public class Ui implements checkNumberValid {
         System.out.println("[9] if you want to search for a dish by it's name");
         System.out.println("[10] if you want to set a price range for dishes");
         System.out.println("[11] if you want to display the restaurants in order");
-        System.out.println("[12] if you want to log out");
+        System.out.println("[12] if you want to get location in google map");
+        System.out.println("[13] if you want to log out");
         System.out.print("choice No. : ");
-        return checkNumber(1,12,"Please enter a valid number: ");
+        return checkNumber(1,13,"Please enter a valid number: ");
     }
     public  int homePageAdmin(){
         System.out.println("Hello in home page please enter the number of the action you want to operate");
@@ -80,14 +84,14 @@ public class Ui implements checkNumberValid {
         System.out.print("choice No. : ");
     return checkNumber(1,4,"Please enter a valid number");
     }
-    public void customerPath() {
+    public void customerPath() throws URISyntaxException, IOException {
         //up casting
         User user=new Customer();
         //down casting
         Customer customer = (Customer) user;
         int choose=loginOrSignup();
         if (choose==1){
-            customer.login();
+           // customer.login();
         }
         else if(choose==2){
             customer.signup();
@@ -237,7 +241,11 @@ public class Ui implements checkNumberValid {
                 }
 
             }
-            else if(choose == 12){
+            else if (choose==12){
+                RestaurantLocation restaurantLocation=new RestaurantLocation();
+                restaurantLocation.getLocation(restaurant.url);
+            }
+            else if(choose == 13){
                 x = logOut();
             }
 
@@ -376,7 +384,7 @@ public class Ui implements checkNumberValid {
         deliveryStaff.loadData();
     }
 
-    public void runProject() {
+    public void runProject() throws URISyntaxException, IOException {
         Scanner scan = new Scanner(System.in);
         boolean x = true;
         while (x) {

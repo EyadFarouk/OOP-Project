@@ -15,6 +15,8 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
     public String contactInformation;
 
     public double rating;
+
+    public String url;
     /**
      * this method has @param menu to print at
      * */
@@ -140,7 +142,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
         try {
             BufferedWriter fileWriter=new BufferedWriter(new FileWriter("Data/restaurant.txt"));
                for (Restaurant restaurant :restaurantList) {
-                   fileWriter.write(restaurant.name+'\n'+restaurant.address+'\n'+restaurant.contactInformation+'\n'+restaurant.rating+'\n');
+                   fileWriter.write(restaurant.name+'\n'+restaurant.address+'\n'+restaurant.contactInformation+'\n'+restaurant.rating+'\n'+restaurant.url+'\n');
                    for ( int i=0;i<restaurant.menu.size();i++){
                        fileWriter.write(restaurant.menu.get(i).name+'\n'+restaurant.menu.get(i).description+'\n'+restaurant.menu.get(i).price+'\n'+restaurant.menu.get(i).categories+'\n'+restaurant.menu.get(i).rating+'\n');
                    }
@@ -174,6 +176,8 @@ public class Restaurant extends Menu implements Comparable<Restaurant> {
                 restaurant.contactInformation=line;
                 line=reader.readLine();
                 restaurant.rating=Double.parseDouble(line);
+                line=reader.readLine();
+                restaurant.url=line;
                 List<Dish>menu=new ArrayList<>();
                 while (!(line =reader.readLine()).isEmpty()){
                  //   System.out.println(j);
