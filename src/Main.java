@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) throws URISyntaxException, IOException {
         Ui ui=new Ui();
         ui.loadData();
-        ui.runProject();
+        ui.start();
         ui.saveData();
     }
 }

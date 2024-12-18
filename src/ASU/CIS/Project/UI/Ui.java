@@ -2,7 +2,7 @@ package ASU.CIS.Project.UI;
 
 import ASU.CIS.Project.Interfaces.checkNumberValid;
 import ASU.CIS.Project.Orders.Order;
-import ASU.CIS.Project.Orders.State;
+import ASU.CIS.Project.Orders.OrderState;
 import ASU.CIS.Project.Payment.Card;
 import ASU.CIS.Project.Person.Admin;
 import ASU.CIS.Project.Person.Customer;
@@ -15,15 +15,39 @@ import ASU.CIS.Project.Resturants.Review;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Ui implements checkNumberValid {
+public class Ui extends Thread implements checkNumberValid {
 
     Order order=new Order();
-
+    @Override
+    public void run(){
+        Scanner scan = new Scanner(System.in);
+        boolean x = true;
+        while (x) {
+            int choose = firstPage();
+            if (choose == 1) {
+                try {
+                    customerPath();
+                } catch (URISyntaxException | IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }else if (choose == 2) {
+                adminPath();
+            }else if (choose == 3) {
+                deliveryPath();
+            }
+            System.out.println("[0] if you want to close the program");
+            System.out.println("[1] if you want to go to the login screen");
+            choose = scan.nextInt();
+            if(choose == 0)
+            {
+                x = false;
+            }
+        }
+    }
     public  int firstPage(){
         System.out.println("welcome to the restaurant ");
         System.out.println("please enter the number of the action you want to operate");
@@ -145,7 +169,7 @@ public class Ui implements checkNumberValid {
             else if (choose==4){
                 System.out.println("Please enter your location : ");
                 String orderLocation = scanner.nextLine();
-                Order order=new Order(orderLocation,State.Preparing);
+                Order order=new Order(orderLocation,OrderState.Preparing);
                 order.makeOrder();
                 orders.add(order);
 
@@ -332,7 +356,7 @@ public class Ui implements checkNumberValid {
                         for (State state:State.values()){
                             System.out.println("State "+i+" : "+state);
                         }
-                        order.setOrderState(State.valueOf(scanner.nextLine()));
+                        order.setOrderState(OrderState.valueOf(scanner.nextLine()));
                     }
                 }
             }
@@ -392,25 +416,4 @@ public class Ui implements checkNumberValid {
         deliveryStaff.loadData();
     }
 
-    public void runProject() throws URISyntaxException, IOException {
-        Scanner scan = new Scanner(System.in);
-        boolean x = true;
-        while (x) {
-            int choose = firstPage();
-            if (choose == 1) {
-                customerPath();
-            }else if (choose == 2) {
-                adminPath();
-            }else if (choose == 3) {
-                deliveryPath();
-            }
-            System.out.println("[0] if you want to close the program");
-            System.out.println("[1] if you want to go to the login screen");
-            choose = scan.nextInt();
-            if(choose == 0)
-            {
-                x = false;
-            }
-        }
-    }
 }

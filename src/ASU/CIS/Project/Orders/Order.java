@@ -19,13 +19,13 @@ public class Order implements checkNumberValid {
     private static double totalPrice;
     private String orderLocation;
    // state of the order (Pending, Completed, Canceled)
-    private State orderState;
+    private OrderState orderState;
     /**
      * this is the constructor and it takes two parameters
      * @param orderLocation the location the order is headed to
      * @param orderState the current state of the order
      */
-    public Order(String orderLocation, State orderState) {
+    public Order(String orderLocation, OrderState orderState) {
         this.orderId = generateRandomOrderId();
         this.orderDate = new Date();
         this.orderLocation = orderLocation;
@@ -111,7 +111,7 @@ public class Order implements checkNumberValid {
      * gets the order state
      * @return returns order state
      */
-    public State getOrderState() { return orderState; }
+    public OrderState getOrderState() { return orderState; }
 
     /* === Setters ===*/
 
@@ -119,7 +119,7 @@ public class Order implements checkNumberValid {
      * sets the order state
      * @param orderState takes the current state of the order
      */
-    public void setOrderState(State orderState) { this.orderState = orderState; }
+    public void setOrderState(OrderState orderState) { this.orderState = orderState; }
 
     // override the toString() method
     @Override
@@ -142,7 +142,7 @@ public class Order implements checkNumberValid {
         try {
             BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter("Data/orders.txt"));
             for (Order order:orders){
-                if (order.orderState==State.Delivered){
+                if (order.orderState== OrderState.Delivered){
                     continue;
                 }
                 bufferedWriter.write(order.orderId+'\n');
@@ -167,7 +167,7 @@ public class Order implements checkNumberValid {
                 line= bufferedReader.readLine();
                 order.orderLocation=line;
                 line=bufferedReader.readLine();
-                order.orderState= State.valueOf(line);
+                order.orderState= OrderState.valueOf(line);
                 line=bufferedReader.readLine();
                 order.totalPrice=Double.valueOf(line);
                 orders.add(order);

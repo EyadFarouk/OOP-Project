@@ -2,7 +2,7 @@ karam al sham
 cairo
 19601
 4.0
-https://www.google.com/maps/search/karam+el+sham/@30.0293843,31.2345677,14z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D
+https://www.google.com/maps/search/karam+el+sham/@30.1072111,31.3060899,12z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D
 shorma
 bread with chicken
 50.0
@@ -18,7 +18,7 @@ gad
 Elraml Station
 19567
 4.0
-https://www.google.com/maps/place/Gad/@30.0844755,31.3717445,11z/data=!4m10!1m2!2m1!1sgad!3m6!1s0x1458413be80d13b1:0x6cce4a2ca067bdfa!8m2!3d30.0490837!4d31.1973034!15sCgNnYWRaBSIDZ2FkkgETZWd5cHRpYW5fcmVzdGF1cmFudOABAA!16s%2Fg%2F1tg7p957?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D
+https://www.google.com/maps/search/gad/@30.1071597,31.3060901,12z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D
 burger
 bread with meat
 30.0
