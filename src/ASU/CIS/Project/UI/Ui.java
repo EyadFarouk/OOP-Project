@@ -6,6 +6,7 @@ import ASU.CIS.Project.Payment.Card;
 import ASU.CIS.Project.Person.Admin;
 import ASU.CIS.Project.Person.Customer;
 import ASU.CIS.Project.Person.Delivery_Staff;
+import ASU.CIS.Project.Person.User;
 import ASU.CIS.Project.Resturants.Dish;
 import ASU.CIS.Project.Resturants.Restaurant;
 import ASU.CIS.Project.Resturants.Review;
@@ -78,10 +79,13 @@ public class Ui implements checkNumberValid {
     return checkNumber(1,4,"Please enter a valid number");
     }
     public void customerPath() {
-        Customer customer = new Customer();
+        //up casting
+        User user=new Customer();
+        //down casting
+        Customer customer = (Customer) user;
         int choose=loginOrSignup();
         if (choose==1){
-           // customer.login();
+            customer.login();
         }
         else if(choose==2){
             customer.signup();
