@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Abstract user class and the methods for the admin and customer subclasses
  */
 abstract public class User implements checkNumberValid {
-    public String Fname;
+    String Fname;
     String Lname;
     String email;
     String phone;
@@ -117,7 +117,7 @@ abstract public class User implements checkNumberValid {
      */
     private String checkEmailValid(String email){
         while (true) {
-            if(email.endsWith("@gmail.com")||email.endsWith("@yahoo.com")||email.endsWith("@outlook.com")||email.endsWith("@email.com")){
+            if(email.contains("@gmail.com")||email.contains("@yahoo.com")||email.contains("@outlook.com")||email.contains("@email.com")){
                 return email;
             }
             else {
@@ -184,5 +184,45 @@ abstract public class User implements checkNumberValid {
         System.out.println("gender of user is : "+this.gender);
         System.out.println("address of user is : "+this.address);
         System.out.println("Password of user is : "+this.password);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setFname(String fname) {
+        Fname = fname;
+    }
+
+    public void setLname(String lname) {
+        Lname = lname;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
