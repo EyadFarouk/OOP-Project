@@ -117,7 +117,7 @@ abstract public class User implements checkNumberValid {
      */
     private String checkEmailValid(String email){
         while (true) {
-            if(email.contains("@gmail.com")||email.contains("@yahoo.com")||email.contains("@outlook.com")||email.contains("@email.com")){
+            if(email.endsWith("@gmail.com")||email.endsWith("@yahoo.com")||email.endsWith("@outlook.com")||email.endsWith("@email.com")){
                 return email;
             }
             else {
@@ -142,7 +142,7 @@ abstract public class User implements checkNumberValid {
      */
     private String checkNoNumbers(String name){
         while(true){
-            if(name.matches(".*\\d.*") && name.matches("^.*[@#$%^&-+=()].*"))
+            if(name.matches(".*\\d.*") || name.matches("^.*[@#$%^&-+=()].*"))
             {
                 Scanner scanner=new Scanner(System.in);
                 System.out.print("The name can't contain numbers or special characters: ");
