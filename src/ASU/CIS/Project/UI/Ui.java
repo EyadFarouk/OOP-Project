@@ -8,16 +8,11 @@ import ASU.CIS.Project.Person.Admin;
 import ASU.CIS.Project.Person.Customer;
 import ASU.CIS.Project.Person.Delivery_Staff;
 import ASU.CIS.Project.Person.User;
-import ASU.CIS.Project.Resturants.Dish;
-import ASU.CIS.Project.Resturants.Restaurant;
-import ASU.CIS.Project.Resturants.RestaurantLocation;
-import ASU.CIS.Project.Resturants.Review;
+import ASU.CIS.Project.Resturants.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Ui extends Thread implements checkNumberValid {
 
@@ -83,9 +78,10 @@ public class Ui extends Thread implements checkNumberValid {
         System.out.println("[10] if you want to set a price range for dishes");
         System.out.println("[11] if you want to display the restaurants in order");
         System.out.println("[12] if you want to get location in google map");
-        System.out.println("[13] if you want to log out");
+        System.out.println("[13] if you want to get suggestion about dish in menu");
+        System.out.println("[14] if you want to log out");
         System.out.print("choice No. : ");
-        return checkNumber(1,13,"Please enter a valid number: ");
+        return checkNumber(1,14,"Please enter a valid number: ");
     }
     public  int homePageAdmin(){
         System.out.println("Hello in home page please enter the number of the action you want to operate");
@@ -95,9 +91,10 @@ public class Ui extends Thread implements checkNumberValid {
         System.out.println("[4] if you want to delete a menu");
         System.out.println("[5] if you want to display restaurant with a menu");
         System.out.println("[6] if you want to add a delivery staff member");
-        System.out.println("[7] if you want to log out");
+        System.out.println("[7] if you want to set report about restaurant");
+        System.out.println("[8] if you want to log out");
         System.out.print("choice No. : ");
-        return checkNumber(1,7,"Please enter a valid number: ");
+        return checkNumber(1,8,"Please enter a valid number: ");
     }
     public  int homePageDelivery() {
         System.out.println("Hello in home page please enter the number of the action you want to operate");
@@ -269,15 +266,34 @@ public class Ui extends Thread implements checkNumberValid {
 
             }
             else if (choose==12){
-                RestaurantLocation restaurantLocation=new RestaurantLocation();
                 if (restaurant.name!=null){
-                    restaurantLocation.getLocation(restaurant.url);
+                    restaurant.getLocation();
                 }else{
                     System.out.println("You should choose restaurant first");
                 }
 
             }
-            else if(choose == 13){
+            else if (choose==13){
+                Random random=new Random();
+                if (restaurant.name!=null){
+                    int number=random.nextInt(restaurant.menu.size());
+                    System.out.println("name of item " +" : "+restaurant.menu.get(number).name);
+                    System.out.println("description of item " +" : "+restaurant.menu.get(number).description);
+                    System.out.println("price of item " +" : "+restaurant.menu.get(number).price);
+                    System.out.println("type of item " +" : "+restaurant.menu.get(number).categories);
+                    System.out.println("rating of item " +" : "+restaurant.menu.get(number).rating);
+                    System.out.println("If you want to accept enter 1 or 0 to regected : ");
+                    int number1=checkNumber(0,1,"enter valid number");
+                    if (number1==1){
+                        dish=restaurant.menu.get(number);
+                    }else{
+                        System.out.println("ok thank you");
+                    }
+                }else{
+                    System.out.println("you should choose restaurant first");
+                }
+            }
+            else if(choose == 14){
                 x = logOut();
             }
 
@@ -299,6 +315,8 @@ public class Ui extends Thread implements checkNumberValid {
         int x = 1;
         Restaurant restaurant=new Restaurant();
         List<Restaurant>restaurants=restaurant.loadData();
+        Report report=new Report();
+        List<Report>reports=report.loadData();
         do {
             choose = homePageAdmin();
             if (choose == 1) {
@@ -322,11 +340,17 @@ public class Ui extends Thread implements checkNumberValid {
             }else if (choose == 6){
                 Delivery_Staff delivery= new Delivery_Staff("shubra");
                 delivery.signup();
-            }else if (choose==7) {
+            }else if (choose==7){
+                report.setReport(restaurants);
+                reports.add(report);
+
+            }
+            else if (choose==8) {
                 x = logOut();
             }
         }while (x==1);
         restaurant.saveData(restaurants);
+        report.saveData(reports);
         admin.saveData();
     }
     public void deliveryPath()

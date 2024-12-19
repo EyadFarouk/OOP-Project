@@ -3,7 +3,10 @@ package ASU.CIS.Project.Resturants;
 
 import ASU.CIS.Project.Interfaces.Checker;
 
+import java.awt.*;
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -18,7 +21,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant>, Checker 
 
     public double rating;
 
-    public String url;
+    public String uri;
     /**
      * this method has @param menu to print at
      * */
@@ -126,6 +129,14 @@ public class Restaurant extends Menu implements Comparable<Restaurant>, Checker 
         return null;
     }
     /**
+     * this method to get actual location of restaurant on Google map
+     * */
+    public void getLocation() throws URISyntaxException, IOException {
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            Desktop.getDesktop().browse(new URI(uri));
+        }
+    }
+    /**
      * this method to sort object with the rating
      * */
     @Override
@@ -144,7 +155,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant>, Checker 
         try {
             BufferedWriter fileWriter=new BufferedWriter(new FileWriter("Data/restaurant.txt"));
                for (Restaurant restaurant :restaurantList) {
-                   fileWriter.write(restaurant.name+'\n'+restaurant.address+'\n'+restaurant.contactInformation+'\n'+restaurant.rating+'\n'+restaurant.url+'\n');
+                   fileWriter.write(restaurant.name+'\n'+restaurant.address+'\n'+restaurant.contactInformation+'\n'+restaurant.rating+'\n'+restaurant.uri +'\n');
                    for ( int i=0;i<restaurant.menu.size();i++){
                        fileWriter.write(restaurant.menu.get(i).name+'\n'+restaurant.menu.get(i).description+'\n'+restaurant.menu.get(i).price+'\n'+restaurant.menu.get(i).categories+'\n'+restaurant.menu.get(i).rating+'\n');
                    }
@@ -179,7 +190,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant>, Checker 
                 line=reader.readLine();
                 restaurant.rating=Double.parseDouble(line);
                 line=reader.readLine();
-                restaurant.url=line;
+                restaurant.uri =line;
                 List<Dish>menu=new ArrayList<>();
                 while (!(line =reader.readLine()).isEmpty()){
                  //   System.out.println(j);

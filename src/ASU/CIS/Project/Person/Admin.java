@@ -75,7 +75,7 @@ public class Admin extends User implements saveAndLoad, checkNumberValid {
         System.out.println("Please enter rating of restaurant : ");
         restaurant.rating=checkNumber(0.0,5.0,"Please enter a valid rating: ");
         System.out.println("Please enter url of location of restaurant : ");
-        restaurant.url=scanner.nextLine();
+        restaurant.uri =scanner.nextLine();
         System.out.println("Please enter number of item in menu : ");
         int x=checkNumber(0,100,"Please enter a valid number of item: ");
         Dish dish=new Dish();
