@@ -82,7 +82,8 @@ public class Order implements checkNumberValid {
         }else if (number==2){
             System.out.println("total price is : "+totalPrice);
         }
-
+        foodItems=new ArrayList<>();
+        quantites=new ArrayList<>();
     }
 
     /* === Getters === */
