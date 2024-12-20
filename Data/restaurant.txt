@@ -1,0 +1,32 @@
+karam al sham
+cairo
+19601
+4.0
+https://www.google.com/maps/search/karam+el+sham/@30.1072111,31.3060899,12z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D
+shorma
+bread with chicken
+50.0
+chicken
+4.5
+fata
+rise with chicken
+75.0
+chicken
+4.0
+
+gad
+Elraml Station
+19567
+4.0
+https://www.google.com/maps/search/gad/@30.1071597,31.3060901,12z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D
+burger
+bread with meat
+30.0
+meat
+4.0
+pizza
+bread with vegatbles
+50.0
+breads
+3.0
+
