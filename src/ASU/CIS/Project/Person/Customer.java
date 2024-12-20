@@ -28,6 +28,9 @@ public class Customer extends User implements saveAndLoad{
     public String getAddress(){
         return super.address;
     }
+    public String getFname(){
+        return super.Fname;
+    }
     public static void instance(){
         Customer Eyad=new Customer();
         Eyad.email="Eyad";

@@ -115,7 +115,7 @@ public class Ui extends Thread implements checkNumberValid {
         Customer customer = (Customer) user;
         int choose=loginOrSignup();
         if (choose==1){
-            // customer.login();
+            customer= customer.login();
         }
         else if(choose==2){
             customer.signup();
@@ -128,6 +128,10 @@ public class Ui extends Thread implements checkNumberValid {
         List<Order>orders=order.loadData();
         List<Review>reviewsRestaurant=rev.loadDataReviewRestaurant();
         List<Review>reviewsDelivery=rev.loadDataReviewDelivery();
+        Random random=new Random();
+        int h=random.nextInt(restaurants.size());
+        Notification notification=new Notification(customer.getFname(),restaurants.get(h).name);
+        notification.start();
         boolean userMakeOrder=false;
         int x = 1;
         do {
@@ -255,9 +259,10 @@ public class Ui extends Thread implements checkNumberValid {
                 }
             }
             else if (choose==11){
+                Customer finalCustomer = customer;
                 List<Restaurant>restaurantList=restaurants
                         .stream()
-                        .filter(restaurant1 -> restaurant1.address.equals(customer.getAddress()))
+                        .filter(restaurant1 -> restaurant1.address.equals(finalCustomer.getAddress()))
                         .toList();
                 if(!restaurantList.isEmpty()){
                     restaurant.displayRestaurant(restaurantList);
@@ -278,7 +283,6 @@ public class Ui extends Thread implements checkNumberValid {
 
             }
             else if (choose==13){
-                Random random=new Random();
                 if (restaurant.name!=null){
                     int number=random.nextInt(restaurant.menu.size());
                     System.out.println("name of item " +" : "+restaurant.menu.get(number).name);
