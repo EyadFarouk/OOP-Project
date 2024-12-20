@@ -289,7 +289,7 @@ public class Ui extends Thread implements checkNumberValid {
                     System.out.println("price of item " +" : "+restaurant.menu.get(number).price);
                     System.out.println("type of item " +" : "+restaurant.menu.get(number).categories);
                     System.out.println("rating of item " +" : "+restaurant.menu.get(number).rating);
-                    System.out.println("If you want to accept enter 1 or 0 to regected : ");
+                    System.out.println("If you want to accept enter 1 or 0 to reject : ");
                     int number1=checkNumber(0,1,"enter valid number");
                     if (number1==1){
                         dish=restaurant.menu.get(number-1);
@@ -305,7 +305,7 @@ public class Ui extends Thread implements checkNumberValid {
                     System.out.println("order's current state is : "+orders.get(orders.size()-1).getOrderState());
                 }
                 else{
-                    System.out.println("You should make order first");
+                    System.out.println("You should make an order first");
                 }
             }
             else if (choose==15){
@@ -317,15 +317,15 @@ public class Ui extends Thread implements checkNumberValid {
                     System.out.println("order state is : "+orders.get(orders.size()-1).getOrderState());
                     for (int i=0;i<Order.foodItems.size();i++){
                         System.out.println("Name of item : "+Order.foodItems.get(i).name);
-                        System.out.println("Quantites of item : "+Order.quantites.get(i));
+                        System.out.println("Quantity of item : "+Order.quantites.get(i));
                     }
                 }else{
-                    System.out.println("You should make order first");
+                    System.out.println("You should make an order first");
                 }
 
             }
             else if (choose==16){
-                System.out.println("Please enter address you want to search about : ");
+                System.out.println("Please enter the address you want to search in : ");
                 String address=scanner.nextLine();
                 List<Restaurant>restaurantList=restaurants
                         .stream()
@@ -337,12 +337,12 @@ public class Ui extends Thread implements checkNumberValid {
                     int number= checkNumber(1,restaurantList.size(),"Invalid character. Please enter a valid number: ");
                     restaurant=restaurantList.get(number-1);
                 }else{
-                    System.out.println("im sorry but not exist restaurant in location you enter");
+                    System.out.println("i'm sorry but there isn't a restaurant in that location");
                 }
             }
             else if (choose==17){
                 if (userMakeOrder){
-                    System.out.println("if you want to cancel order please enter 1 if you want to cancel enter 0 : ");
+                    System.out.println("if you want to cancel the order please enter 1 if you don't want to cancel enter 0 : ");
                     int number=checkNumber(0,1,"enter number valid");
                     if (number==1){
                         orders.remove(orders.size()-1);
@@ -351,12 +351,10 @@ public class Ui extends Thread implements checkNumberValid {
                 }else{
                     System.out.println("You should make order first");
                 }
-
             }
             else if(choose == 18){
                 x = logOut();
             }
-
         }while (x==1);
         restaurant.saveData(restaurants);
         rev.saveDataReviewDelivery(reviewsDelivery);
