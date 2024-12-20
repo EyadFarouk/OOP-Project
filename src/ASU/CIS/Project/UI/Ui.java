@@ -374,15 +374,16 @@ public class Ui extends Thread implements checkNumberValid {
         do {
             choose = homePageDelivery();
             if (choose == 1) {
+                System.out.println("enter the order's ID : ");
                 String ID = scanner.nextLine();
                 for (Order order2:orders){
                     if(ID.equals(order2.getOrderId())) {
                         order=order2;
                         System.out.println("what's current order state?");
-                        int i=1;
+                     /*   int i=1;
                         for (State state:State.values()){
                             System.out.println("State "+i+" : "+state);
-                        }
+                        }*/
                         order.setOrderState(OrderState.valueOf(scanner.nextLine()));
                     }
                 }
