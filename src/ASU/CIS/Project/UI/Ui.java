@@ -79,9 +79,10 @@ public class Ui extends Thread implements checkNumberValid {
         System.out.println("[11] if you want to display the restaurants in order");
         System.out.println("[12] if you want to get location in google map");
         System.out.println("[13] if you want to get suggestion about dish in menu");
-        System.out.println("[14] if you want to log out");
+        System.out.println("[14] if you want to view your order's current state");
+        System.out.println("[15] if you want to log out");
         System.out.print("choice No. : ");
-        return checkNumber(1,14,"Please enter a valid number: ");
+        return checkNumber(1,15,"Please enter a valid number: ");
     }
     public  int homePageAdmin(){
         System.out.println("Hello in home page please enter the number of the action you want to operate");
@@ -169,7 +170,6 @@ public class Ui extends Thread implements checkNumberValid {
                 Order order=new Order(orderLocation,OrderState.Preparing);
                 order.makeOrder();
                 orders.add(order);
-
             }
             else if (choose==5){
                 order.addFoodItem(dish);
@@ -294,6 +294,9 @@ public class Ui extends Thread implements checkNumberValid {
                 }
             }
             else if(choose == 14){
+                System.out.println("order's current state is : "+order.getOrderState()); // sets the order as null
+            }
+            else if(choose == 15){
                 x = logOut();
             }
 

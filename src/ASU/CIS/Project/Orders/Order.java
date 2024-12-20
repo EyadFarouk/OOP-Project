@@ -56,7 +56,7 @@ public class Order implements checkNumberValid {
     public void addFoodItem(Dish dish) {
         Scanner scanner=new Scanner(System.in);
         foodItems.add(dish);
-        System.out.println("Please enter how many do you want : ");
+        System.out.println("Please enter how much you would like to order : ");
         int number= scanner.nextInt();
         quantites.add(number);
         totalPrice += (dish.price*number); // update total price
@@ -70,7 +70,7 @@ public class Order implements checkNumberValid {
             System.out.println("you should choose food first");
             return;
         }
-        System.out.println("order include : ");
+        System.out.println("order includes : ");
         Restaurant restaurant=new Restaurant();
         restaurant.displayMenu(foodItems);
         Card card=new Card();
