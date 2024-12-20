@@ -228,7 +228,6 @@ public class Card implements checkNumberValid, saveAndLoad {
             }
         }
     }
-
     /**
      * Loads card data from a CSV file.
      */
@@ -258,7 +257,6 @@ public class Card implements checkNumberValid, saveAndLoad {
             System.out.println(e.getMessage());
         }
     }
-
     /**
      * Converts the card details to a string format for saving.
      * @return A comma-separated string of card details.
