@@ -1,7 +1,7 @@
-package ASU.CIS.Project.Resturants;
+package Project.Resturants;
 
 
-import ASU.CIS.Project.Interfaces.Checker;
+import Project.Interfaces.Checker;
 
 import java.awt.*;
 import java.io.*;
@@ -132,9 +132,9 @@ public class Restaurant extends Menu implements Comparable<Restaurant>, Checker 
      * this method to get actual location of restaurant on Google map
      * */
     public void getLocation() throws URISyntaxException, IOException {
-       RestaurantLocation restaurantLocation=new RestaurantLocation();
-       restaurantLocation.uri=this.uri;
-       restaurantLocation.start();
+        RestaurantLocation restaurantLocation=new RestaurantLocation();
+        restaurantLocation.uri=this.uri;
+        restaurantLocation.start();
     }
     /**
      * this method to sort object with the rating
@@ -154,13 +154,13 @@ public class Restaurant extends Menu implements Comparable<Restaurant>, Checker 
     public void saveData(List<Restaurant> restaurantList) {
         try {
             BufferedWriter fileWriter=new BufferedWriter(new FileWriter("Data/restaurant.txt"));
-               for (Restaurant restaurant :restaurantList) {
-                   fileWriter.write(restaurant.name+'\n'+restaurant.address+'\n'+restaurant.contactInformation+'\n'+restaurant.rating+'\n'+restaurant.uri +'\n');
-                   for ( int i=0;i<restaurant.menu.size();i++){
-                       fileWriter.write(restaurant.menu.get(i).name+'\n'+restaurant.menu.get(i).description+'\n'+restaurant.menu.get(i).price+'\n'+restaurant.menu.get(i).categories+'\n'+restaurant.menu.get(i).rating+'\n');
-                   }
-                   fileWriter.write('\n');
-               }
+            for (Restaurant restaurant :restaurantList) {
+                fileWriter.write(restaurant.name+'\n'+restaurant.address+'\n'+restaurant.contactInformation+'\n'+restaurant.rating+'\n'+restaurant.uri +'\n');
+                for ( int i=0;i<restaurant.menu.size();i++){
+                    fileWriter.write(restaurant.menu.get(i).name+'\n'+restaurant.menu.get(i).description+'\n'+restaurant.menu.get(i).price+'\n'+restaurant.menu.get(i).categories+'\n'+restaurant.menu.get(i).rating+'\n');
+                }
+                fileWriter.write('\n');
+            }
 
             fileWriter.close();
         }
@@ -193,7 +193,7 @@ public class Restaurant extends Menu implements Comparable<Restaurant>, Checker 
                 restaurant.uri =line;
                 List<Dish>menu=new ArrayList<>();
                 while (!(line =reader.readLine()).isEmpty()){
-                 //   System.out.println(j);
+                    //   System.out.println(j);
                     dish.name=line;
                     line=reader.readLine();
                     dish.description=line;

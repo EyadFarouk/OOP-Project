@@ -1,6 +1,7 @@
-package ASU.CIS.Project.Person;
+package Project.Person;
 
-import ASU.CIS.Project.Interfaces.saveAndLoad;
+
+import Project.Interfaces.saveAndLoad;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,9 +11,21 @@ import java.util.Scanner;
 /**
  * Customer class and the methods for the customer
  */
-public class Customer extends User implements saveAndLoad{
+public class Customer extends User implements saveAndLoad {
     String deliveryAddress;
-    static List<Customer> userList=new ArrayList<>();
+    public static List<Customer> userList=new ArrayList<>();
+
+//    public Customer(String Fname,String Lname,String email,String phone,int age,String address,String deliveryAddress,String password,String gender) {
+//        this.Fname=Fname;
+//        this.Lname=Lname;
+//        this.email=email;
+//        this.phone=phone;
+//        this.age=age;
+//        this.address=address;
+//        this.deliveryAddress=deliveryAddress;
+//        this.password=password;
+//        this.gender=gender;
+//    }
 
     /**
      * This method is used to display the details of the user

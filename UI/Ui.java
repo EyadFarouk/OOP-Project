@@ -1,14 +1,16 @@
-package ASU.CIS.Project.UI;
+package Project.UI;
 
-import ASU.CIS.Project.Interfaces.checkNumberValid;
-import ASU.CIS.Project.Orders.Order;
-import ASU.CIS.Project.Orders.OrderState;
-import ASU.CIS.Project.Payment.Card;
-import ASU.CIS.Project.Person.Admin;
-import ASU.CIS.Project.Person.Customer;
-import ASU.CIS.Project.Person.Delivery_Staff;
-import ASU.CIS.Project.Person.User;
-import ASU.CIS.Project.Resturants.*;
+
+
+import Project.Interfaces.checkNumberValid;
+import Project.Orders.Order;
+import Project.Orders.OrderState;
+import Project.Payment.Card;
+import Project.Person.Admin;
+import Project.Person.Customer;
+import Project.Person.Delivery_Staff;
+import Project.Person.User;
+import Project.Resturants.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -103,7 +105,7 @@ public class Ui extends Thread implements checkNumberValid {
         System.out.println("[3] if you want to display all orders");
         System.out.println("[4] if you want to log out");
         System.out.print("choice No. : ");
-    return checkNumber(1,4,"Please enter a valid number");
+        return checkNumber(1,4,"Please enter a valid number");
     }
     public void customerPath() throws URISyntaxException, IOException {
         //up casting
@@ -112,7 +114,7 @@ public class Ui extends Thread implements checkNumberValid {
         Customer customer = (Customer) user;
         int choose=loginOrSignup();
         if (choose==1){
-           // customer.login();
+            // customer.login();
         }
         else if(choose==2){
             customer.signup();
@@ -127,7 +129,7 @@ public class Ui extends Thread implements checkNumberValid {
         List<Review>reviewsDelivery=rev.loadDataReviewDelivery();
         int x = 1;
         do {
-             choose=homePage();
+            choose=homePage();
             if (choose==1){
                 restaurant.displayRestaurant(restaurants);
                 System.out.print("choose which restaurant you want to view : ");
@@ -166,7 +168,7 @@ public class Ui extends Thread implements checkNumberValid {
             else if (choose==4){
                 System.out.println("Please enter your location : ");
                 String orderLocation = scanner.nextLine();
-                Order order=new Order(orderLocation,OrderState.Preparing);
+                Order order=new Order(orderLocation, OrderState.Preparing);
                 order.makeOrder();
                 orders.add(order);
 
@@ -246,7 +248,7 @@ public class Ui extends Thread implements checkNumberValid {
                     int number= checkNumber(1,dishes.size(),"Invalid character. Please enter a valid number: ");
                     dish=dishes.get(number-1);
                 }
-               else{
+                else{
                     System.out.println("You should choose restaurant first");
                 }
             }
@@ -362,7 +364,7 @@ public class Ui extends Thread implements checkNumberValid {
         Delivery_Staff deliveryStaff=new Delivery_Staff(location);
         int choose=loginOrSignup();
         if (choose==1){
-         //   deliveryStaff.login();
+            //   deliveryStaff.login();
         }else if (choose==2){
             deliveryStaff.signup();
         }

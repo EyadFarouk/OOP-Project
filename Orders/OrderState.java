@@ -1,4 +1,4 @@
-package ASU.CIS.Project.Orders;
+package Project.Orders;
 
 public enum OrderState {
     Preparing,

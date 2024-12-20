@@ -1,4 +1,4 @@
-package ASU.CIS.Project.Resturants;
+package Project.Resturants;
 
 public class Dish {
 

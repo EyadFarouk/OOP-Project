@@ -1,6 +1,7 @@
-package ASU.CIS.Project.Resturants;
+package Project.Resturants;
 
-import ASU.CIS.Project.Person.Delivery_Staff;
+
+import Project.Person.Delivery_Staff;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -40,12 +41,8 @@ public class Review {
      */
     public void setReviewForRestaurant(double Rating) {
         number_of_reviewsR++;
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("If you have any note please enter : ");
-        note=scanner.nextLine();
         this.scoreRating = Rating;
-
-        restaurant.rating = (restaurant.rating*(number_of_reviewsR-1)+Rating) / number_of_reviewsR;
+        restaurant.rating = Math.round((restaurant.rating*(number_of_reviewsR-1)+Rating) / number_of_reviewsR*100.0)/100.0;
     }
 
     /**
@@ -61,7 +58,7 @@ public class Review {
      * @param deliveryStaff the deliveryman's first name
      * @param Rating the rating you want to give him
      */
-    public void setReviewForDeliveryStaff(Delivery_Staff deliveryStaff ,double Rating)
+    public void setReviewForDeliveryStaff(Delivery_Staff deliveryStaff , double Rating)
     {
         Scanner scanner=new Scanner(System.in);
         System.out.println("If you have any note please enter : ");

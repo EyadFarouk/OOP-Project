@@ -1,9 +1,12 @@
-package ASU.CIS.Project.Payment;
+package Project.Payment;
+
+
+
+import Project.Interfaces.checkNumberValid;
+import Project.Interfaces.saveAndLoad;
+import Project.Orders.Order;
 
 import java.util.Scanner;
-import ASU.CIS.Project.Interfaces.checkNumberValid;
-import ASU.CIS.Project.Interfaces.saveAndLoad;
-import ASU.CIS.Project.Orders.Order;
 
 public class Payment implements checkNumberValid, saveAndLoad {
     /**

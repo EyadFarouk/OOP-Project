@@ -1,9 +1,11 @@
-package ASU.CIS.Project.Orders;
+package Project.Orders;
 
-import ASU.CIS.Project.Interfaces.checkNumberValid;
-import ASU.CIS.Project.Payment.Card;
-import ASU.CIS.Project.Resturants.Dish;
-import ASU.CIS.Project.Resturants.Restaurant;
+
+
+import Project.Interfaces.checkNumberValid;
+import Project.Payment.Card;
+import Project.Resturants.Dish;
+import Project.Resturants.Restaurant;
 
 import java.io.*;
 import java.util.*;
@@ -18,7 +20,7 @@ public class Order implements checkNumberValid {
     private static List<Integer>quantites=new ArrayList<Integer>();
     private static double totalPrice;
     private String orderLocation;
-   // state of the order (Pending, Completed, Canceled)
+    // state of the order (Pending, Completed, Canceled)
     private OrderState orderState;
     /**
      * this is the constructor and it takes two parameters
@@ -65,7 +67,7 @@ public class Order implements checkNumberValid {
     /**
      * this method uses the addFoodItem method to create new orders
      */
-        public void makeOrder(){
+    public void makeOrder(){
         if (foodItems.isEmpty()){
             System.out.println("you should choose food first");
             return;

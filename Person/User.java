@@ -1,5 +1,6 @@
-package ASU.CIS.Project.Person;
-import ASU.CIS.Project.Interfaces.checkNumberValid;
+package Project.Person;
+
+import Project.Interfaces.checkNumberValid;
 
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
 abstract public class User implements checkNumberValid {
     String Fname;
     String Lname;
-    String email;
+     String email;
     String phone;
     int age;
     String gender;
@@ -224,5 +225,13 @@ abstract public class User implements checkNumberValid {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFname() {
+        return Fname;
+    }
+
+    public String getLname() {
+        return Lname;
     }
 }

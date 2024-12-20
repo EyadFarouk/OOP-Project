@@ -1,4 +1,4 @@
-package ASU.CIS.Project.Resturants;
+package Project.Resturants;
 
 import java.util.ArrayList;
 import java.util.List;

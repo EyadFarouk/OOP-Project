@@ -1,4 +1,4 @@
-package ASU.CIS.Project.Interfaces;
+package Project.Interfaces;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

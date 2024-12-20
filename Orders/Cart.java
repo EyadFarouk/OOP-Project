@@ -1,11 +1,11 @@
-package ASU.CIS.Project.Orders;
+package Project.Orders;
 
-import ASU.CIS.Project.Resturants.Dish;
+
+import Project.Resturants.Dish;
 
 import java.util.List;
 
 public class Cart {
-
     public static List<Dish> menus;
     public   static List<Integer> quantities;
     public static List<String> adds;
