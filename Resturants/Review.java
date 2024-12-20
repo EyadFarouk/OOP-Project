@@ -36,8 +36,12 @@ public class Review {
      */
     public void setReviewForRestaurant(double Rating) {
         number_of_reviewsR++;
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("If you have any note please enter : ");
+        note=scanner.nextLine();
         this.scoreRating = Rating;
-        restaurant.rating = Math.round((restaurant.rating*(number_of_reviewsR-1)+Rating) / number_of_reviewsR*100.0)/100.0;
+
+        restaurant.rating = (restaurant.rating*(number_of_reviewsR-1)+Rating) / number_of_reviewsR;
     }
 
     /**
@@ -53,7 +57,7 @@ public class Review {
      * @param deliveryStaff the deliveryman's first name
      * @param Rating the rating you want to give him
      */
-    public void setReviewForDeliveryStaff(Delivery_Staff deliveryStaff , double Rating)
+    public void setReviewForDeliveryStaff(Delivery_Staff deliveryStaff ,double Rating)
     {
         Scanner scanner=new Scanner(System.in);
         System.out.println("If you have any note please enter : ");
@@ -66,12 +70,12 @@ public class Review {
     public void saveData(List<Review>reviews){
         try {
             BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter("Data/reviews.txt"));
-             for (Review review : reviews){
-                 bufferedWriter.write(review.restaurant.name+'\n');
-                 bufferedWriter.write(String.valueOf(review.scoreRating)+'\n');
-                 bufferedWriter.write(String.valueOf(review.number_of_reviewsR)+'\n');
-                 bufferedWriter.write(review.note+'\n');
-             }
+            for (Review review : reviews){
+                bufferedWriter.write(review.restaurant.name+'\n');
+                bufferedWriter.write(String.valueOf(review.scoreRating)+'\n');
+                bufferedWriter.write(String.valueOf(review.number_of_reviewsR)+'\n');
+                bufferedWriter.write(review.note+'\n');
+            }
             bufferedWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);

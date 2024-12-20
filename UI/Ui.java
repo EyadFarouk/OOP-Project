@@ -5,6 +5,7 @@ package Project.UI;
 import Project.Interfaces.checkNumberValid;
 import Project.Orders.Order;
 import Project.Orders.OrderState;
+
 import Project.Payment.Card;
 import Project.Person.Admin;
 import Project.Person.Customer;
@@ -172,7 +173,7 @@ public class Ui extends Thread implements checkNumberValid {
             else if (choose==4){
                 System.out.println("Please enter your location : ");
                 String orderLocation = scanner.nextLine();
-                Order order=new Order(orderLocation, OrderState.Preparing);
+                Order order=new Order(orderLocation,OrderState.Preparing);
                 order.makeOrder();
                 orders.add(order);
                 userMakeOrder=true;

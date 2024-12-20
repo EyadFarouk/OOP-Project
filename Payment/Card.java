@@ -1,8 +1,7 @@
-package ASU.CIS.Project.Payment;
+package Project.Payment;
 
-import ASU.CIS.Project.Interfaces.checkNumberValid;
-import ASU.CIS.Project.Interfaces.saveAndLoad;
-import ASU.CIS.Project.Person.Customer;
+import Project.Interfaces.checkNumberValid;
+import Project.Interfaces.saveAndLoad;
 
 import java.io.*;
 import java.time.YearMonth;
