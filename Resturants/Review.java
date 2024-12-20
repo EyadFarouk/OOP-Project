@@ -15,11 +15,8 @@ public class Review {
     double scoreRating;
 
     public Restaurant restaurant;
-
     public String note;
     public String nameOfDelivery;
-
-
     public  int number_of_reviewsR=0,number_of_reviewsDS=0;
     public Review(){
         restaurant=new Restaurant();
@@ -32,8 +29,6 @@ public class Review {
     public Review(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
-
-
     /**
      * This method sets the restaurant's rating and calculate the average rating
      *

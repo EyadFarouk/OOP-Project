@@ -17,8 +17,8 @@ import java.util.*;
 public class Order implements checkNumberValid {
     private String orderId;
     private Date orderDate;
-    private  static List<Dish> foodItems=new ArrayList<>();
-    private static List<Integer>quantites=new ArrayList<Integer>();
+    public   static List<Dish> foodItems=new ArrayList<>();
+    public static List<Integer>quantites=new ArrayList<Integer>();
     private static double totalPrice;
     private String orderLocation;
     // state of the order (Pending, Completed, Canceled)
@@ -85,8 +85,6 @@ public class Order implements checkNumberValid {
         }else if (number==2){
             System.out.println("total price is : "+totalPrice);
         }
-        foodItems=new ArrayList<>();
-        quantites=new ArrayList<>();
     }
 
     /* === Getters === */
@@ -105,7 +103,7 @@ public class Order implements checkNumberValid {
      * gets the order's total price
      * @return returns order total price
      */
-    public double getOrderPrice() { return totalPrice; }
+    public static double getOrderPrice() { return totalPrice; }
     /**
      * gets the order location
      * @return returns order location
@@ -146,7 +144,7 @@ public class Order implements checkNumberValid {
         try {
             BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter("Data/orders.txt"));
             for (Order order:orders){
-                if (order.orderState== OrderState.Delivered){
+                if (order.orderState== OrderState.Delivered||order.orderState==OrderState.Canceled){
                     continue;
                 }
                 bufferedWriter.write(order.orderId+'\n');
