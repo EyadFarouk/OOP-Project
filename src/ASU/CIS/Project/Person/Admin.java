@@ -38,30 +38,17 @@ public class Admin extends User implements saveAndLoad, checkNumberValid {
         }
    }
 
-    private   Restaurant getRestaurant(String name){
-      try {
-          for (Restaurant restaurant:restaurants){
-              if (name.equals(restaurant.name)){
-                  return restaurant;
-              }
-          }
-      }catch (Exception e){
-          System.out.println("Restaurant not found");
-      }
-       return null;
-    }
-    private   int getMenu(String name,Restaurant restaurant){
-       int i;
-     try {
-         for (i=0;i<restaurant.menu.size();i++){
-             if(name.equals(restaurant.menu.get(i).name)){
-                 return i;
-             }
-         }
-     }catch (Exception e){
-         System.out.println("Dish not found");
-     }
-       return 10000;
+    private   Restaurant getRestaurant(String name) {
+        try {
+            for (Restaurant restaurant : restaurants) {
+                if (name.equals(restaurant.name)) {
+                    return restaurant;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Restaurant not found");
+        }
+        return null;
     }
     public  void addRestaurant(){
         Restaurant restaurant=new Restaurant();
@@ -137,27 +124,6 @@ public class Admin extends User implements saveAndLoad, checkNumberValid {
 
 
     }
-
-    /**
-     * This method is used to make the Admin remove
-     */
-    public  void deleteDish(String nameOfRestaurant,String nameOfDish){
-        Restaurant restaurant=getRestaurant(nameOfRestaurant);
-        if (restaurant==null){
-            System.out.println("Restaurant is not found");
-        }
-        else{
-            int index=getMenu(nameOfDish,restaurant);
-            if (index==10000){
-                System.out.println("Dish not found");
-            }
-            else{
-                restaurant.menu.remove(index);
-            }
-
-        }
-    }
-
     /**
      * This method is used to make the admin signup and make a new account
      */
@@ -265,8 +231,6 @@ public class Admin extends User implements saveAndLoad, checkNumberValid {
                 admin.address=line.split(",")[6];
                 admin.password=line.split(",")[7];
                 adminList.add(admin);
-//                System.out.println(userList.get(i).toString());
-//                i++;
             }
             fr.close();
         }catch (FileNotFoundException e) {

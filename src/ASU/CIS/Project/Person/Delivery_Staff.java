@@ -45,9 +45,6 @@ public class Delivery_Staff extends User implements saveAndLoad {
         this.rating = rating;
     }
 
-    public void setFname(String fname){
-        super.Fname=fname;
-    }
     public String getFname(){return super.Fname;}
 
     /**
@@ -99,8 +96,6 @@ public class Delivery_Staff extends User implements saveAndLoad {
                 deliveryStaff.address=line.split(",")[6];
                 deliveryStaff.password=line.split(",")[7];
                 staffList.add(deliveryStaff);
-//                System.out.println(userList.get(i).toString());
-//                i++;
             }
             fr.close();
         }catch (FileNotFoundException e) {
