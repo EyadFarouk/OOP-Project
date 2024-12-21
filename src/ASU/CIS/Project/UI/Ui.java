@@ -392,6 +392,7 @@ public class Ui extends Thread implements checkNumberValid {
                 }
             }
             else if (choose==18){
+                orderHistory=new ArrayList<>();
                 for (Order order1:AllOrders.orderList){
                     if (order1.getEmailUser().equals(customer.getEmail())){
                         orderHistory.add(order1);
