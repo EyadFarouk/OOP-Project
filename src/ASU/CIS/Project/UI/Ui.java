@@ -21,8 +21,7 @@ public class Ui extends Thread implements checkNumberValid {
     @Override
     public void run(){
         Scanner scan = new Scanner(System.in);
-        boolean x = true;
-        while (x) {
+        while (true) {
             int choose = firstPage();
             if (choose == 1) {
                 try {
@@ -40,7 +39,7 @@ public class Ui extends Thread implements checkNumberValid {
             choose = scan.nextInt();
             if(choose == 0)
             {
-                x = false;
+               System.exit(0);
             }
         }
     }
@@ -118,7 +117,7 @@ public class Ui extends Thread implements checkNumberValid {
         Customer customer = (Customer) user;
         int choose=loginOrSignup();
         if (choose==1){
-            customer= customer.login();
+           // customer= customer.login();
         }
         else if(choose==2){
             customer.signup();
