@@ -84,7 +84,7 @@ public class Ui extends Thread implements checkNumberValid {
         System.out.println("[15] if you want to view order");
         System.out.println("[16] if you want to search about restaurant with address");
         System.out.println("[17] if you want to cancel order");
-        System.out.println("[18] if you want to show all order you have make in account");
+        System.out.println("[18] if you want to show all the orders you have made so far");
         System.out.println("[19] if you want to log out");
         System.out.print("choice No. : ");
         return checkNumber(1,19,"Please enter a valid number: ");
@@ -398,11 +398,11 @@ public class Ui extends Thread implements checkNumberValid {
                         orderHistory.add(order1);
                     }
                 }
-                System.out.println("All order you make in account is : ");
+                System.out.println("All the orders you made so far are : ");
                 for (Order order1: orderHistory){
-                    System.out.println("order id is : "+order1.getOrderId());
-                    System.out.println("order total price is : "+order1.getOrderPrice());
-                    System.out.println("order location is : "+order1.getOrderLocation());
+                    System.out.println("order's id is : "+order1.getOrderId());
+                    System.out.println("order's total price is : "+order1.getOrderPrice());
+                    System.out.println("order's location is : "+order1.getOrderLocation());
                 }
             }
             else if(choose == 19){
