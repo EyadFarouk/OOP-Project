@@ -265,8 +265,6 @@ public class Admin extends User implements saveAndLoad, checkNumberValid {
                 admin.address=line.split(",")[6];
                 admin.password=line.split(",")[7];
                 adminList.add(admin);
-//                System.out.println(userList.get(i).toString());
-//                i++;
             }
             fr.close();
         }catch (FileNotFoundException e) {
