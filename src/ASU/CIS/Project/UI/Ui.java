@@ -320,6 +320,7 @@ public class Ui extends Thread implements checkNumberValid {
                 }
             }
             else if(choose == 14){
+                orderMakeByUser=new ArrayList<>();
                 for (Order order1:orders){
                     if (order1.getEmailUser().equals(customer.getEmail())){
                         orderMakeByUser.add(order1);
@@ -333,6 +334,7 @@ public class Ui extends Thread implements checkNumberValid {
                 }
             }
             else if (choose==15){
+                orderMakeByUser=new ArrayList<>();
                 for (Order order1:orders){
                     if (order1.getEmailUser().equals(customer.getEmail())){
                         orderMakeByUser.add(order1);
@@ -373,6 +375,7 @@ public class Ui extends Thread implements checkNumberValid {
                 }
             }
             else if (choose==17){
+                orderMakeByUser=new ArrayList<>();
                 for (Order order1:orders){
                     if (order1.getEmailUser().equals(customer.getEmail())){
                         orderMakeByUser.add(order1);
