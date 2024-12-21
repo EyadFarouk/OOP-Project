@@ -117,7 +117,7 @@ public class Ui extends Thread implements checkNumberValid {
         Customer customer = (Customer) user;
         int choose=loginOrSignup();
         if (choose==1){
-           // customer= customer.login();
+            customer= customer.login();
         }
         else if(choose==2){
             customer.signup();
@@ -129,21 +129,15 @@ public class Ui extends Thread implements checkNumberValid {
         Review rev=new Review();
         List<Order>orders=order.loadData();
         List<Order>orderMakeByUser=new ArrayList<>();
-        //
         List<Review>reviewsRestaurant=rev.loadDataReviewRestaurant();
         List<Review>reviewsDelivery=rev.loadDataReviewDelivery();
-        //
         Random random=new Random();
         int h=random.nextInt(restaurants.size());
-        //
         Notification notification=new Notification(customer.getFname(),restaurants.get(h).name);
         notification.start();
-        //
         AllOrders allOrders=new AllOrders();
         allOrders=allOrders.loadData();
-
         List<Order>orderHistory=new ArrayList<>();
-        //
         boolean userMakeOrder=false;
         int x = 1;
         do {
@@ -189,10 +183,8 @@ public class Ui extends Thread implements checkNumberValid {
                 Order order1=new Order(orderLocation,OrderState.Preparing,customer.getEmail());
                 order1.setTotalPrice(order.getOrderPrice());
                 order1.makeOrder();
-                //
                 AllOrders.orderList.add(order1);
 
-                //
                 orders.add(order1);
                 userMakeOrder=true;
             }
@@ -491,10 +483,6 @@ public class Ui extends Thread implements checkNumberValid {
                     if(ID.equals(order2.getOrderId())) {
                         order=order2;
                         System.out.println("what's current order state?");
-                     /*   int i=1;
-                        for (State state:State.values()){
-                            System.out.println("State "+i+" : "+state);
-                        }*/
                         order.setOrderState(OrderState.valueOf(scanner.nextLine()));
                     }
                 }

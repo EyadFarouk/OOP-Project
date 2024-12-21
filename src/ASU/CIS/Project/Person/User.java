@@ -190,39 +190,12 @@ abstract public class User implements checkNumberValid {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setFname(String fname) {
         Fname = fname;
-    }
-
-    public void setLname(String lname) {
-        Lname = lname;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
