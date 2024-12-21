@@ -311,7 +311,7 @@ public class Ui extends Thread implements checkNumberValid {
                     System.out.println("If you want to accept enter 1 or 0 to reject : ");
                     int number1=checkNumber(0,1,"enter valid number");
                     if (number1==1){
-                        dish=restaurant.menu.get(number-1);
+                        dish=restaurant.menu.get(number);
                     }else{
                         System.out.println("ok thank you");
                     }
@@ -392,6 +392,7 @@ public class Ui extends Thread implements checkNumberValid {
                 }
             }
             else if (choose==18){
+                orderHistory=new ArrayList<>();
                 for (Order order1:AllOrders.orderList){
                     if (order1.getEmailUser().equals(customer.getEmail())){
                         orderHistory.add(order1);
