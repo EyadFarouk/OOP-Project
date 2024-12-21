@@ -8,8 +8,8 @@ import java.util.Scanner;
  * this class is make to use to admin set report for a restaurant
  * */
 public class Report {
-    Restaurant restaurant=new Restaurant();
-    String report;
+    private Restaurant restaurant=new Restaurant();
+    private String report;
     /**
      * this method is make to set report
      * @param restaurants this is list of restaurant to select restaurant from

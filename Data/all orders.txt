@@ -1,9 +1,4 @@
 talaat@email.com
-72ac71c6-b55e-4d09-be9d-b7046df2bd4d
-cairo
-Preparing
-100.0
-talaat@email.com
 bfbd494b-5ffe-46f9-a959-266ed79218d0
 cairo
 Preparing

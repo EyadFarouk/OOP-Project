@@ -16,20 +16,22 @@ public class Order implements checkNumberValid {
     private Date orderDate;
     public   static List<Dish> foodItems=new ArrayList<>();
     public static List<Integer>quantites=new ArrayList<Integer>();
-    private static double totalPrice;
+    private double totalPrice;
     private String orderLocation;
    // state of the order (Pending, Completed, Canceled)
     private OrderState orderState;
+    private String emailUser;
     /**
      * this is the constructor and it takes two parameters
      * @param orderLocation the location the order is headed to
      * @param orderState the current state of the order
      */
-    public Order(String orderLocation, OrderState orderState) {
+    public Order(String orderLocation, OrderState orderState,String emailUser) {
         this.orderId = generateRandomOrderId();
         this.orderDate = new Date();
         this.orderLocation = orderLocation;
         this.orderState = orderState;
+        this.emailUser=emailUser;
     }
 
     /**
@@ -37,6 +39,13 @@ public class Order implements checkNumberValid {
      */
     public Order(){}
 
+    public void setEmailUser(String emailUser) {
+        this.emailUser = emailUser;
+    }
+
+    public String getEmailUser() {
+        return emailUser;
+    }
     // Generate a random order ID using UUID
 
     /**
@@ -100,7 +109,7 @@ public class Order implements checkNumberValid {
      * gets the order's total price
      * @return returns order total price
      */
-    public static double getOrderPrice() { return totalPrice; }
+    public  double getOrderPrice() { return totalPrice; }
     /**
      * gets the order location
      * @return returns order location
@@ -111,6 +120,9 @@ public class Order implements checkNumberValid {
      * @return returns order state
      */
     public OrderState getOrderState() { return orderState; }
+    public void setTotalPrice(double totalPrice){
+        this.totalPrice=totalPrice;
+    }
 
     /* === Setters ===*/
 
@@ -144,6 +156,7 @@ public class Order implements checkNumberValid {
                 if (order.orderState== OrderState.Delivered||order.orderState==OrderState.Canceled){
                     continue;
                 }
+                bufferedWriter.write(order.emailUser+'\n');
                 bufferedWriter.write(order.orderId+'\n');
                 bufferedWriter.write(order.orderLocation+'\n');
                 bufferedWriter.write(String.valueOf(order.orderState)+'\n');
@@ -155,13 +168,21 @@ public class Order implements checkNumberValid {
         }
 
     }
+    public void setOrderId(String orderId){
+        this.orderId=orderId;
+    }
+    public void setOrderLocation(String location){
+        this.orderLocation=location;
+    }
     public List<Order>loadData(){
         List <Order>orders=new ArrayList<>();
         try {
             BufferedReader bufferedReader=new BufferedReader(new FileReader("Data/orders.txt"));
             String line;
             Order order=new Order();
-            while ((line=bufferedReader.readLine())!=null){
+            while ((line = bufferedReader.readLine())!=null){
+                order.emailUser=line;
+                line=bufferedReader.readLine();
                 order.orderId=line;
                 line= bufferedReader.readLine();
                 order.orderLocation=line;

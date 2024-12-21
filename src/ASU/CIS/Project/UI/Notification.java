@@ -3,8 +3,8 @@ package ASU.CIS.Project.UI;
 import java.awt.*;
 
 public class Notification extends Thread{
-    String name;
-    String nameRestaurant;
+    private String name;
+    private String nameRestaurant;
     public Notification(String name,String nameRestaurant){
         this.name=name;
         this.nameRestaurant=nameRestaurant;
@@ -17,7 +17,7 @@ public class Notification extends Thread{
             throw new RuntimeException(e);
         }
     }
-    public void showNotification() throws AWTException {
+    private void showNotification() throws AWTException {
         if (SystemTray.isSupported()) {//check if pc support system tray
             displayTray();
         } else {
@@ -25,7 +25,7 @@ public class Notification extends Thread{
         }
     }
 
-    public  void displayTray() throws AWTException {
+    private void displayTray() throws AWTException {
         SystemTray tray = SystemTray.getSystemTray();//take object from system tray
         Image image = Toolkit.getDefaultToolkit().createImage("");//set default image to tray icon
         TrayIcon trayIcon = new TrayIcon(image, "");//take object from tray icon and send image

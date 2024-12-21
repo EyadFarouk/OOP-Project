@@ -3,6 +3,7 @@ package ASU.CIS.Project.UI;
 import ASU.CIS.Project.Interfaces.checkNumberValid;
 import ASU.CIS.Project.Orders.Order;
 import ASU.CIS.Project.Orders.OrderState;
+import ASU.CIS.Project.Orders.AllOrders;
 import ASU.CIS.Project.Payment.Card;
 import ASU.CIS.Project.Person.Admin;
 import ASU.CIS.Project.Person.Customer;
@@ -13,6 +14,7 @@ import ASU.CIS.Project.Resturants.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.*;
+
 
 public class Ui extends Thread implements checkNumberValid {
     Order order=new Order();
@@ -82,9 +84,10 @@ public class Ui extends Thread implements checkNumberValid {
         System.out.println("[15] if you want to view order");
         System.out.println("[16] if you want to search about restaurant with address");
         System.out.println("[17] if you want to cancel order");
-        System.out.println("[18] if you want to log out");
+        System.out.println("[18] if you want to show all order you have make in account");
+        System.out.println("[19] if you want to log out");
         System.out.print("choice No. : ");
-        return checkNumber(1,18,"Please enter a valid number: ");
+        return checkNumber(1,19,"Please enter a valid number: ");
     }
     public  int homePageAdmin(){
         System.out.println("Hello in home page please enter the number of the action you want to operate");
@@ -126,12 +129,22 @@ public class Ui extends Thread implements checkNumberValid {
         Dish dish=new Dish();
         Review rev=new Review();
         List<Order>orders=order.loadData();
+        List<Order>orderMakeByUser=new ArrayList<>();
+        //
         List<Review>reviewsRestaurant=rev.loadDataReviewRestaurant();
         List<Review>reviewsDelivery=rev.loadDataReviewDelivery();
+        //
         Random random=new Random();
         int h=random.nextInt(restaurants.size());
+        //
         Notification notification=new Notification(customer.getFname(),restaurants.get(h).name);
         notification.start();
+        //
+        AllOrders allOrders=new AllOrders();
+        allOrders=allOrders.loadData();
+
+        List<Order>orderHistory=new ArrayList<>();
+        //
         boolean userMakeOrder=false;
         int x = 1;
         do {
@@ -174,9 +187,14 @@ public class Ui extends Thread implements checkNumberValid {
             else if (choose==4){
                 System.out.println("Please enter your location : ");
                 String orderLocation = scanner.nextLine();
-                Order order=new Order(orderLocation,OrderState.Preparing);
-                order.makeOrder();
-                orders.add(order);
+                Order order1=new Order(orderLocation,OrderState.Preparing,customer.getEmail());
+                order1.setTotalPrice(order.getOrderPrice());
+                order1.makeOrder();
+                //
+                AllOrders.orderList.add(order1);
+
+                //
+                orders.add(order1);
                 userMakeOrder=true;
             }
             else if (choose==5){
@@ -302,24 +320,37 @@ public class Ui extends Thread implements checkNumberValid {
                 }
             }
             else if(choose == 14){
-                if (userMakeOrder){
-                    System.out.println("order's current state is : "+orders.get(orders.size()-1).getOrderState());
+                for (Order order1:orders){
+                    if (order1.getEmailUser().equals(customer.getEmail())){
+                        orderMakeByUser.add(order1);
+                    }
+                }
+                if (!orderMakeByUser.isEmpty()){
+                    System.out.println("order's current state is : "+orderMakeByUser.getLast().getOrderState());
                 }
                 else{
                     System.out.println("You should make an order first");
                 }
             }
             else if (choose==15){
-                if (userMakeOrder){
-                    System.out.println("order id is : "+orders.get(orders.size()-1).getOrderId());
-                    System.out.println("order date is : "+orders.get(orders.size()-1).getOrderDate());
-                    System.out.println("order total price is : "+orders.get(orders.size()-1).getOrderPrice());
-                    System.out.println("order location is : "+orders.get(orders.size()-1).getOrderLocation());
-                    System.out.println("order state is : "+orders.get(orders.size()-1).getOrderState());
-                    for (int i=0;i<Order.foodItems.size();i++){
-                        System.out.println("Name of item : "+Order.foodItems.get(i).name);
-                        System.out.println("Quantity of item : "+Order.quantites.get(i));
+                for (Order order1:orders){
+                    if (order1.getEmailUser().equals(customer.getEmail())){
+                        orderMakeByUser.add(order1);
                     }
+                }
+                if (!orderMakeByUser.isEmpty()){
+                    System.out.println("order id is : "+orderMakeByUser.getLast().getOrderId());
+                    System.out.println("order date is : "+orderMakeByUser.getLast().getOrderDate());
+                    System.out.println("order total price is : "+orderMakeByUser.getLast().getOrderPrice());
+                    System.out.println("order location is : "+orderMakeByUser.getLast().getOrderLocation());
+                    System.out.println("order state is : "+orderMakeByUser.getLast().getOrderState());
+                    if (userMakeOrder){
+                        for (int i=0;i<Order.foodItems.size();i++){
+                            System.out.println("Name of item : "+Order.foodItems.get(i).name);
+                            System.out.println("Quantity of item : "+Order.quantites.get(i));
+                        }
+                    }
+
                 }else{
                     System.out.println("You should make an order first");
                 }
@@ -342,18 +373,38 @@ public class Ui extends Thread implements checkNumberValid {
                 }
             }
             else if (choose==17){
-                if (userMakeOrder){
+                for (Order order1:orders){
+                    if (order1.getEmailUser().equals(customer.getEmail())){
+                        orderMakeByUser.add(order1);
+                    }
+                }
+                if (!orderMakeByUser.isEmpty()&&orderMakeByUser.getLast().getOrderState()!=OrderState.Complete){
                     System.out.println("if you want to cancel the order please enter 1 if you don't want to cancel enter 0 : ");
                     int number=checkNumber(0,1,"enter number valid");
                     if (number==1){
                         orders.remove(orders.size()-1);
+                        AllOrders.orderList.remove(AllOrders.orderList.size()-1);
+                        orderMakeByUser.remove(orderMakeByUser.size()-1);
                         userMakeOrder=false;
                     }
                 }else{
                     System.out.println("You should make order first");
                 }
             }
-            else if(choose == 18){
+            else if (choose==18){
+                for (Order order1:AllOrders.orderList){
+                    if (order1.getEmailUser().equals(customer.getEmail())){
+                        orderHistory.add(order1);
+                    }
+                }
+                System.out.println("All order you make in account is : ");
+                for (Order order1: orderHistory){
+                    System.out.println("order id is : "+order1.getOrderId());
+                    System.out.println("order total price is : "+order1.getOrderPrice());
+                    System.out.println("order location is : "+order1.getOrderLocation());
+                }
+            }
+            else if(choose == 19){
                 x = logOut();
             }
         }while (x==1);
@@ -361,6 +412,7 @@ public class Ui extends Thread implements checkNumberValid {
         rev.saveDataReviewDelivery(reviewsDelivery);
         rev.saveData(reviewsRestaurant);
         order.saveData(orders);
+        allOrders.saveData(allOrders);
     }
     public void adminPath()
     {
@@ -421,7 +473,7 @@ public class Ui extends Thread implements checkNumberValid {
         Delivery_Staff deliveryStaff=new Delivery_Staff(location);
         int choose=loginOrSignup();
         if (choose==1){
-            //   deliveryStaff.login();
+               deliveryStaff.login();
         }else if (choose==2){
             deliveryStaff.signup();
         }
@@ -482,6 +534,7 @@ public class Ui extends Thread implements checkNumberValid {
 
         Card card=new Card();
         card.saveData();
+
     }
     public void loadData(){
         Customer customer = new Customer();

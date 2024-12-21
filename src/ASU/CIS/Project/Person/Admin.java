@@ -38,7 +38,7 @@ public class Admin extends User implements saveAndLoad, checkNumberValid {
         }
    }
 
-    public  Restaurant getRestaurant(String name){
+    private   Restaurant getRestaurant(String name){
       try {
           for (Restaurant restaurant:restaurants){
               if (name.equals(restaurant.name)){
@@ -50,7 +50,7 @@ public class Admin extends User implements saveAndLoad, checkNumberValid {
       }
        return null;
     }
-    public  int getMenu(String name,Restaurant restaurant){
+    private   int getMenu(String name,Restaurant restaurant){
        int i;
      try {
          for (i=0;i<restaurant.menu.size();i++){
